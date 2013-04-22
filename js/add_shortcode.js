@@ -8,7 +8,6 @@ editor = '';
         var modal_selector = $('#pixelgrade_shortcodes_modal'),
             plugin_url;
 
-
         $.ajax({
             url: ajaxurl,
             data: {action: 'wpgrade_get_shortcodes_modal'},
@@ -28,7 +27,7 @@ editor = '';
                     toggle_submit_btn();
                     change_title(default_title);
                     clean_details();
-
+                    window.send_to_editor = window.send_to_editor_clone;
                 });
 
                 //Back Button Click
@@ -128,6 +127,7 @@ editor = '';
                         get_current_editor_selected_content = function(){
                             return editor;
                         }
+                        window.send_to_editor_clone = window.send_to_editor;
                     }
                 });
             }
@@ -179,7 +179,24 @@ editor = '';
             modal_selector.trigger('reveal:close');
         }); // end of submit form
 
+        $(document).on('click', '.media_image_holder', function(){
+            var $self = $(this);
+
+            tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
+            formfield = $('#upload_image').attr('name');
+
+            window.send_to_editor = function(html) {
+                imgurl = $('img',html).attr('src');
+                $self.find('.media_image_input').val(imgurl);
+                $self.find('.upload_preview').attr('src',imgurl).show().next().toggleClass('active');
+                tb_remove();
+            }
+
+            return false;
+        });
+
     });
+
 
     $.fn.serializeShortcodeParams = function(){
         var return_els = {},

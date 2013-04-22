@@ -17,10 +17,15 @@ class WpGradeShortcode_TeamMember extends  WpGradeShortcode {
                 'name' => 'Name',
                 'admin_class' => 'span6'
             ),
+            'image' => array(
+                'type' => 'image',
+                'name' => 'Image',
+                'admin_class' => 'span5 push1'
+            ),
             'title' => array(
                 'type' => 'text',
                 'name' => 'Title',
-                'admin_class' => 'span5 push1'
+                'admin_class' => 'span6'
             ),
             'content' => array(
                 'type' => 'textarea',
