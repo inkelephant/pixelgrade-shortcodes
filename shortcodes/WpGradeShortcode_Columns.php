@@ -63,12 +63,30 @@ class WpGradeShortcode_Columns extends  WpGradeShortcode {
             'class' => ''
         ), $atts ) );
         ob_start(); ?>
-            <div class="row row-shortcode <?php echo $class; ?>">
-                <?php if ( !empty($bg_color) ) { ?>
-                    <div class="row-background full-width" style="background-color:<?php echo $bg_color; ?>;"></div>
-                <?php } ?>
-                <?php echo do_shortcode($content); ?>
-            </div>
+        <?php
+            $is_narrow = false;
+            $classes = explode(" ", $class);
+            foreach ($classes as $my_class):
+                if ($my_class == "narrow") $is_narrow = true;
+            endforeach;
+        ?>
+            <?php if ($is_narrow): ?>
+                <div class="narrow">
+                    <div class="row row-shortcode <?php echo $class; ?>">
+                        <?php if ( !empty($bg_color) ) { ?>
+                            <div class="row-background full-width" style="background-color:<?php echo $bg_color; ?>;"></div>
+                        <?php } ?>
+                        <?php echo do_shortcode($content); ?>
+                    </div>
+                </div>
+            <?php else: ?>
+                <div class="row row-shortcode <?php echo $class; ?>">
+                    <?php if ( !empty($bg_color) ) { ?>
+                        <div class="row-background full-width" style="background-color:<?php echo $bg_color; ?>;"></div>
+                    <?php } ?>
+                    <?php echo do_shortcode($content); ?>
+                </div>
+            <?php endif; ?>
         <?php return $this->get_clean_content( ob_get_clean() );
     }
 

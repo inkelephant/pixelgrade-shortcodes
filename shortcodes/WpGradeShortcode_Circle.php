@@ -5,7 +5,7 @@ if (!defined('ABSPATH')) die('-1');
 class WpGradeShortcode_Circle extends  WpGradeShortcode {
 
     public function __construct($settings = array()) {
-        $this->self_closed = false;
+        $this->self_closed = true;
         $this->name = "Circle";
         $this->code = "circle";
         $this->icon = "icon-circle-blank";
