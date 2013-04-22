@@ -146,12 +146,19 @@
             e.preventDefault();
             var params = $(this).next('#data_params').data('params'),
                 form_params =  $(this).serializeArray(),
-                output = '<br/>[row]<br/>';
+                params_String = '';
 
-            $.each(getValues(), function(i,e){
-                output += '[col size="'+e+'"]Content goes here[/col]<br/>';
+            $.each(form_params, function(i,e){
+                console.log(e);
+                params_String += ' '+ e.name + '="'+ e.value +'"';
             });
-            output += '[/row]<br/>';
+
+            var output = '[row '+ params_String +']<br class="removable" />';
+
+            $.each(getValues(), function(i,e){ // get each column and their params
+                output += '[col size="'+e+'"]Content goes here[/col]<br class="removable" />';
+            });
+            output += '[/row]<br class="removable" />';
             editor.selection.setContent(output);
 
             $('#pixelgrade_shortcodes_modal').trigger('reveal:close');

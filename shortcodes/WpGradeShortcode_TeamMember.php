@@ -100,9 +100,6 @@ class WpGradeShortcode_TeamMember extends  WpGradeShortcode {
                 </ul>
             </div>
 
-        
-        
-          
-        <?php return ob_get_clean();
+        <?php return $this->get_clean_content( ob_get_clean() );
     }
 }

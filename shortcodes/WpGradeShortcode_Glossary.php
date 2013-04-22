@@ -64,6 +64,6 @@ class WpGradeShortcode_Glossary extends  WpGradeShortcode {
                     <a class="link" href="<?php echo $link ?>" target="_blank">continue reading &raquo;</a>
                 <?php } ?>
             </div>
-        <?php return ob_get_clean();
+        <?php return $this->get_clean_content( ob_get_clean() );
     }
 }

@@ -48,7 +48,8 @@ class WpGradeShortcode_Button extends  WpGradeShortcode {
 
         extract( shortcode_atts( array(
         ), $atts ) );
+        ob_start(); ?>
 
-        return '<a class="button"></a>';
+        <?php return $this->get_clean_content( ob_get_clean() );
     }
 }

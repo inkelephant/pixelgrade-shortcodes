@@ -81,6 +81,16 @@ if (!defined('ABSPATH')) die('-1'); ?>
                                                     </span>
 
                                                 <?php break; }
+                                                case 'switch' : {
+                                                    $class= "span12";
+                                                    if ( isset($param['admin_class'] ) ) $class = $param['admin_class']; ?>
+
+                                                    <span class="<?php echo $class; ?>" >
+                                                        <label for="<?php echo $k ?>"><?php echo $param['name'] ?></label>
+                                                        <input type="checkbox" name="<?php echo $k ?>" />
+                                                    </span>
+
+                                                <?php break; }
                                                 case 'slider' : {
                                                     $class= "span12";
 

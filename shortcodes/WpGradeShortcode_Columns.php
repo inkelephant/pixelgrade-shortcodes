@@ -29,12 +29,17 @@ class WpGradeShortcode_Columns extends  WpGradeShortcode {
                 'type' => 'select',
                 'name' => 'No. of columns:',
                 'options' => array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '6' => '6'),
-                'admin_class' => 'span6 strong'
+                'admin_class' => 'span3 strong'
             ),
              'bg_color' => array(
                 'type' => 'text',
                 'name' => 'Background Color',
-                'admin_class' => 'span5 push1'
+                'admin_class' => 'span3 push1'
+            ),
+            'full_width' => array(
+                'type' => 'switch',
+                'name' => 'Full Width Background',
+                'admin_class' => 'span4 push2'
             ),
             'cols_slider' =>array(
                 'type' => 'slider',
@@ -64,7 +69,7 @@ class WpGradeShortcode_Columns extends  WpGradeShortcode {
                 <?php } ?>
                 <?php echo do_shortcode($content); ?>
             </div>
-        <?php return ob_get_clean();
+        <?php return $this->get_clean_content( ob_get_clean() );
     }
 
     public function add_column_shortcode($atts, $content){
@@ -77,6 +82,6 @@ class WpGradeShortcode_Columns extends  WpGradeShortcode {
             <div class="span<?php echo $size; ?>">
                 <?php echo do_shortcode($content); ?>
             </div>
-        <?php return ob_get_clean();
+        <?php return $this->get_clean_content( ob_get_clean() );
     }
 }
