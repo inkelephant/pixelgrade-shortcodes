@@ -58,12 +58,12 @@ class WpGradeShortcode_Glossary extends  WpGradeShortcode {
                 <?php if ( !empty($title) ) { ?>
                     <h3><?php echo $title; ?></h3>
                 <?php } ?>
-                <p><?php echo do_shortcode($content); ?></p>
+                <p><?php echo $this->get_clean_content($content); ?></p>
 
                 <?php if ( !empty($link) ) {?>
                     <a class="link" href="<?php echo $link ?>" target="_blank">continue reading &raquo;</a>
                 <?php } ?>
             </div>
-        <?php return $this->get_clean_content( ob_get_clean() );
+        <?php return ob_get_clean();
     }
 }

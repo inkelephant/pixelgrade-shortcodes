@@ -50,6 +50,6 @@ class WpGradeShortcode_Button extends  WpGradeShortcode {
         ), $atts ) );
         ob_start(); ?>
 
-        <?php return $this->get_clean_content( ob_get_clean() );
+        <?php return ob_get_clean();
     }
 }

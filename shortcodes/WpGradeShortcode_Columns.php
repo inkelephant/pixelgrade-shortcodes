@@ -76,7 +76,7 @@ class WpGradeShortcode_Columns extends  WpGradeShortcode {
                         <?php if ( !empty($bg_color) ) { ?>
                             <div class="row-background full-width" style="background-color:<?php echo $bg_color; ?>;"></div>
                         <?php } ?>
-                        <?php echo do_shortcode($content); ?>
+                        <?php echo $this->get_clean_content($content); ?>
                     </div>
                 </div>
             <?php else: ?>
@@ -84,10 +84,10 @@ class WpGradeShortcode_Columns extends  WpGradeShortcode {
                     <?php if ( !empty($bg_color) ) { ?>
                         <div class="row-background full-width" style="background-color:<?php echo $bg_color; ?>;"></div>
                     <?php } ?>
-                    <?php echo do_shortcode($content); ?>
+                    <?php echo $this->get_clean_content($content); ?>
                 </div>
             <?php endif; ?>
-        <?php return $this->get_clean_content( ob_get_clean() );
+        <?php return ob_get_clean();
     }
 
     public function add_column_shortcode($atts, $content){
@@ -98,8 +98,8 @@ class WpGradeShortcode_Columns extends  WpGradeShortcode {
 
         ob_start(); ?>
             <div class="span<?php echo $size; ?>">
-                <?php echo do_shortcode($content); ?>
+                <?php echo $this->get_clean_content( $content ); ?>
             </div>
-        <?php return $this->get_clean_content( ob_get_clean() );
+        <?php return ob_get_clean();
     }
 }

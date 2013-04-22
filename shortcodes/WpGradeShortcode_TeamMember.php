@@ -78,7 +78,7 @@ class WpGradeShortcode_TeamMember extends  WpGradeShortcode {
             </div>
             <hr class="left">
             <div class="team-member-description">
-                <?php echo do_shortcode($content); ?>
+                <?php echo $this->get_clean_content($content); ?>
             </div>
             <div class="team-member-footer">
                 <ul class="team-member-social-links">
@@ -100,6 +100,6 @@ class WpGradeShortcode_TeamMember extends  WpGradeShortcode {
                 </ul>
             </div>
 
-        <?php return $this->get_clean_content( ob_get_clean() );
+        <?php return ob_get_clean();
     }
 }
