@@ -1,0 +1,153 @@
+
+//						: Grid
+$responsive				: true;
+$visibilityClasses		: true;
+$width					: 1240px;
+$gutter					: 0;
+// $gutter				: $fontSizeBase*$lineHeightBase*1.5;
+$padding				: 0;
+$margin					: 2%;
+$breakpoints			: small 400px hand 900px lap 2000px desk;
+$defaultBreakpoint		: lap;
+
+//						: regular grid system options
+$columns				: 12;
+$offsetClasses			: true;
+$pullClasses			: true; 
+$pushClasses			: true;
+$unit: 10px;
+$fontSizeBase			: 14px;
+
+* {@include box-sizing(border-box !important);}
+
+// IE10 snap mode
+@-ms-viewport {
+	width: device-width;
+}
+@viewport {
+	width: device-width;
+}
+
+img {
+	max-width: 100%;
+}
+
+%grid {
+	@extend %cf;
+	margin-left: auto;
+	margin-right: auto;
+
+	@if $responsive == true {
+		width: $width;
+		@media only screen {
+			width: 100%;
+			max-width: $width;
+		}
+	} @else {
+	}
+}
+
+%row {
+	@extend %cf;
+	@if $padding != 0 or $gutter != 0 {
+		margin-left: -1 * ($gutter + $padding);
+	}
+}
+
+%column {
+	@if $padding != 0 {
+		padding-left: $padding;
+	}
+	@if $gutter != 0 {
+		border: 0 solid transparent;
+		padding-left: $gutter;
+		@include background-clip(padding-box !important);
+		@include background-origin(padding-box !important);
+	}
+
+	@if $margin != 0 {
+		margin-left: $margin;
+
+		&:first-child {
+			margin-left: 0;
+		}
+	}
+}
+
+// digest breakpoints set by user and prepare for other mixins
+@include processBreakpoints();
+
+%span { 
+	@extend %column;
+	float: left;
+
+	@include mq(0 lap) {
+		// width: 100% !important;
+		margin-left: 0;
+		@include rem(margin-bottom, $unit);
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+// generate .visible-* and .hidden-* classes
+@if $visibilityClasses == true {
+	@include visibilityClasses();
+}
+
+
+// add needed classes to buffer
+@for $i from 1 through $columns {
+	@include newClass(span#{$i}, $i / $columns);
+	@include newClass(offset#{$i}, $i / $columns, offset);
+	@include newClass(push#{$i}, $i / $columns, push);
+	@include newClass(pull#{$i}, $i / $columns, pull);
+}
+
+// proccess needed classes from buffer
+@include generateClasses();
+
+
+//Grid Full
+.grid_full {
+
+	.span12 {
+		width:100%;
+	}
+	.span11 {
+		width:100%/12*11;
+	}
+	.span10 {
+		width:100%/12*10;
+	}
+	.span9 {
+		width:100%/12*9;
+	}
+	.span8 {
+		width:100%/12*8;
+	}
+	.span7 {
+		width:100%/12*7;
+	}
+	.span6 {
+		width:100%/12*6;
+	}
+	.span5 {
+		width:100%/12*5;
+	}
+	.span4 {
+		width:100%/12*4;
+	}
+	.span3 {
+		width:100%/12*3;
+	}
+	.span2 {
+		width:100%/12*2;
+	}
+	.span1 {
+		width:100%/12*1;
+	}
+
+}
