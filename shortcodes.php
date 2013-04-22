@@ -76,9 +76,10 @@ class WpGradeShortcode {
     }
 
     public function get_clean_content($content){
-        $content = do_shortcode( shortcode_unautop($content) );
-        $content = preg_replace( '#^<\/p>|^<br \/>|<p>$#', '', $content );
-        return preg_replace('#<br class="removable" />#', '', $content); // remove our temp brs
+        $content = do_shortcode( $content );
+        $content = preg_replace('#<br class="removable" />#', '', $content); // remove our temp brs
+
+        return $content;
     }
 }
 global $wpgrade_shortcodes;

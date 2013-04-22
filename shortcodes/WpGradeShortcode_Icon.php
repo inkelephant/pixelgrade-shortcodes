@@ -47,6 +47,6 @@ class WpGradeShortcode_Icon extends  WpGradeShortcode {
   
            <i class="shc <?php echo $name." ".$type." ".$size; ?>"></i>
 
-        <?php return $this->get_clean_content( ob_get_clean() );
+        <?php return ob_get_clean();
     }
 }

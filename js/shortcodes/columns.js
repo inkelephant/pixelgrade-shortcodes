@@ -156,7 +156,7 @@
             var output = '[row '+ params_String +']<br class="removable" />';
 
             $.each(getValues(), function(i,e){ // get each column and their params
-                output += '[col size="'+e+'"]Content goes here[/col]<br class="removable" />';
+                output += '[col size="'+e+'"]<br class="removable" />Content goes here<br class="removable" />[/col]<br class="removable" />';
             });
             output += '[/row]<br class="removable" />';
             editor.selection.setContent(output);
