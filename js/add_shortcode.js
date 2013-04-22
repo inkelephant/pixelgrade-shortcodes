@@ -173,7 +173,7 @@ editor = '';
             if ( params.self_closed ) {
                 editor.selection.setContent('['+params.code+user_params_string+']');
             } else {
-                editor.selection.setContent('['+params.code+user_params_string+']<br class="removable" />'+ shortcode_content +'<br class="removable" />[/'+params.code+']');
+                editor.selection.setContent('['+params.code+user_params_string+']<br class="pxg_removable" />'+ shortcode_content +'<br class="pxg_removable" />[/'+params.code+']');
             }
 
             modal_selector.trigger('reveal:close');

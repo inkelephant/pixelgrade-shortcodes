@@ -153,12 +153,12 @@
                 params_String += ' '+ e.name + '="'+ e.value +'"';
             });
 
-            var output = '[row '+ params_String +']<br class="removable" />';
+            var output = '[row '+ params_String +']<br class="pxg_removable" />';
 
             $.each(getValues(), function(i,e){ // get each column and their params
-                output += '[col size="'+e+'"]<br class="removable" />Content goes here<br class="removable" />[/col]<br class="removable" />';
+                output += '[col size="'+e+'"]<br class="pxg_removable" />Content goes here<br class="pxg_removable" />[/col]<br class="pxg_removable" />';
             });
-            output += '[/row]<br class="removable" />';
+            output += '[/row]<br class="pxg_removable" />';
             editor.selection.setContent(output);
 
             $('#pixelgrade_shortcodes_modal').trigger('reveal:close');

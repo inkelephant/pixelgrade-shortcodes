@@ -77,7 +77,7 @@ class WpGradeShortcode {
 
     public function get_clean_content($content){
         $content = do_shortcode( $content );
-        $content = preg_replace('#<br class="removable" />#', '', $content); // remove our temp brs
+        $content = preg_replace('#<br class="pxg_removable" />#', '', $content); // remove our temp brs
 
         return $content;
     }
