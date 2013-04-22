@@ -20,7 +20,7 @@ class WpGradeShortcode_TeamMember extends  WpGradeShortcode {
             'image' => array(
                 'type' => 'image',
                 'name' => 'Image',
-                'admin_class' => 'span5 push1'
+                'admin_class' => 'span5 push1 pxg_media_uploader'
             ),
             'title' => array(
                 'type' => 'text',

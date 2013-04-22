@@ -385,3 +385,52 @@ Modal Styling
 .mceIcon.pixelgrade_shortcodes:hover {
     background: url(../images/open_modal.png)  0 -30px no-repeat !important;
 }
+
+// image upload preview -- Andrei
+#wpgrade_shortcodes_form {
+  .media_image_holder {
+    cursor: pointer;
+    vertical-align: middle;
+    width:200px;
+    text-align: center;
+    height: 140px;
+    background: #ddd;
+    border-radius:10px;
+    padding-top: 20px;
+
+    i {
+      color: #eee;
+      border-top: 16px;
+      font-size: 100px;
+      cursor: pointer;
+
+      &.icon-edit {
+        display:none;
+        position: absolute;
+        top: 35px;
+        left: 70px;
+        z-index:10;
+      }
+    }
+
+    .upload_preview {
+      display:none;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      z-index:9;
+      border-radius: 10px;
+      height: 100%;
+      width: 100%;
+    }
+
+    &:hover i.active {
+      display:block;
+    }
+
+    pxg_media_uploader {
+      float:right;
+      margin-right: 55px;
+    }
+  }
+}

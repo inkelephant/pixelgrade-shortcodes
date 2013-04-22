@@ -97,11 +97,11 @@ if (!defined('ABSPATH')) die('-1'); ?>
 
                                                     <span class="<?php echo $class; ?>"  >
                                                         <label for="<?php echo $k ?>"><?php echo $param['name'] ?></label>
-                                                        <div class="media_image_holder" style="cursor: pointer;vertical-align: middle;width:200px; text-align: center;height: 140px; background: #ddd; border-radius:10px;padding-top: 20px;">
-                                                            <i class="icon-camera" style="color: #eee;border-top: 16px;font-size: 100px;cursor: pointer;"></i>
+                                                        <div class="media_image_holder" >
+                                                            <i class="icon-camera" style=""></i>
                                                             <input type="hidden" class="media_image_input" name="<?php echo $k ?>" />
-                                                            <img class="upload_preview" style="position: absolute; top: 0px; left: 0px; z-index:9; height: 100%; width: 100%; display:none;" />
-                                                            <i class="icon-edit" style="display:none; position: absolute;top: 0px; left: 0px;z-index:10; color: #eee; border-top: 16px; font-size: 100px; cursor: pointer; "></i>
+                                                            <img class="upload_preview" />
+                                                            <i class="icon-edit" ></i>
                                                         </div>
                                                     </span>
 
