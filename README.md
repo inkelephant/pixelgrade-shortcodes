@@ -1,4 +1,4 @@
-wpgrade-shortcodes
+pixelgrade-shortcodes
 ==================
 
 Shortcodes Generator for wpgrade wordpressthemes
