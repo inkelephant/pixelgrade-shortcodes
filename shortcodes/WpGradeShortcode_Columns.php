@@ -32,7 +32,7 @@ class WpGradeShortcode_Columns extends  WpGradeShortcode {
                 'admin_class' => 'span3 strong'
             ),
              'bg_color' => array(
-                'type' => 'text',
+                'type' => 'color',
                 'name' => 'Background Color',
                 'admin_class' => 'span3 push1'
             ),
@@ -69,8 +69,7 @@ class WpGradeShortcode_Columns extends  WpGradeShortcode {
             foreach ($classes as $my_class):
                 if ($my_class == "narrow") $is_narrow = true;
             endforeach;
-        ?>
-            <?php if ($is_narrow): ?>
+            if ($is_narrow): ?>
                 <div class="narrow">
                     <div class="row row-shortcode <?php echo $class; ?>">
                         <?php if ( !empty($bg_color) ) { ?>

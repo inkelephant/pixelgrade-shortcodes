@@ -64,6 +64,7 @@ editor = '';
                     triggered_woman = details.find('button[type="submit"]');
 
                     details.trigger($(this).data('trigger-open'));
+
                 });
 
                 //Trigger Submit Button (need few improvements :)
@@ -107,6 +108,7 @@ editor = '';
                     $button.trigger('click');
                 }
                 $(document).trigger('shortcodes_modal:ready');
+
             } // end of ajax success
         });
 
@@ -196,7 +198,6 @@ editor = '';
         });
 
     });
-
 
     $.fn.serializeShortcodeParams = function(){
         var return_els = {},

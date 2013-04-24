@@ -70,7 +70,8 @@ class WpGradeShortcodes {
 	 * Registers and enqueues admin-specific styles.
 	 */
 	public function register_admin_styles() {
-//        wp_register_style('slider-ui', 'http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css');
+//        wp_register_style('slider-ui', 'http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css');wp_enqueue_style( 'wp-color-picker');
+
         wp_enqueue_style( 'wpgrade-shortcodes-reveal-styles', plugins_url( 'wpgrade-shortcodes/css/base.css' ), array(  ) );
 	} // end register_admin_styles
 
@@ -78,7 +79,8 @@ class WpGradeShortcodes {
 	 * Registers and enqueues admin-specific JavaScript.
 	 */
 	public function register_admin_scripts() {
-
+        wp_enqueue_style( 'iris' );
+        wp_enqueue_script('iris');
     } // end register_admin_scripts
 
 	/**

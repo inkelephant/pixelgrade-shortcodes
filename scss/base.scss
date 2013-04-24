@@ -427,10 +427,10 @@ Modal Styling
     &:hover i.active {
       display:block;
     }
+  }
 
-    pxg_media_uploader {
-      float:right;
-      margin-right: 55px;
-    }
+  .pxg_media_uploader {
+    float:right;
+    margin-right: 55px;
   }
 }

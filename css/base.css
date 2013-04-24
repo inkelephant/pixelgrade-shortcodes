@@ -3084,8 +3084,8 @@ Modal Styling
 #wpgrade_shortcodes_form .media_image_holder:hover i.active {
   display: block;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/wordpress\/senna\/wp-content\/plugins\/wpgrade-shortcodes\/scss\/base\.scss}line{font-family:\00003431}}
-#wpgrade_shortcodes_form .media_image_holder pxg_media_uploader {
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/wordpress\/senna\/wp-content\/plugins\/wpgrade-shortcodes\/scss\/base\.scss}line{font-family:\00003432}}
+#wpgrade_shortcodes_form .pxg_media_uploader {
   float: right;
   margin-right: 55px;
 }

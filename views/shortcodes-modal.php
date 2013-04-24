@@ -91,6 +91,17 @@ if (!defined('ABSPATH')) die('-1'); ?>
                                                     </span>
 
                                                 <?php break; }
+                                                case 'color' : {
+                                                    $class= "span12";
+
+                                                    if ( isset($param['admin_class'] ) ) $class = $param['admin_class'];?>
+
+                                                    <span class="<?php echo $class; ?>" >
+                                                        <label for="<?php echo $k ?>"><?php echo $param['name'] ?></label>
+                                                        <input type="text" name="<?php echo $k ?>" class="popup-colorpicker"/>
+                                                    </span>
+
+                                                <?php break; }
                                                 case 'image' : {
                                                     $class= "span12";
                                                     if ( isset($param['admin_class'] ) ) $class = $param['admin_class']; ?>

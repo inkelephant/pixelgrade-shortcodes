@@ -63,6 +63,7 @@ class WpGradeShortcode_TeamMember extends  WpGradeShortcode {
         extract( shortcode_atts( array(
             'name' => '',
             'title' => '',
+            'image' => '',
             'social_twitter' => '',
             'social_facebook' => '',
             'social_linkedin' => '',
@@ -71,8 +72,10 @@ class WpGradeShortcode_TeamMember extends  WpGradeShortcode {
 
         ob_start(); ?>
         
-  
-            <img src="/senna/wp-content/uploads/assets/member2.jpg" alt="<?php echo $name; ?> Profile Image">
+            <?php if ( !empty($image) ) {?>
+                <img src="<?php echo $image; ?>" alt="<?php echo $name; ?> Profile Image">
+            <?php } ?>
+
             <div class="team-member-header">
                  <?php if ( !empty($name) ) { ?>
                     <h3 class="team-member-name"><?php echo $name; ?></h3>
