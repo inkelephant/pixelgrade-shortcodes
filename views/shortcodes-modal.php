@@ -1,9 +1,6 @@
 <?php
 // get the root
-$plug_path = explode( '/', plugin_dir_path( __FILE__  ));
-array_pop($plug_path);
-array_pop($plug_path);
-$plug_path = implode('/',$plug_path);
+$plug_path = dirname(dirname(__FILE__));
 include_once($plug_path."/shortcodes.php");
 global $wpgrade_shortcodes;
 if (!defined('ABSPATH')) die('-1'); ?>
