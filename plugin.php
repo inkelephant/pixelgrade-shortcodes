@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: wpGrade Shortcodes
+Plugin Name: Pixelgrade Shortcodes
 Plugin URI: http://pixelgrade.com
 Description: Adds shortcodes to your wordpress editor
 Version: 1.0
@@ -72,7 +72,7 @@ class WpGradeShortcodes {
 	public function register_admin_styles() {
 //        wp_register_style('slider-ui', 'http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css');wp_enqueue_style( 'wp-color-picker');
 
-        wp_enqueue_style( 'wpgrade-shortcodes-reveal-styles', plugins_url( 'wpgrade-shortcodes/css/base.css' ), array(  ) );
+        wp_enqueue_style( 'wpgrade-shortcodes-reveal-styles', plugins_url( 'pixelgrade-shortcodes/css/base.css' ), array(  ) );
 	} // end register_admin_styles
 
 	/**
@@ -112,7 +112,7 @@ class WpGradeShortcodes {
 	} // end filter_method_name
 
     function addto_mce_wpgrade_shortcodes($plugin_array) {
-        $plugin_array['wpgrade'] = plugins_url( 'wpgrade-shortcodes/js/add_shortcode.js' , dirname(__FILE__) ) ;
+        $plugin_array['wpgrade'] = plugins_url( 'pixelgrade-shortcodes/js/add_shortcode.js' , dirname(__FILE__) ) ;
         return $plugin_array;
     }
 

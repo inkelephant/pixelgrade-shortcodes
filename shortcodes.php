@@ -64,7 +64,7 @@ class WpGradeShortcode {
             foreach ( $types as $type => $assets ) {
                 foreach( $assets as $asset ) {
 
-                    $path = plugins_url() . '/wpgrade-shortcodes/' . $asset['path'];
+                    $path = plugins_url() . '/pixelgrade-shortcodes/' . $asset['path'];
                     if ($type == 'js') {
                         wp_enqueue_script( $asset['name'], $path, $asset['deps'] );
                     } elseif ( $type == 'css' ) {
