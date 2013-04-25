@@ -6,14 +6,12 @@ class WpGradeShortcode_Columns extends  WpGradeShortcode {
 
     public function __construct($settings = array()) {
 
-        $this->assets = array(
-            'js' => array(
-                array(
-                    'name' => 'columns',
-                    'path' => '/js/shortcodes/columns.js',
-                    'deps'=> array( 'jquery' )
-                )
-            ),
+        $this->assets["js"] = array(
+            'columns' => array(
+                'name' => 'columns',
+                'path' => '/js/shortcodes/columns.js',
+                'deps'=> array( 'jquery' )
+            )
         );
 
         $this->load_assests();

@@ -102,6 +102,22 @@ if (!defined('ABSPATH')) die('-1'); ?>
                                                     </span>
 
                                                 <?php break; }
+                                                case 'icon_list' : {
+                                                    $class= "span12";
+
+                                                    if ( isset($param['admin_class'] ) ) $class = $param['admin_class'];?>
+
+                                                    <span class="<?php echo $class; ?>" >
+                                                        <label for="<?php echo $k ?>"><?php echo $param['name'] ?></label>
+                                                        <ul class="pxg_icon_list">
+                                                            <input type="hidden" name="<?php echo $k ?>" class="selected_icon"/>
+                                                            <?php foreach ($param["icons"] as $icon) { ?>
+                                                                <li class="icon" data-icon="<?php echo $icon; ?>"><i class="icon-<?php echo $icon; ?>"></i></li>
+                                                            <?php } ?>
+                                                        </ul>
+                                                    </span>
+
+                                                <?php break; }
                                                 case 'image' : {
                                                     $class= "span12";
                                                     if ( isset($param['admin_class'] ) ) $class = $param['admin_class']; ?>
