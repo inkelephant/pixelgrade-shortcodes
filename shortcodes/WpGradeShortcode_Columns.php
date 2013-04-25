@@ -37,7 +37,7 @@ class WpGradeShortcode_Columns extends  WpGradeShortcode {
             'full_width' => array(
                 'type' => 'switch',
                 'name' => 'Full Width Background',
-                'admin_class' => 'span4 push2'
+                'admin_class' => 'span4 push2 inline'
             ),
             'cols_slider' =>array(
                 'type' => 'slider',
