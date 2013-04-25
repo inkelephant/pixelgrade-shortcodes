@@ -304,7 +304,7 @@ class WpGradeShortcode_Icon extends  WpGradeShortcode {
 
         ob_start(); ?>
 
-           <i class="shc <?php echo $type." ".$size; ?> icon-<?php $name ?>"></i>
+           <i class="shc <?php echo $type." ".$size; ?> icon-<?php echo $name; ?>"></i>
 
         <?php return ob_get_clean();
     }
