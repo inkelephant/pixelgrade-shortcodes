@@ -51,12 +51,43 @@ class WpGradeShortcodes {
 	    add_action( 'init', array( $this, 'add_wpgrade_shortcodes_button' ) );
         add_action( 'init', array( $this, 'create_wpgrade_shortcodes' ) );
 
+        add_action( 'init', array( $this, 'github_plugin_updater_init' ) );
+
         // ajax load for modal
         if ( is_admin() ) {
             add_action('wp_ajax_wpgrade_get_shortcodes_modal', array($this, 'wpgrade_get_shortcodes_modal'));
         }
 
 	} // end constructor
+
+
+    public function github_plugin_updater_init() {
+
+        include_once 'updater.php';
+
+        define( 'WP_GITHUB_FORCE_UPDATE', true );
+
+        if ( is_admin() ) { // note the use of is_admin() to double check that this is happening in the admin
+
+            $config = array(
+                'slug' => plugin_basename( __FILE__ ),
+                'proper_folder_name' => 'pixelgrade-shortcodes',
+                'api_url' => 'https://api.github.com/repos/andreilupu/pixelgrade-shortcodes',
+                'raw_url' => 'https://raw.github.com/andreilupu/pixelgrade-shortcodes/master',
+                'github_url' => 'https://github.com/andreilupu/pixelgrade-shortcodes',
+                'zip_url' => 'https://github.com/andreilupu/pixelgrade-shortcodes/archive/senna.zip',
+                'sslverify' => true,
+                'requires' => '3.0',
+                'tested' => '3.3',
+                'readme' => 'README.md',
+//			'access_token' => '',
+            );
+
+            new WP_GitHub_Updater( $config );
+
+        }
+
+    }
 
 	public function plugin_textdomain() {
 		$domain = 'wpGrade_txt';
