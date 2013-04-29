@@ -7,6 +7,8 @@ Modal Styling
 @import "compass/css3";
 
 @import 'font-awesome';
+//Shortcodes
+@import 'icons'; 
 
 #pixelgrade_shortcodes_modal {
 	@import 'mixins'; 
@@ -305,7 +307,7 @@ Modal Styling
 					margin-top:10px;
 					margin-bottom:0;
 					opacity:0;
-					@include transition(all 0.4s);
+					@include transition(all 0.3s);
 					button[type="submit"] {
 						display:none;
 					}
@@ -320,9 +322,22 @@ Modal Styling
 			& > ul {
 				height:auto;
 				opacity:1;
-				@include transition(all 0.4s);
+				@include transition(all 0.3s);
 				margin-top:0px;
 				margin-bottom:10px;
+			}
+			.inline {
+				& {
+					margin-top:20px;
+				}
+				label {
+					float:left;
+					line-height:31px;
+					margin-right:13px;
+				}
+				input {
+					width:auto;
+				}
 			}
 		}
 

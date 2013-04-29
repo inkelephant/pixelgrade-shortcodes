@@ -8,7 +8,7 @@ class WpGradeShortcode_Icon extends  WpGradeShortcode {
         $this->self_closed = true;
         $this->name = "Icon";
         $this->code = "icon";
-        $this->icon = "icon-user";
+        $this->icon = "icon-magic";
         $this->direct = false;
 
         $this->assets["js"] = array(
@@ -22,9 +22,21 @@ class WpGradeShortcode_Icon extends  WpGradeShortcode {
         $this->load_assests();
 
         $this->params = array(
+            'type' => array(
+                'type' => 'select',
+                'name' => 'Background Shape',
+                'options' => array('' => '-- Select Type --', 'circle' => 'Circle', 'rectangle' => 'Rectangle'),
+                'admin_class' => 'span6'
+            ),
+            'size' => array(
+                'type' => 'select',
+                'name' => 'Icon Size',
+                'options' => array('' => '-- Select Size --', 'small' => 'Small', 'medium' => 'Medium', 'big' => 'Big'),
+                'admin_class' => 'span5 push1'
+            ),
             'name'=> array(
               'type'=> 'icon_list',
-              'name' => 'Icons',
+              'name' => 'Select icon:',
               'icons' => array(
                   "glass",
                   "music",
@@ -274,21 +286,13 @@ class WpGradeShortcode_Icon extends  WpGradeShortcode {
                   "reply",
                   "github-alt",
                   "folder-close-alt",
-                  "folder-open-alt"
+                  "folder-open-alt",
+                   "user",
+                  "film",
+                  "th-large"
                 )
-            ),
-            'type' => array(
-                'type' => 'select',
-                'name' => 'Type',
-                'options' => array('' => '-- Select Type --', 'circle' => 'Circle', 'rectangle' => 'Rectangle'),
-                'admin_class' => 'span6'
-            ),
-            'size' => array(
-                'type' => 'select',
-                'name' => 'Size',
-                'options' => array('' => '-- Select Size --', 'small' => 'Small', 'medium' => 'Medium', 'big' => 'Big'),
-                'admin_class' => 'span6'
             )
+
         );
 
         add_shortcode('icon', array( $this, 'add_shortcode') );
