@@ -1,6 +1,6 @@
 <?php
 
-defined('WPGRADE_SHORTCODES_PATH') or define('WPGRADE_SHORTCODES_PATH', \plugin_dir_path(__FILE__) );
+defined('WPGRADE_SHORTCODES_PATH') or define('WPGRADE_SHORTCODES_PATH', plugin_dir_path(__FILE__) );
 if (!defined('ABSPATH')) die('-1');
 
 class WpGradeShortcode {

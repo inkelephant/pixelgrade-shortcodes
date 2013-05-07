@@ -22,11 +22,11 @@ editor = '';
 
                 // fix on close
                 $(document).on('reveal:close', '#pixelgrade_shortcodes_modal', function(){
-                    toggle_details();
-                    $('button.back').removeClass('active');
+//					disable_details(); //we will do this before the open click
+					clean_details();
+					$('button.back').hide().removeClass('active'); //we will show it on the open click
                     toggle_submit_btn();
                     change_title(default_title);
-                    clean_details();
                     window.send_to_editor = window.send_to_editor_clone;
                 });
 
@@ -46,11 +46,11 @@ editor = '';
                     var current_editor = get_current_editor_selected_content(),
                         content_field = $(this).next().find('.is_shortcode_content');
 
-                    if ( content_field.attr('type') == 'text' ){
+                    if ( content_field.attr('type') === 'text' ){
                         content_field.attr('value', current_editor.selection.getContent());
-                    } else if ( content_field.attr('type') == 'textarea' ) {
+                    } else if ( content_field.attr('type') === 'textarea' ) {
                         content_field.text( current_editor.selection.getContent() );
-                    }
+                    };
 
                     var html_container = $(this).next().html(),
                         item_title = $(this).find('.title').html();
@@ -75,38 +75,44 @@ editor = '';
                 //Show the .details_container - display:block
                 var toggle_details = function () {
                     $('.l_pxg_modal').toggleClass('s_active');
-                }
+                };
+				
+				//Show the .details_container - display:block
+                var disable_details = function () {
+                    $('.l_pxg_modal').removeClass('s_active');
+                };
 
                 //Add html content from chosen shortcode into $details container
                 var fill_details = function ($content) {
                     clean_details();
                     details.html($content).addClass('active');
-                }
+                };
 
                 //Change modal title
                 var change_title = function ($title) {
                     modal_title.html($title);
-                }
+                };
 
                 //Empty details content
                 var clean_details = function () {
                     details.html('').removeClass('active');
-                }
+                };
 
                 //Toggle Back button visibility
                 var toggle_back_btn = function () {
                     $('button.back').toggleClass('active');
-                }
+                };
 
                 //Toggle Submit button
                 var toggle_submit_btn = function () {
                     $('.l_pxg_modal .btn_primary').toggleClass('disabled');
-                }
+                };
 
                 //Trigger Submit button
                 var trigger_submit_btn = function ($button) {
                     $button.trigger('click');
-                }
+                };
+				
                 $(document).trigger('shortcodes_modal:ready');
 
             } // end of ajax success
@@ -116,9 +122,13 @@ editor = '';
             init : function(ed, url) {
                 plugin_url = url;
                 ed.addButton('wpgrade', {
-                    title : 'Add a wpgrade',
+                    title : 'Add a shortcode',
                     class: 'pixelgrade_shortcodes',
                     onclick: function(){
+						//let's clean up some more first
+						$('.l_pxg_modal').removeClass('s_active');
+						$('button.back').show();
+						
                         modal_selector.reveal({
                             animation: 'fadeAndPop',                   //fade, fadeAndPop, none
                             animationspeed: 400,                       //how fast animtions are
@@ -128,7 +138,8 @@ editor = '';
                         editor = ed;
                         get_current_editor_selected_content = function(){
                             return editor;
-                        }
+                        };
+						
                         window.send_to_editor_clone = window.send_to_editor;
                     }
                 });

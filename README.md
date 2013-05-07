@@ -1,8 +1,8 @@
 pixelgrade-shortcodes
 ==================
 
-~Current Version:1.0~
+~Current Version:1.4.2~
 
 ==================
 
-Shortcodes Generator for wpgrade wordpressthemes
+Shortcodes Generator for wpGrade Wordpress Themes

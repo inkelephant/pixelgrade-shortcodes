@@ -6,7 +6,7 @@ class WpGradeShortcode_Circle extends  WpGradeShortcode {
 
     public function __construct($settings = array()) {
         $this->self_closed = true;
-        $this->name = "Circle";
+        $this->name = "Circle Knob";
         $this->code = "circle";
         $this->icon = "icon-circle-blank";
         $this->direct = false;
@@ -14,8 +14,23 @@ class WpGradeShortcode_Circle extends  WpGradeShortcode {
         $this->params = array(
             'title' => array(
                 'type' => 'text',
-                'name' => 'Title (inside of circle)',
-                'admin_class' => 'span12'
+                'name' => 'Title (inside of circle knob)',
+                'admin_class' => 'span4'
+            ),
+            'color' => array(
+                'type' => 'text',
+                'name' => 'Color (knob color in HEX format)',
+                'admin_class' => 'span7 push1'
+            ),
+            'value' => array(
+                'type' => 'text',
+                'name' => 'Value (0 to 100)',
+                'admin_class' => 'span4'
+            ),
+            'offset' => array(
+                'type' => 'text',
+                'name' => 'Offset Angle (starting angle in degrees - default=0)',
+                'admin_class' => 'span7 push1'
             ),
         );
 
@@ -26,15 +41,13 @@ class WpGradeShortcode_Circle extends  WpGradeShortcode {
 
         extract( shortcode_atts( array(
             'title' => '',
+            'color' => '',
+            'value' => '',
+            'offset' => '',
         ), $atts ) );
 
         ob_start(); ?>
-            <div class="pie-chart">
-                <?php if ( !empty($title) ) { ?>
-                    <h1><?php echo $title; ?></h1>
-                <?php } ?>
-                <div class="circle"></div>
-            </div>
+            <input class="dial" type="text" value="<?php echo $value; ?>" data-text="<?php echo $title; ?>" data-fgcolor="<?php echo $color; ?>" data-angleoffset="<?php echo $offset; ?>" />
         <?php return ob_get_clean();
     }
 }
