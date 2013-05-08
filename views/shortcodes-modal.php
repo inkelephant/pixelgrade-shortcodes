@@ -16,7 +16,9 @@ if (!defined('ABSPATH')) die('-1'); ?>
                 <div class="details_content"></div>
             </div>
             <ul class="l_three_col">
-                <?php foreach( $wpgrade_shortcodes->get_shortcodes()  as $key => $shortcode ) {
+                <?php
+                $shortcoces_array = $wpgrade_shortcodes->get_shortcodes();
+                foreach( $shortcoces_array as $key => $shortcode ) {
                     $class = 'shortcode_'.$shortcode["name"].'_open';
                     $data_trigger_open = 'shortcode_'.$shortcode["name"].'_open';
                     $shortcode_js =  json_encode( $shortcode, JSON_FORCE_OBJECT );

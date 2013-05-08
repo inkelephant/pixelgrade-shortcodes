@@ -222,13 +222,17 @@ class WP_GitHub_Updater {
 
 			$raw_response = wp_remote_get( $query, array( 'sslverify' => $this->config['sslverify'] ) );
 
-			if ( is_wp_error( $raw_response ) )
-				$version = false;
+			if ( is_wp_error( $raw_response ) ) {
+
+                $version = false;
+            } else {
 
                 preg_match( '#^\s*Version\:\s*(.*)$#im', $raw_response['body'], $matches );
+            }
 
 
-			if ( empty( $matches[1] ) )
+
+            if ( empty( $matches[1] ) )
 				$version = false;
 			else
 				$version = $matches[1];
@@ -376,7 +380,7 @@ class WP_GitHub_Updater {
 	public function get_plugin_info( $false, $action, $response ) {
 
 		// Check if this call API is for the right plugin
-		if ( $response->slug != $this->config['slug'] )
+		if ( !isset($response->slug) || $response->slug != $this->config['slug'] )
 			return false;
 
 		$response->slug = $this->config['slug'];
