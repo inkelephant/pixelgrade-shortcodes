@@ -21,7 +21,7 @@ if (!defined('ABSPATH')) die('-1'); ?>
                 foreach( $shortcoces_array as $key => $shortcode ) {
                     $class = 'shortcode_'.$shortcode["name"].'_open';
                     $data_trigger_open = 'shortcode_'.$shortcode["name"].'_open';
-                    $shortcode_js =  json_encode( $shortcode, JSON_FORCE_OBJECT );
+                    $shortcode_js =  json_encode( (object)$shortcode );
                     if ( $shortcode["direct"] ) {
                         $class .= ' insert-direct-shortcode';
                     } ?>
