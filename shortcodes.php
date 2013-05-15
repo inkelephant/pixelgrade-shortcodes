@@ -82,7 +82,7 @@ class WpGradeShortcode {
         }
     }
 
-    public function get_clean_content($content){
+    public function get_clean_content($content){ // depricated - remove in further themes
         $content = do_shortcode( $content );
         $content = preg_replace('#<br class="pxg_removable" />#', '', $content); // remove our temp brs
 

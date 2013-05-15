@@ -154,7 +154,7 @@ editor = '';
             if ( params.self_closed ) {
                 editor.selection.setContent('['+params.code+']');
             } else {
-                editor.selection.setContent('['+params.code+' ]'+ editor.selection.getContent() +'[/'+params.code+']');
+                editor.selection.setContent('<p>['+params.code+' ]</p>'+ editor.selection.getContent() +'<p>[/'+params.code+']</p>');
             }
             // close the modal whenever a shortcode is inserted
             modal_selector.trigger('reveal:close');
@@ -186,7 +186,7 @@ editor = '';
             if ( params.self_closed ) {
                 editor.selection.setContent('['+params.code+user_params_string+']');
             } else {
-                editor.selection.setContent('['+params.code+user_params_string+']<br class="pxg_removable" />'+ shortcode_content +'<br class="pxg_removable" />[/'+params.code+']');
+                editor.selection.setContent('<p>['+params.code+user_params_string+']</p>'+ shortcode_content +'<p>[/'+params.code+']</p>');
             }
 
             modal_selector.trigger('reveal:close');

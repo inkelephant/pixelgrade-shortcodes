@@ -149,16 +149,15 @@
                 params_String = '';
 
             $.each(form_params, function(i,e){
-                console.log(e);
                 params_String += ' '+ e.name + '="'+ e.value +'"';
             });
 
-            var output = '[row '+ params_String +']<br class="pxg_removable" />';
+            var output = '<p>[row '+ params_String +']</p>';
 
             $.each(getValues(), function(i,e){ // get each column and their params
-                output += '[col size="'+e+'"]<br class="pxg_removable" />Content goes here<br class="pxg_removable" />[/col]<br class="pxg_removable" />';
+                output += '<p>[col size="'+e+'"]</p>Content goes here<p>[/col]</p>';
             });
-            output += '[/row]<br class="pxg_removable" />';
+            output += '<p>[/row]</p>';
             editor.selection.setContent(output);
 
             $('#pixelgrade_shortcodes_modal').trigger('reveal:close');

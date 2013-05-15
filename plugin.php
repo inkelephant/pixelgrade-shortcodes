@@ -51,6 +51,8 @@ class WpGradeShortcodes {
         add_action( 'init', array( $this, 'create_wpgrade_shortcodes' ) );
         add_action( 'init', array( $this, 'github_plugin_updater_init' ) );
 
+        add_filter('the_content', array($this, 'wpgrade_remove_spaces_around_shortcodes') );
+
         // ajax load for modal
         if ( is_admin() ) {
             add_action('wp_ajax_wpgrade_get_shortcodes_modal', array($this, 'wpgrade_get_shortcodes_modal'));
@@ -144,6 +146,17 @@ class WpGradeShortcodes {
 
     public function create_wpgrade_shortcodes(){
         include_once('shortcodes.php');
+    }
+
+    function wpgrade_remove_spaces_around_shortcodes($content){
+        $array = array (
+            '<p>[' => '[',
+            ']</p>' => ']',
+            ']<br />' => ']'
+        );
+
+        $content = strtr($content, $array);
+        return $content;
     }
 
 } // end class
