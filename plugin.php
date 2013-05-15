@@ -93,15 +93,17 @@ class WpGradeShortcodes {
 	 * Registers and enqueues admin-specific styles.
 	 */
 	public function register_admin_styles() {
-        wp_enqueue_style( 'wpgrade-shortcodes-reveal-styles', plugins_url( 'pixelgrade-shortcodes/css/base.css' ), array(  ) );
+        //wp_enqueue_style( 'wp-color-picker' );
+        wp_enqueue_style( 'wpgrade-shortcodes-reveal-styles', plugins_url( 'pixelgrade-shortcodes/css/base.css' ), array( 'wp-color-picker' ) );
 	} // end register_admin_styles
 
 	/**
 	 * Registers and enqueues admin-specific JavaScript.
 	 */
 	public function register_admin_scripts() {
-        wp_enqueue_style( 'iris' );
-        wp_enqueue_script('iris');
+//        wp_enqueue_style( 'iris' );
+        wp_enqueue_script('wp-color-picker');
+
     } // end register_admin_scripts
 
 	/**

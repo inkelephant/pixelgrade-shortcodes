@@ -97,7 +97,7 @@ if (!defined('ABSPATH')) die('-1'); ?>
 
                                                     <span class="<?php echo $class; ?>" >
                                                         <label for="<?php echo $k ?>"><?php echo $param['name'] ?></label>
-                                                        <input type="text" name="<?php echo $k ?>" class="popup-colorpicker"/>
+                                                        <input type="text" name="<?php echo $k ?>" class="wpgrade-colorpicker"/>
                                                     </span>
 
                                                 <?php break; }
