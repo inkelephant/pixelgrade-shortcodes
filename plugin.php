@@ -46,11 +46,9 @@ class WpGradeShortcodes {
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_plugin_styles' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_plugin_scripts' ) );
 
-		// Register hooks that are fired when the plugin is activated, deactivated, and uninstalled, respectively.
-
+        // Run our plugin along with wordpress init
 	    add_action( 'init', array( $this, 'add_wpgrade_shortcodes_button' ) );
         add_action( 'init', array( $this, 'create_wpgrade_shortcodes' ) );
-
         add_action( 'init', array( $this, 'github_plugin_updater_init' ) );
 
         // ajax load for modal
@@ -62,13 +60,9 @@ class WpGradeShortcodes {
 
 
     public function github_plugin_updater_init() {
-
         include_once 'updater.php';
-
         define( 'WP_GITHUB_FORCE_UPDATE', true );
-
         if ( is_admin() ) { // note the use of is_admin() to double check that this is happening in the admin
-
             $config = array(
                 'slug' => plugin_basename( __FILE__ ),
                 'proper_folder_name' => 'pixelgrade-shortcodes',
@@ -82,11 +76,8 @@ class WpGradeShortcodes {
                 'readme' => 'README.md',
 			'access_token' => '',
             );
-
             new WP_GitHub_Updater( $config );
-
         }
-
     }
 
 	public function plugin_textdomain() {
@@ -94,15 +85,12 @@ class WpGradeShortcodes {
 		$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
         load_textdomain( $domain, WP_LANG_DIR.'/'.$domain.'/'.$domain.'-'.$locale.'.mo' );
         load_plugin_textdomain( $domain, FALSE, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
-
 	} // end plugin_textdomain
 
 	/**
 	 * Registers and enqueues admin-specific styles.
 	 */
 	public function register_admin_styles() {
-//        wp_register_style('slider-ui', 'http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css');wp_enqueue_style( 'wp-color-picker');
-
         wp_enqueue_style( 'wpgrade-shortcodes-reveal-styles', plugins_url( 'pixelgrade-shortcodes/css/base.css' ), array(  ) );
 	} // end register_admin_styles
 
@@ -115,13 +103,13 @@ class WpGradeShortcodes {
     } // end register_admin_scripts
 
 	/**
-	 * Registers and enqueues plugin-specific styles.
+	 * Registers and enqueues plugin-specific styles.Usually we base on the theme style and this is empty
 	 */
 	public function register_plugin_styles() {
 	} // end register_plugin_styles
 
 	/**
-	 * Registers and enqueues plugin-specific scripts.
+	 * Registers and enqueues plugin-specific scripts..Usually we base on theme front-end scripts and this is empty.
 	 */
 	public function register_plugin_scripts() {
 	} // end register_plugin_scripts
