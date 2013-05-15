@@ -69,16 +69,19 @@ editor = '';
                     $('.wpgrade-colorpicker').wpColorPicker({
                         // you can declare a default color here,
                         // or in the data-default-color attribute on the input
-                        defaultColor: false,
+                        // defaultColor: false,
                         // a callback to fire whenever the color changes to a valid color
                         //change: function(event, ui){},
                         // a callback to fire when the input is emptied or an invalid color
                         //clear: function() {},
                         // hide the color picker controls on load
-                        hide: true,
+                        // hide: true,
                         // show a group of common colors beneath the square
                         // or, supply an array of colors to customize further
-                        palettes: ['#33a278', '#33a19b', '#84b6d4', '#45d59c', '#7abd58', '#f54c00']
+                        palettes: ['#fafafa', '#373737', '#01a279', '#45d59c', '#7abd58', '#f54c00'],
+                        change: function(event, ui) {
+                            $('.full_width_bg').addClass('s-visible');
+                        }
                     });
 
                 });

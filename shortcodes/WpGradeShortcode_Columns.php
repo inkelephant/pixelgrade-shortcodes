@@ -32,12 +32,12 @@ class WpGradeShortcode_Columns extends  WpGradeShortcode {
              'bg_color' => array(
                 'type' => 'color',
                 'name' => 'Background Color',
-                'admin_class' => 'span3 push1'
+                'admin_class' => 'span7 push1'
             ),
             'full_width' => array(
                 'type' => 'switch',
-                'name' => 'Full Width Background',
-                'admin_class' => 'span4 push2 inline'
+                'name' => 'Full Width Background ?',
+                'admin_class' => 'span5 inline full_width_bg'
             ),
             'cols_slider' =>array(
                 'type' => 'slider',
