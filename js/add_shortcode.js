@@ -65,21 +65,35 @@ editor = '';
 
                     details.trigger($(this).data('trigger-open'));
 
+                    /*
+                     * Each colorpicker needs to be processed.
+                     * Until wordpress will give us an update method on wpcolorpicker i'll keep removing and adding elements like in high school.
+                     */
+                    $('.wpgrade-colorpicker').each(function(){
+                        // if the colorpicker is already called is probably ruined already. We will remove it and create another one.
+                        if ( $(this).hasClass('wp-color-picker') ) {
 
-                    $('.wpgrade-colorpicker').wpColorPicker({
-                        // you can declare a default color here,
-                        // or in the data-default-color attribute on the input
-                        defaultColor: false,
-                        // a callback to fire whenever the color changes to a valid color
-                        //change: function(event, ui){},
-                        // a callback to fire when the input is emptied or an invalid color
-                        //clear: function() {},
-                        // hide the color picker controls on load
-                        hide: true,
-                        // show a group of common colors beneath the square
-                        // or, supply an array of colors to customize further
-                        palettes: ['#33a278', '#33a19b', '#84b6d4', '#45d59c', '#7abd58', '#f54c00']
+                            var $root = $(this).parents('.wp-picker-container'), // get the root of the colorpicker
+                                this_el = $(this).removeClass('wp-color-picker').detach(); // save our element
+                            var this_span = $root.parent('span');
+                            $root.remove(); // remove the root
+                            this_span.append(this_el); // get back our element
+                            // create the colorpicker ... again
+                            this_span.children('.wpgrade-colorpicker').wpColorPicker({
+                                defaultColor: false,
+                                hide: true,
+                                palettes: ['#33a278', '#33a19b', '#84b6d4', '#45d59c', '#7abd58', '#f54c00']
+                            });
+
+                        } else {
+                            $(this).wpColorPicker({
+                                defaultColor: false,
+                                hide: true,
+                                palettes: ['#33a278', '#33a19b', '#84b6d4', '#45d59c', '#7abd58', '#f54c00']
+                            });
+                        }
                     });
+
 
                 });
 
