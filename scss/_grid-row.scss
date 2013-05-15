@@ -204,5 +204,16 @@
 			}
 		}
 	}
+}
 
+//Full width background checkbox
+.full_width_bg {
+	position: absolute;
+	top: -27px;
+	right: 10px;
+	opacity:0;
+	@include transition(all 0.3s);
+	&.s-visible {
+		opacity:1;
+	}
 }

@@ -149,7 +149,9 @@
                 params_String = '';
 
             $.each(form_params, function(i,e){
-                params_String += ' '+ e.name + '="'+ e.value +'"';
+                if ( e.value !== '' ) { // don't include the empty params and the content param
+                    params_String += ' '+ e.name + '="'+ e.value +'"';
+                }
             });
 
             var output = '<p>[row '+ params_String +']</p>';

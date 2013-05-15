@@ -13,7 +13,7 @@ Modal Styling
 #pixelgrade_shortcodes_modal {
 	@import 'mixins'; 
 	@import 'grid'; 
-
+ 
 	* {
 		@include box-sizing(border-box);
 	}
@@ -379,6 +379,39 @@ Modal Styling
 
 		#wpgrade_shortcodes {
 			overflow: hidden;
+		}
+	}
+
+	//Color Picker
+
+	.wp-picker-container {
+		& * {
+			@include box-sizing(content-box !important);
+		}
+		.wp-color-result {
+			float:left;
+			margin-top:6px;
+		}
+		.wp-picker-input-wrap {
+			display: inline-block;
+			line-height: 20px;
+			font-size: 12px;
+			margin-top:5px;
+
+			input {
+				height: 21px;
+				line-height: 20px;
+				padding: 0 4px 1px;
+				margin-left:6px;
+				width:60px;
+			}
+			.hidden {
+				display:none;
+			}
+		}
+		.wp-picker-holder {
+			position: absolute;
+			z-index: 100;
 		}
 	}
 

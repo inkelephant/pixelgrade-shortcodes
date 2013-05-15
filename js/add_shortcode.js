@@ -80,23 +80,22 @@ editor = '';
                             this_span.append(this_el); // get back our element
                             // create the colorpicker ... again
                             this_span.children('.wpgrade-colorpicker').wpColorPicker({
-                                defaultColor: false,
-                                hide: true,
-                                palettes: ['#33a278', '#33a19b', '#84b6d4', '#45d59c', '#7abd58', '#f54c00']
+                                palettes: ['#fafafa', '#373737', '#01a279', '#45d59c', '#7abd58', '#f54c00'],
+                                change: function(event, ui) {
+                                    $('.full_width_bg').addClass('s-visible');
+                                }
                             });
 
                         } else {
                             $(this).wpColorPicker({
-                                defaultColor: false,
-                                hide: true,
-                                palettes: ['#33a278', '#33a19b', '#84b6d4', '#45d59c', '#7abd58', '#f54c00']
+                                palettes: ['#fafafa', '#373737', '#01a279', '#45d59c', '#7abd58', '#f54c00'],
+                                change: function(event, ui) {
+                                    $('.full_width_bg').addClass('s-visible');
+                                }
                             });
                         }
                     });
-
-
                 });
-
                 //Trigger Submit Button (need few improvements :)
                 $(document).on('click', ".l_pxg_modal a.btn_primary", function() {
                     trigger_submit_btn(triggered_woman);
