@@ -69,9 +69,9 @@ class WpGradeShortcodes {
                 'slug' => plugin_basename( __FILE__ ),
                 'proper_folder_name' => 'pixelgrade-shortcodes',
                 'api_url' => 'https://api.github.com/repos/andreilupu/pixelgrade-shortcodes',
-                'raw_url' => 'https://raw.github.com/andreilupu/pixelgrade-shortcodes/senna',
-                'github_url' => 'https://github.com/andreilupu/pixelgrade-shortcodes/tree/senna',
-                'zip_url' => 'https://github.com/andreilupu/pixelgrade-shortcodes/archive/senna.zip',
+                'raw_url' => 'https://raw.github.com/andreilupu/pixelgrade-shortcodes/swipe',
+                'github_url' => 'https://github.com/andreilupu/pixelgrade-shortcodes/tree/swipe',
+                'zip_url' => 'https://github.com/andreilupu/pixelgrade-shortcodes/archive/swipe.zip',
                 'sslverify' => false,
                 'requires' => '3.0',
                 'tested' => '3.3',
@@ -83,7 +83,7 @@ class WpGradeShortcodes {
     }
 
 	public function plugin_textdomain() {
-		$domain = 'wpGrade_txt';
+		$domain = 'swipe_txt';
 		$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
         load_textdomain( $domain, WP_LANG_DIR.'/'.$domain.'/'.$domain.'-'.$locale.'.mo' );
         load_plugin_textdomain( $domain, FALSE, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
