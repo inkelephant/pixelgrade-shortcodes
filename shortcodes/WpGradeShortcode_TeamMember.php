@@ -75,7 +75,7 @@ class WpGradeShortcode_TeamMember extends  WpGradeShortcode {
             <?php if ( !empty($image) ) {?>
                 <img src="<?php echo $image; ?>" alt="<?php echo $name; ?> Profile Image">
             <?php } ?>
-
+			<?php if ( !empty($name) || !empty($title) ) { ?>
             <div class="team-member-header">
                  <?php if ( !empty($name) ) { ?>
                     <h3 class="team-member-name"><?php echo $name; ?></h3>
@@ -85,6 +85,7 @@ class WpGradeShortcode_TeamMember extends  WpGradeShortcode {
                 <?php } ?>
             </div>
             <hr class="left">
+			<?php } ?>
             <div class="team-member-description">
                 <?php echo $this->get_clean_content($content); ?>
             </div>
