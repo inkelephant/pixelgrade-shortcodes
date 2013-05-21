@@ -11,15 +11,16 @@ class WpGradeShortcode_Icon extends  WpGradeShortcode {
         $this->icon = "icon-magic";
         $this->direct = false;
 
-        $this->assets["js"] = array(
+        $this->backend_assets["js"] = array(
             "icons" => array(
                 'name' => 'icons',
-                'path' => '/js/shortcodes/icons.js',
+                'path' => '/js/shortcodes/backend_icons.js',
                 'deps'=> array( 'jquery' )
             )
         );
 
-        $this->load_assests();
+        // load backend assets only when an editor is present
+        add_action( 'mce_buttons_2', array( $this, 'load_backend_assets' ) );
 
         $this->params = array(
             'type' => array(

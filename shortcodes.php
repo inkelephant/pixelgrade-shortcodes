@@ -15,7 +15,8 @@ class WpGradeShortcode {
     protected $icon;
     protected $shortcodes;
     protected $name;
-    protected $assets;
+    protected $backend_assets;
+    protected $frontend_assets;
 
     public function __construct() {
 
@@ -24,11 +25,12 @@ class WpGradeShortcode {
         $this->shortcodes = array();
         $this->autoload();
 
-        // init assets list
+        // init assets list // useless
         $this->assets = array(
             'js' => array(),
             'css' => array()
         );
+
     }
 
     public function autoload () {
@@ -62,10 +64,31 @@ class WpGradeShortcode {
         return $this->code;
     }
 
-    public function load_assests(){
+    public function load_backend_assets($buttons){
 
-        if ( !empty($this->assets) ) {
-            $types = $this->assets;
+        if ( !empty($this->backend_assets) ) {
+            $types = $this->backend_assets;
+
+            foreach ( $types as $type => $assets ) {
+                foreach( $assets as $key => $asset ) {
+                    $path = plugins_url() . '/pixelgrade-shortcodes/' . $asset['path'];
+                    if ($type == 'js') {
+                        wp_enqueue_script( $asset['name'], $path, $asset['deps'] );
+                    } elseif ( $type == 'css' ) {
+                        wp_enqueue_style( $asset['name'], $path, $asset['deps'] );
+                    }
+                }
+            }
+        }
+
+        // do not modify buttons here ... we just add our scripts
+        return $buttons;
+    }
+
+    public function load_frontend_assets(){
+
+        if ( !empty($this->frontend_assets) && $this->load_frontend_scripts == true ) {
+            $types = $this->frontend_assets;
 
             foreach ( $types as $type => $assets ) {
                 foreach( $assets as $key => $asset ) {

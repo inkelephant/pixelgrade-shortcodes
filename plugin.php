@@ -39,8 +39,7 @@ class WpGradeShortcodes {
 		add_action( 'init', array( $this, 'plugin_textdomain' ) );
 
 		// Register admin styles and scripts
-		add_action( 'admin_print_styles', array( $this, 'register_admin_styles' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'register_admin_scripts' ) );
+		add_action( 'mce_buttons_2', array( $this, 'register_admin_assets' ) );
 
 		// Register site styles and scripts
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_plugin_styles' ) );
@@ -92,19 +91,11 @@ class WpGradeShortcodes {
 	/**
 	 * Registers and enqueues admin-specific styles.
 	 */
-	public function register_admin_styles() {
-        //wp_enqueue_style( 'wp-color-picker' );
+	public function register_admin_assets($buttons) {
         wp_enqueue_style( 'wpgrade-shortcodes-reveal-styles', plugins_url( 'pixelgrade-shortcodes/css/base.css' ), array( 'wp-color-picker' ) );
-	} // end register_admin_styles
-
-	/**
-	 * Registers and enqueues admin-specific JavaScript.
-	 */
-	public function register_admin_scripts() {
-//        wp_enqueue_style( 'iris' );
         wp_enqueue_script('wp-color-picker');
-
-    } // end register_admin_scripts
+        return $buttons;
+	} // end register_admin_assets
 
 	/**
 	 * Registers and enqueues plugin-specific styles.Usually we base on the theme style and this is empty

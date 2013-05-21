@@ -132,6 +132,17 @@ if (!defined('ABSPATH')) die('-1'); ?>
                                                     </span>
 
                                                 <?php break; }
+                                                case 'info' : {
+                                                    $class= "span12";
+                                                    if ( isset($param['admin_class'] ) ) $class = $param['admin_class']; ?>
+
+                                                    <span class="<?php echo $class; ?>"  >
+                                                        <div class="info" >
+                                                            <?php echo $param["value"]; ?>
+                                                        </div>
+                                                    </span>
+
+                                                <?php break; }
                                                 case 'slider' : {
                                                     $class= "span12";
 

@@ -6,15 +6,16 @@ class WpGradeShortcode_Columns extends  WpGradeShortcode {
 
     public function __construct($settings = array()) {
 
-        $this->assets["js"] = array(
+        $this->backend_assets["js"] = array(
             'columns' => array(
                 'name' => 'columns',
-                'path' => '/js/shortcodes/columns.js',
+                'path' => '/js/shortcodes/backend_columns.js',
                 'deps'=> array( 'jquery' )
             )
         );
 
-        $this->load_assests();
+        // load backend assets only when an editor is present
+        add_action( 'mce_buttons_2', array( $this, 'load_backend_assets' ) );
 
         $this->self_closed = false;
         $this->name = "Columns";
