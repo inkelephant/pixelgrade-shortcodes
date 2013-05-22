@@ -38,9 +38,11 @@ class WpGradeShortcode_Divider extends  WpGradeShortcode {
     public function add_shortcode($atts, $content){
         extract( shortcode_atts( array(
 			'align' => '',
+            'size' => '',
+            'color' => '',
         ), $atts ) );
         ob_start(); ?>
-            <hr class="<?php echo $align; ?>">
+            <hr class="<?php echo $align.' '.$size.' '.$color;?>">
         <?php return ob_get_clean();
     }
 }
