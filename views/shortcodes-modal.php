@@ -26,7 +26,7 @@ if (!defined('ABSPATH')) die('-1'); ?>
                         $class .= ' insert-direct-shortcode';
                     } ?>
                     <li class="shortcode">
-                        <a href="#" class="details <?php echo $class; ?>" data-params='<?php echo $shortcode_js; ?>' data-trigger-open="<?php echo $data_trigger_open ?>" >
+                        <a class="details <?php echo $class; ?>" data-params='<?php echo $shortcode_js; ?>' data-trigger-open="<?php echo $data_trigger_open ?>" >
                             <i class="icon <?php echo $shortcode["icon"]; ?>"></i>
                             <span class="title"><?php echo $shortcode["name"] ?></span>
                         </a>

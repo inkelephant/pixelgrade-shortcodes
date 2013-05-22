@@ -15,8 +15,20 @@ class WpGradeShortcode_Divider extends  WpGradeShortcode {
             'align' => array(
                 'type' => 'select',
                 'name' => 'Alignment',
-                'options' => array('' => '-- Select Alignment --', 'left' => 'Left', 'center' => 'Center', 'right' => 'Right'),
+                'options' => array('center' => 'Center', 'left' => 'Left', 'right' => 'Right'),
+                'admin_class' => 'span12'
+            ),
+            'size' => array(
+                'type' => 'select',
+                'name' => 'Size',
+                'options' => array('' => 'Regular', 'double' => 'Double'),
                 'admin_class' => 'span6'
+            ),
+            'color' => array(
+                'type' => 'select',
+                'name' => 'Color',
+                'options' => array('' => 'Dark', 'white' => 'Light', 'color' => 'Color'),
+                'admin_class' => 'span5 push1'
             )
         );
 

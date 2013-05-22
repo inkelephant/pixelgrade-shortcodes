@@ -8,17 +8,13 @@ class WpGradeShortcode_Testimonials extends  WpGradeShortcode {
 
     public function __construct($settings = array()) {
 
-        $this->self_closed = false;
+        $this->self_closed = true;
+        $this->direct = true;
         $this->name = "Testimonials";
         $this->code = "testimonials";
         $this->icon = "icon-star-empty";
 
         $this->params = array(
-            'title' => array(
-                'type' => 'text',
-                'name' => 'Title',
-//                'admin_class' => 'span6'
-            ),
             'number' => array(
                 'type' => 'text',
                 'name' => 'Number',
@@ -27,18 +23,6 @@ class WpGradeShortcode_Testimonials extends  WpGradeShortcode {
             'class' => array(
                 'type' => 'text',
                 'name' => 'Class',
-                'admin_class' => 'span5 push1'
-            ),
-            'orderby' => array(
-                'type' => 'select',
-                'name' => 'Order By',
-                'options' => array('' => '-- Select Order By --', 'date' => 'Date', 'title' => 'Title', 'random' => 'Random'),
-                'admin_class' => 'span6'
-            ),
-            'order' => array(
-                'type' => 'select',
-                'name' => 'Order',
-                'options' => array('' => '-- Select Order --', 'ASC' => 'Ascending', 'DESC' => 'Descending'),
                 'admin_class' => 'span5 push1'
             ),
             array(
@@ -79,45 +63,60 @@ class WpGradeShortcode_Testimonials extends  WpGradeShortcode {
         $orderby = 'date';
         $order = 'DESC';
 
-        extract( shortcode_atts( array(
-            'title' => '',
-            'number' => '-1',
-            'order' => 'DESC',
-            'orderby' => 'date',
-            'include' => '',
-            'exclude' => '',
-        ), $atts ) );
+        // extract( shortcode_atts( array(
+        //     'number' => '-1',
+        //     'order' => 'DESC',
+        //     'orderby' => 'date',
+        //     'include' => '',
+        //     'exclude' => '',
+        // ), $atts ) );
 
         ob_start(); ?>
-        <div class="testimonials">
-            <?php if ( !empty($title) ) { ?>
-                <h3 class="title"><?php echo $title; ?></h3>
+        <div class="testimonials_slide wp_slider">
             <?php
-            }
+            
             $query_args = array(
                 'post_type' => 'testimonial',
-                'posts_per_page' => $number,
-                'order' => $order,
-                'orderby' => $orderby
+                'posts_per_page' => -1,
+                // 'order' => $order,
+                // 'orderby' => $orderby
             );
 
-            if ( !empty( $include ) ) {
-                $include_array = explode( ',', $include );
-                $query_args['posts__in'] = $include_array;
-            }
+            // if ( !empty( $include ) ) {
+            //     $include_array = explode( ',', $include );
+            //     $query_args['posts__in'] = $include_array;
+            // }
 
-            if ( !empty( $exclude ) ) {
-                $exclude_array = explode( ',', $exclude );
-                $query_args['post__not_in'] = $exclude_array;
-            }
+            // if ( !empty( $exclude ) ) {
+            //     $exclude_array = explode( ',', $exclude );
+            //     $query_args['post__not_in'] = $exclude_array;
+            // }
 
             $query = new WP_Query($query_args);
 
             if ( $query-> have_posts() ) : ?>
                 <ul class="slides">
                 <?php while ( $query->have_posts() ) : $query->the_post(); ?>
-                    <li>
-                        <?php the_title(); ?>
+                    <li class="slide">
+                        <?php 
+                            $author_name = get_post_meta(get_the_ID(), '_wpgrade_author_name', true);
+                            $author_function = get_post_meta(get_the_ID(), '_wpgrade_author_function', true);
+                            $author_link = get_post_meta(get_the_ID(), '_wpgrade_author_link', true); 
+                        ?>
+                        <div class="testimonial_content"><?php the_content(); ?></div>
+                        <div class="testimonial_author">
+                        
+                        <?php if(!empty($author_link)) { ?>
+                            <a href="#">
+                        <?php } ?>
+                            
+                            <span class="author_name"><?php echo $author_name; ?></span>, <span class="author_function"><?php echo $author_function; ?></span>
+                        
+                        <?php if(!empty($author_link)) { ?>
+                           </a>
+                        <?php } ?>
+                        
+                        </div>
                     </li>
                 <?php endwhile;?>
                 </ul>
