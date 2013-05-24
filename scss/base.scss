@@ -278,6 +278,10 @@ Modal Styling
 				outline:0;
 			}
 		}
+        input[type="checkbox"],
+        input[type="radio"] {
+         width: auto;
+        }
 		input, select {
 			height: 32px;
 		}
