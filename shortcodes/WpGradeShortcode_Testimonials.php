@@ -12,7 +12,7 @@ class WpGradeShortcode_Testimonials extends  WpGradeShortcode {
         $this->direct = true;
         $this->name = "Testimonials";
         $this->code = "testimonials";
-        $this->icon = "icon-star-empty";
+        $this->icon = "icon-group";
 
         $this->params = array(
             'number' => array(
@@ -103,20 +103,22 @@ class WpGradeShortcode_Testimonials extends  WpGradeShortcode {
                             $author_function = get_post_meta(get_the_ID(), '_wpgrade_author_function', true);
                             $author_link = get_post_meta(get_the_ID(), '_wpgrade_author_link', true); 
                         ?>
-                        <div class="testimonial_content"><?php the_content(); ?></div>
-                        <div class="testimonial_author">
-                        
-                        <?php if(!empty($author_link)) { ?>
-                            <a href="#">
-                        <?php } ?>
+                        <blockquote>
+                            <div class="testimonial_content"><?php the_content(); ?></div>
+                            <div class="testimonial_author">
                             
-                            <span class="author_name"><?php echo $author_name; ?></span>, <span class="author_function"><?php echo $author_function; ?></span>
-                        
-                        <?php if(!empty($author_link)) { ?>
-                           </a>
-                        <?php } ?>
-                        
-                        </div>
+                            <?php if(!empty($author_link)) { ?>
+                                <a href="#">
+                            <?php } ?>
+                                
+                                <span class="author_name"><?php echo $author_name; ?></span>, <span class="author_function"><?php echo $author_function; ?></span>
+                            
+                            <?php if(!empty($author_link)) { ?>
+                               </a>
+                            <?php } ?>
+                            
+                            </div>
+                        </blockquote>
                     </li>
                 <?php endwhile;?>
                 </ul>
