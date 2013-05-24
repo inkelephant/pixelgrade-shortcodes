@@ -4,15 +4,13 @@ if (!defined('ABSPATH')) die('-1');
 
 class WpGradeShortcode_Testimonials extends  WpGradeShortcode {
 
-    static $load_frontend_scripts;
-
     public function __construct($settings = array()) {
 
         $this->self_closed = true;
         $this->direct = true;
         $this->name = "Testimonials";
         $this->code = "testimonials";
-        $this->icon = "icon-star-empty";
+        $this->icon = "icon-group";
 
         $this->params = array(
             'number' => array(
@@ -27,7 +25,7 @@ class WpGradeShortcode_Testimonials extends  WpGradeShortcode {
             ),
             array(
                 'type' => 'info',
-                'value' => 'If you want specific testimonials include bellow posts IDs separeted by comma.'
+                'value' => 'If you want specific testimonials include bellow posts IDs separated by comma.'
             ),
             'include' => array(
             'type' => 'text',
@@ -71,57 +69,61 @@ class WpGradeShortcode_Testimonials extends  WpGradeShortcode {
         //     'exclude' => '',
         // ), $atts ) );
 
-        ob_start(); ?>
-        <div class="testimonials_slide wp_slider">
-            <?php
-            
-            $query_args = array(
-                'post_type' => 'testimonial',
-                'posts_per_page' => -1,
-                // 'order' => $order,
-                // 'orderby' => $orderby
-            );
+        ob_start();
 
-            // if ( !empty( $include ) ) {
-            //     $include_array = explode( ',', $include );
-            //     $query_args['posts__in'] = $include_array;
-            // }
+        $query_args = array(
+            'post_type' => 'testimonial',
+            'posts_per_page' => -1,
+            'order' => 'menu_order',
+            // 'orderby' => $orderby
+        );
 
-            // if ( !empty( $exclude ) ) {
-            //     $exclude_array = explode( ',', $exclude );
-            //     $query_args['post__not_in'] = $exclude_array;
-            // }
+        // if ( !empty( $include ) ) {
+        //     $include_array = explode( ',', $include );
+        //     $query_args['posts__in'] = $include_array;
+        // }
 
-            $query = new WP_Query($query_args);
+        // if ( !empty( $exclude ) ) {
+        //     $exclude_array = explode( ',', $exclude );
+        //     $query_args['post__not_in'] = $exclude_array;
+        // }
 
-            if ( $query-> have_posts() ) : ?>
-                <ul class="slides">
-                <?php while ( $query->have_posts() ) : $query->the_post(); ?>
-                    <li class="slide">
-                        <?php 
-                            $author_name = get_post_meta(get_the_ID(), '_wpgrade_author_name', true);
-                            $author_function = get_post_meta(get_the_ID(), '_wpgrade_author_function', true);
-                            $author_link = get_post_meta(get_the_ID(), '_wpgrade_author_link', true); 
-                        ?>
+        $query = new WP_Query($query_args);
+
+        if ( $query-> have_posts() ) : ?>
+            <div class="testimonials_slide wp_slider">
+            <ul class="slides">
+            <?php while ( $query->have_posts() ) : $query->the_post(); ?>
+                <li class="slide">
+                    <?php
+                        $author_name = get_post_meta(get_the_ID(), '_wpgrade_author_name', true);
+                        $author_function = get_post_meta(get_the_ID(), '_wpgrade_author_function', true);
+                        $author_link = get_post_meta(get_the_ID(), '_wpgrade_author_link', true);
+                    ?>
+                    <blockquote>
                         <div class="testimonial_content"><?php the_content(); ?></div>
                         <div class="testimonial_author">
-                        
+
                         <?php if(!empty($author_link)) { ?>
-                            <a href="#">
-                        <?php } ?>
-                            
-                            <span class="author_name"><?php echo $author_name; ?></span>, <span class="author_function"><?php echo $author_function; ?></span>
-                        
-                        <?php if(!empty($author_link)) { ?>
+                            <a href="<?php echo $author_link; ?>">
+                        <?php }
+                            if ( !empty($author_name)) { ?>
+                            <span class="author_name"><?php echo $author_name; ?></span>
+                        <?php }
+                            if ( !empty($author_function) ) {?>
+                             , <span class="author_function"><?php echo $author_function; ?></span>
+                        <?php }
+                            if(!empty($author_link)) { ?>
                            </a>
                         <?php } ?>
-                        
+
                         </div>
-                    </li>
-                <?php endwhile;?>
-                </ul>
-            <?php endif; wp_reset_query(); ?>
-        </div>
-        <?php return ob_get_clean();
+                    </blockquote>
+                </li>
+            <?php endwhile;?>
+            </ul>
+            </div>
+        <?php endif; wp_reset_query();
+        return ob_get_clean();
     }
 }

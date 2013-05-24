@@ -17,6 +17,7 @@ class WpGradeShortcode {
     protected $name;
     protected $backend_assets;
     protected $frontend_assets;
+    protected $load_frontend_scripts;
 
     public function __construct() {
 
