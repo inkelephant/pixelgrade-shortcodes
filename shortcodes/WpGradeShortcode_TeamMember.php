@@ -71,9 +71,11 @@ class WpGradeShortcode_TeamMember extends  WpGradeShortcode {
         ), $atts ) );
 
         ob_start(); ?>
-        
+        <div class="team-member-container">
             <?php if ( !empty($image) ) {?>
+            <div class="team-member-image">
                 <img src="<?php echo $image; ?>" alt="<?php echo $name; ?> Profile Image">
+            </div>
             <?php } ?>
 
             <div class="team-member-header">
@@ -84,7 +86,6 @@ class WpGradeShortcode_TeamMember extends  WpGradeShortcode {
                      <h4 class="team-member-position"><?php echo $title; ?></h4>
                 <?php } ?>
             </div>
-            <hr class="left">
             <div class="team-member-description">
                 <?php echo $this->get_clean_content($content); ?>
             </div>
@@ -93,21 +94,21 @@ class WpGradeShortcode_TeamMember extends  WpGradeShortcode {
                     <?php if ( !empty($social_twitter) ) { ?>
                         <li class="team-member-social-link"><a class="social-link" href="<?php echo $social_twitter; ?>"  target="_blank"><i class="icon-twitter"></i></a></li>
                     <?php } ?>
-                    
+
                     <?php if ( !empty($social_facebook) ) { ?>
                         <li class="team-member-social-link"><a class="social-link" href="<?php echo $social_facebook; ?>"  target="_blank"><i class="icon-facebook"></i></a></li>
                     <?php } ?>
-                    
+
                     <?php if ( !empty($social_linkedin) ) { ?>
                         <li class="team-member-social-link"><a class="social-link" href="<?php echo $social_linkedin; ?>"  target="_blank"><i class="icon-linkedin"></i></a></li>
                     <?php } ?>
-                    
+
                     <?php if ( !empty($social_pinterest) ) { ?>
                         <li class="team-member-social-link"><a class="social-link" href="<?php echo $social_pinterest; ?>"  target="_blank"><i class="icon-pinterest"></i></a></li>
                     <?php } ?>
                 </ul>
             </div>
-
+        </div>
         <?php return ob_get_clean();
     }
 }
