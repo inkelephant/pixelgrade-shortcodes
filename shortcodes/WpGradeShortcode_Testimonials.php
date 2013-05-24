@@ -78,7 +78,7 @@ class WpGradeShortcode_Testimonials extends  WpGradeShortcode {
             $query_args = array(
                 'post_type' => 'testimonial',
                 'posts_per_page' => -1,
-                // 'order' => $order,
+                'order' => 'menu_order',
                 // 'orderby' => $orderby
             );
 
