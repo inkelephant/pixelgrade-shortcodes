@@ -4,8 +4,6 @@ if (!defined('ABSPATH')) die('-1');
 
 class WpGradeShortcode_Testimonials extends  WpGradeShortcode {
 
-    static $load_frontend_scripts;
-
     public function __construct($settings = array()) {
 
         $this->self_closed = true;
