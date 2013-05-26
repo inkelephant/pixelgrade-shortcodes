@@ -80,7 +80,7 @@ editor = '';
                             this_span.append(this_el); // get back our element
                             // create the colorpicker ... again
                             this_span.children('.wpgrade-colorpicker').wpColorPicker({
-                                palettes: ['#fafafa', '#373737', '#01a279', '#45d59c', '#7abd58', '#f54c00'],
+                                palettes: ['#46bcb7', '#fafafa', '#373737', '#01a279', '#45d59c', '#7abd58'],
                                 change: function(event, ui) {
                                     $('.full_width_bg').addClass('s-visible');
                                 }
@@ -88,7 +88,7 @@ editor = '';
 
                         } else {
                             $(this).wpColorPicker({
-                                palettes: ['#fafafa', '#373737', '#01a279', '#45d59c', '#7abd58', '#f54c00'],
+                                 palettes: ['#46bcb7', '#fafafa', '#373737', '#01a279', '#45d59c', '#7abd58'],
                                 change: function(event, ui) {
                                     $('.full_width_bg').addClass('s-visible');
                                 }
