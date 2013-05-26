@@ -14,7 +14,7 @@ class WpGradeShortcode_Icon extends  WpGradeShortcode {
         $this->backend_assets["js"] = array(
             "icons" => array(
                 'name' => 'icons',
-                'path' => '/js/shortcodes/backend_icons.js',
+                'path' => 'js/shortcodes/backend_icons.js',
                 'deps'=> array( 'jquery' )
             )
         );

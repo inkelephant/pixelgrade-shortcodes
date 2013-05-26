@@ -1,7 +1,10 @@
 <?php
 
 defined('WPGRADE_SHORTCODES_PATH') or define('WPGRADE_SHORTCODES_PATH', plugin_dir_path(__FILE__) );
-if (!defined('ABSPATH')) die('-1');
+defined('WPGRADE_SHORTCODES_URL') or define('WPGRADE_SHORTCODES_URL', plugin_dir_url(dirname(__FILE__) . '/shortcodes.php') );
+
+if ( ! defined( 'ABSPATH' ) )
+	die('-1');
 
 class WpGradeShortcode {
 
@@ -31,7 +34,6 @@ class WpGradeShortcode {
             'js' => array(),
             'css' => array()
         );
-
     }
 
     public function autoload () {
@@ -72,7 +74,7 @@ class WpGradeShortcode {
 
             foreach ( $types as $type => $assets ) {
                 foreach( $assets as $key => $asset ) {
-                    $path = plugins_url() . '/pixelgrade-shortcodes/' . $asset['path'];
+                    $path = WPGRADE_SHORTCODES_URL . $asset['path'];
                     if ($type == 'js') {
                         wp_enqueue_script( $asset['name'], $path, $asset['deps'] );
                     } elseif ( $type == 'css' ) {
@@ -93,7 +95,7 @@ class WpGradeShortcode {
 
             foreach ( $types as $type => $assets ) {
                 foreach( $assets as $key => $asset ) {
-                    $path = plugins_url() . '/pixelgrade-shortcodes/' . $asset['path'];
+                    $path = WPGRADE_SHORTCODES_URL . $asset['path'];
                     if ($type == 'js') {
                         wp_enqueue_script( $asset['name'], $path, $asset['deps'] );
                     } elseif ( $type == 'css' ) {
@@ -112,4 +114,4 @@ class WpGradeShortcode {
     }
 }
 global $wpgrade_shortcodes;
-$wpgrade_shortcodes = new WpGradeShortcode(); ?>
+$wpgrade_shortcodes = new WpGradeShortcode();

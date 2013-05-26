@@ -9,7 +9,7 @@ class WpGradeShortcode_Columns extends  WpGradeShortcode {
         $this->backend_assets["js"] = array(
             'columns' => array(
                 'name' => 'columns',
-                'path' => '/js/shortcodes/backend_columns.js',
+                'path' => 'js/shortcodes/backend_columns.js',
                 'deps'=> array( 'jquery' )
             )
         );
