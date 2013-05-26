@@ -69,7 +69,6 @@ class WpGradeShortcodes {
         if ( is_admin() ) { // note the use of is_admin() to double check that this is happening in the admin
             $config = array(
                 'slug' => plugin_basename( __FILE__ ),
-                'proper_folder_name' => 'pixelgrade-shortcodes',
                 'api_url' => 'https://api.github.com/repos/andreilupu/pixelgrade-shortcodes',
                 'raw_url' => 'https://raw.github.com/andreilupu/pixelgrade-shortcodes/swipe',
                 'github_url' => 'https://github.com/andreilupu/pixelgrade-shortcodes/tree/swipe',
