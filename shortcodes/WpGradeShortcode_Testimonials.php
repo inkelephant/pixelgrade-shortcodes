@@ -45,7 +45,7 @@ class WpGradeShortcode_Testimonials extends  WpGradeShortcode {
         $this->frontend_assets["js"] = array(
             'columns' => array(
                 'name' => 'frontend_testimonials',
-                'path' => '/js/shortcodes/frontend_testimonials.js',
+                'path' => 'js/shortcodes/frontend_testimonials.js',
                 'deps'=> array( 'jquery' )
             )
         );
