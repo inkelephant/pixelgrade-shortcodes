@@ -40,54 +40,31 @@ class WpGradeShortcode {
 
         $shortcodes = get_option('wpgrade_shortcodes_list');
 
-        if ( $shortcodes ){ // check if the current version supports the shortcodes list from database
+        if ( !$shortcodes || empty($shortcodes) ){ // only older versions of Senna don't support this array so let's have a default one
+            $shortcodes = array( 'Button', 'Circle', 'Columns', 'Divider', 'Icon', 'TeamMember' );
+        }
 
-            foreach ($shortcodes as $file ){
+        foreach ($shortcodes as $file ){
 
-                $file_name = 'WpGradeShortcode_'. $file .'.php';
-                $file_path =  WPGRADE_SHORTCODES_PATH . '/shortcodes/'. $file_name;
+            $file_name = 'WpGradeShortcode_'. $file .'.php';
+            $file_path =  WPGRADE_SHORTCODES_PATH . '/shortcodes/'. $file_name;
 
-                if ( !file_exists($file_path) ) continue;
+            if ( !file_exists($file_path) ) continue;
 
-                include_once($file_path);
-                $shortcode_class = 'WpGradeShortcode_'. $file;
-                $shortcode = new $shortcode_class();
+            include_once($file_path);
+            $shortcode_class = 'WpGradeShortcode_'. $file;
+            $shortcode = new $shortcode_class();
 
-                // create a list of params needed for js to create the admin panel
-                $this->shortcodes[$shortcode_class]["name"] = $shortcode->name;
-                $this->shortcodes[$shortcode_class]["code"] = $shortcode->code;
-                $this->shortcodes[$shortcode_class]["self_closed"] = $shortcode->self_closed;
-                $this->shortcodes[$shortcode_class]["direct"] = $shortcode->direct;
-                $this->shortcodes[$shortcode_class]["icon"] = $shortcode->icon;
-                if ( $shortcode->direct == false ) {
-                    $this->shortcodes[$shortcode_class]["params"] = $shortcode->params;
-                }
+            // create a list of params needed for js to create the admin panel
+            $this->shortcodes[$shortcode_class]["name"] = $shortcode->name;
+            $this->shortcodes[$shortcode_class]["code"] = $shortcode->code;
+            $this->shortcodes[$shortcode_class]["self_closed"] = $shortcode->self_closed;
+            $this->shortcodes[$shortcode_class]["direct"] = $shortcode->direct;
+            $this->shortcodes[$shortcode_class]["icon"] = $shortcode->icon;
+            if ( $shortcode->direct == false ) {
+                $this->shortcodes[$shortcode_class]["params"] = $shortcode->params;
             }
-
-        } else { // old depricated way ... keep it for fallback
-
-            $FILES = scandir(WPGRADE_SHORTCODES_PATH . '/shortcodes', 1);
-            // get rid of . and ..
-            array_pop($FILES);
-            array_pop($FILES);
-
-            foreach ($FILES as $file ){
-
-                include_once(WPGRADE_SHORTCODES_PATH . '/shortcodes/'.$file);
-                $file = str_replace('.php', '', $file);
-                $shortcode = new $file();
-
-                // create a list of params needed for js to create the admin panel
-                $this->shortcodes[$file]["name"] = $shortcode->name;
-                $this->shortcodes[$file]["code"] = $shortcode->code;
-                $this->shortcodes[$file]["self_closed"] = $shortcode->self_closed;
-                $this->shortcodes[$file]["direct"] = $shortcode->direct;
-                $this->shortcodes[$file]["icon"] = $shortcode->icon;
-                if ( $shortcode->direct == false ) {
-                    $this->shortcodes[$file]["params"] = $shortcode->params;
-                }
-            }
-        } // end of version check
+        }
     }
 
     public function get_shortcodes() {
