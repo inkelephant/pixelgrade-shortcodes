@@ -112,4 +112,4 @@ class WpGradeShortcode {
     }
 }
 global $wpgrade_shortcodes;
-$wpgrade_shortcodes = new WpGradeShortcode(); ?>
+$wpgrade_shortcodes = new WpGradeShortcode();
