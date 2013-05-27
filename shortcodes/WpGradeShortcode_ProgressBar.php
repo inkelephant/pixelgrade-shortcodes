@@ -44,7 +44,7 @@ class WpGradeShortcode_ProgressBar extends WpGradeShortcode {
                 <div class="progressbar-title"><?php echo $title; ?></div>
             <?php endif; ?>
             <div class="progressbar-bar">
-                <div class="progressbar-progress" style="width: <?php echo $progress ?>;">
+                <div class="progressbar-progress" style="width: <?php echo $progress ?>; left: -<?php echo trim($progress) ?>;">
                     <div class="progressbar-tooltip"><?php echo $progress ?></div>
                 </div>
                 <?php if ($markers == 'on') for ($i = 1; $i<=4; $i++): ?>
