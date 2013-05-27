@@ -3,7 +3,7 @@
 Plugin Name: Pixelgrade Shortcodes
 Plugin URI: http://pixelgrade.com
 Description: Adds shortcodes to your wordpress editor
-Version: 1.4.6
+Version: 1.4.7
 Author: Pixelgrade Media
 Author URI: http://pixelgrade.com
 Author Email: contact@pixelgrade.com
@@ -26,15 +26,18 @@ License:
 
 */
 
-if (!defined('ABSPATH')) die('-1');
+if ( ! defined( 'ABSPATH' ) )
+	die('-1');
 
 class WpGradeShortcodes {
 
     protected static $plugin_dir;
+	public $plugin_url;
 
     function __construct() {
 
         $this->plugin_dir = dirname( plugin_basename( __FILE__ ) );
+		$this->plugin_url = plugin_dir_url(dirname(__FILE__) . '/plugin.php');
 		// Load plugin text domain
 		add_action( 'init', array( $this, 'plugin_textdomain' ) );
 
@@ -66,7 +69,6 @@ class WpGradeShortcodes {
         if ( is_admin() ) { // note the use of is_admin() to double check that this is happening in the admin
             $config = array(
                 'slug' => plugin_basename( __FILE__ ),
-                'proper_folder_name' => 'pixelgrade-shortcodes',
                 'api_url' => 'https://api.github.com/repos/andreilupu/pixelgrade-shortcodes',
                 'raw_url' => 'https://raw.github.com/andreilupu/pixelgrade-shortcodes/swipe',
                 'github_url' => 'https://github.com/andreilupu/pixelgrade-shortcodes/tree/swipe',
@@ -92,7 +94,7 @@ class WpGradeShortcodes {
 	 * Registers and enqueues admin-specific styles.
 	 */
 	public function register_admin_assets($buttons) {
-        wp_enqueue_style( 'wpgrade-shortcodes-reveal-styles', plugins_url( 'pixelgrade-shortcodes/css/base.css' ), array( 'wp-color-picker' ) );
+        wp_enqueue_style( 'wpgrade-shortcodes-reveal-styles', $this->plugin_url.'css/base.css', array( 'wp-color-picker' ) );
         wp_enqueue_script('wp-color-picker');
         return $buttons;
 	} // end register_admin_assets
@@ -126,7 +128,7 @@ class WpGradeShortcodes {
 	} // end filter_method_name
 
     function addto_mce_wpgrade_shortcodes($plugin_array) {
-        $plugin_array['wpgrade'] = plugins_url( 'pixelgrade-shortcodes/js/add_shortcode.js' , dirname(__FILE__) ) ;
+        $plugin_array['wpgrade'] = $this->plugin_url.'js/add_shortcode.js';
         return $plugin_array;
     }
 
