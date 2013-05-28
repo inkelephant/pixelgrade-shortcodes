@@ -70,7 +70,7 @@ if (!defined('ABSPATH')) die('-1'); ?>
 
                                                     <span class="<?php echo $class; ?>" >
                                                         <label for="<?php echo $k ?>"><?php echo $param['name'] ?></label>
-                                                        <select name="<?php echo $k ?>">
+                                                        <select name="<?php echo $k ?>" >
                                                           <?php
                                                             $options = $param['options'];
                                                             foreach ( $options as $i => $opt ) { ?>
@@ -80,6 +80,37 @@ if (!defined('ABSPATH')) die('-1'); ?>
                                                     </span>
 
                                                 <?php break; }
+
+                                                case 'multiple-select' : {
+                                                    $class= "span12";
+                                                    if ( isset($param['admin_class'] ) ) $class = $param['admin_class']; ?>
+
+                                                    <span class="<?php echo $class; ?>" >
+                                                        <label for="<?php echo $k ?>"><?php echo $param['name'] ?></label>
+                                                        <select name="<?php echo $k ?>" multiple="multiple">
+                                                            <?php
+                                                            $options = $param['options'];
+                                                            foreach ( $options as $i => $opt ) { ?>
+                                                                <option value="<?php echo $i ?>"><?php echo $opt ?></option>
+                                                            <?php } ?>
+                                                        </select>
+                                                    </span>
+
+                                                <?php break; }
+
+                                                case 'tags' : {
+                                                    $class= "span12";
+
+                                                    if ( isset($param['admin_class'] ) ) $class = $param['admin_class'];
+                                                    if ( isset($param['is_content'] ) ) $is_content = 'class="is_shortcode_content"'; ?>
+
+                                                    <span class="<?php echo $class; ?> input-tags" >
+                                                        <label for="<?php echo $k ?>"><?php echo $param['name'] ?></label>
+                                                        <input type="<?php echo $param['type'] ?>" name="<?php echo $k ?>" <?php echo $is_content ?> value="<?php echo implode(',', $param['value'] ); ?>" data-options='<?php echo json_encode($param['options']); ?>'/>
+                                                    </span>
+
+                                                <?php break; }
+
                                                 case 'switch' : {
                                                     $class= "span12";
                                                     if ( isset($param['admin_class'] ) ) $class = $param['admin_class']; ?>

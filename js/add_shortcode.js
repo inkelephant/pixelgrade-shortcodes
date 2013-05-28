@@ -95,7 +95,30 @@ editor = '';
                             });
                         }
                     });
+
+                    $('.details_container select').each( function(){
+                        if ( $(this).hasClass('select2-offscreen' ) ) {
+                            $(this).select2("destroy");
+                            $(this).select2();
+                        } else {
+                            $(this).select2();
+                        }
+                    });
+
+                    $('.details_container .input-tags input').each( function(){
+
+                        var options = $(this).data('options');
+
+console.log($.parseJSON( options ));
+                        if ( $(this).hasClass('select2-offscreen' ) ) {
+                            $(this).select2("destroy");
+                            $(this).select2({tags:options});
+                        } else {
+                            $(this).select2({tags:options});
+                        }
+                    });
                 });
+
                 //Trigger Submit Button (need few improvements :)
                 $(document).on('click', ".l_pxg_modal a.btn_primary", function() {
                     trigger_submit_btn(triggered_woman);
@@ -157,7 +180,7 @@ editor = '';
 						//let's clean up some more first
 						$('.l_pxg_modal').removeClass('s_active');
 						$('button.back').show();
-						
+
                         modal_selector.reveal({
                             animation: 'fadeAndPop',                   //fade, fadeAndPop, none
                             animationspeed: 400,                       //how fast animtions are
@@ -170,6 +193,7 @@ editor = '';
                         };
 						
                         window.send_to_editor_clone = window.send_to_editor;
+
                     }
                 });
             }
