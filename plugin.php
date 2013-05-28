@@ -95,8 +95,7 @@ class WpGradeShortcodes {
 	 */
 	public function register_admin_assets($buttons) {
 
-        wp_register_style('select2-css', $this->plugin_url .'js/select2/select2.css');
-        wp_enqueue_style( 'wpgrade-shortcodes-reveal-styles', $this->plugin_url.'css/base.css', array( 'wp-color-picker', 'select2-css' ) );
+        wp_enqueue_style( 'wpgrade-shortcodes-reveal-styles', $this->plugin_url.'css/base.css', array( 'wp-color-picker' ) );
         wp_enqueue_script('select2-js', $this->plugin_url.'js/select2/select2.js', array('jquery') );
         wp_enqueue_script('wp-color-picker');
         return $buttons;

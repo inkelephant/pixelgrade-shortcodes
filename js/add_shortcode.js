@@ -96,20 +96,18 @@ editor = '';
                         }
                     });
 
-                    $('.details_container select').each( function(){
-                        if ( $(this).hasClass('select2-offscreen' ) ) {
-                            $(this).select2("destroy");
-                            $(this).select2();
-                        } else {
-                            $(this).select2();
-                        }
-                    });
+//                    $('.details_container select').each( function(){
+//                        if ( $(this).hasClass('select2-offscreen' ) ) {
+//                            $(this).select2("destroy");
+//                            $(this).select2();
+//                        } else {
+//                            $(this).select2();
+//                        }
+//                    });
 
                     $('.details_container .input-tags input').each( function(){
 
                         var options = $(this).data('options');
-
-console.log($.parseJSON( options ));
                         if ( $(this).hasClass('select2-offscreen' ) ) {
                             $(this).select2("destroy");
                             $(this).select2({tags:options});
