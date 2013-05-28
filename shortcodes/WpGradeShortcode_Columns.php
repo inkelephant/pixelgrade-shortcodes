@@ -45,9 +45,11 @@ class WpGradeShortcode_Columns extends  WpGradeShortcode {
                 'name' => 'Drag handlers to change the columns width.'
             ),
             'class' => array(
-                'type' => 'text',
+                'type' => 'tags',
                 'name' => 'Custom CSS Class',
-                'admin_class' => 'span12'
+                'admin_class' => 'span12',
+                'options' => array( 'narrow', 'inverse'),
+                'value' => array( '' )
             ),
         );
 

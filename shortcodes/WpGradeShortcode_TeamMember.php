@@ -53,13 +53,6 @@ class WpGradeShortcode_TeamMember extends  WpGradeShortcode {
                 'name' => 'Pinterest Link',
                 'admin_class' => 'span5 push1'
             ),
-//            'test' => array(
-//                'type' => 'tags',
-//                'name' => 'Test Tags',
-//                'admin_class' => 'span6',
-//                'options' => array( 'rag', 'tag', 'alala', 'dasdas', 'hhahaha', 'Austria', 'More'),
-//                'value' => array('test', 'tag', 'jeg')
-//            ),
         );
 
         add_shortcode('team-member', array( $this, 'add_shortcode') );
