@@ -5,7 +5,7 @@
         	controlNav: false,
         	keyboard: false,
         	animation: 'fadecss',
-        	slideshow: true,
+        	slideshow: false,
         	before: function(slider){ 
 	            // slider.slides.removeClass('s-hidden');
 	        },
