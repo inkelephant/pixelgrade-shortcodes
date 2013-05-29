@@ -3,7 +3,7 @@
 Plugin Name: Pixelgrade Shortcodes
 Plugin URI: http://pixelgrade.com
 Description: Adds shortcodes to your wordpress editor
-Version: 1.4.7
+Version: 1.4.8
 Author: Pixelgrade Media
 Author URI: http://pixelgrade.com
 Author Email: contact@pixelgrade.com
@@ -69,9 +69,9 @@ class WpGradeShortcodes {
                 'slug' => plugin_basename( __FILE__ ),
                 'proper_folder_name' => 'pixelgrade-shortcodes',
                 'api_url' => 'https://api.github.com/repos/andreilupu/pixelgrade-shortcodes',
-                'raw_url' => 'https://raw.github.com/andreilupu/pixelgrade-shortcodes/senna',
-                'github_url' => 'https://github.com/andreilupu/pixelgrade-shortcodes/tree/senna',
-                'zip_url' => 'https://github.com/andreilupu/pixelgrade-shortcodes/archive/senna.zip',
+                'raw_url' => 'https://raw.github.com/andreilupu/pixelgrade-shortcodes/update',
+                'github_url' => 'https://github.com/andreilupu/pixelgrade-shortcodes/tree/update',
+                'zip_url' => 'https://github.com/andreilupu/pixelgrade-shortcodes/archive/update.zip',
                 'sslverify' => false,
                 'requires' => '3.0',
                 'tested' => '3.3',
