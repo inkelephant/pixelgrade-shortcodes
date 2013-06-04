@@ -205,7 +205,7 @@ editor = '';
             if ( params.self_closed ) {
                 editor.selection.setContent('['+params.code+']');
             } else {
-                editor.selection.setContent('<p>['+params.code+' ]</p>'+ editor.selection.getContent() +'<p>[/'+params.code+']</p>');
+                editor.selection.setContent('<p>['+params.code+' ]</p><p>'+ editor.selection.getContent() +'</p><p>[/'+params.code+']</p>');
             }
             // close the modal whenever a shortcode is inserted
             modal_selector.trigger('reveal:close');
@@ -237,7 +237,7 @@ editor = '';
             if ( params.self_closed ) {
                 editor.selection.setContent('['+params.code+user_params_string+']');
             } else {
-                editor.selection.setContent('<p>['+params.code+user_params_string+']</p>'+ shortcode_content +'<p>[/'+params.code+']</p>');
+                editor.selection.setContent('<p>['+params.code+user_params_string+']</p><p>'+ shortcode_content +'</p><p>[/'+params.code+']</p>');
             }
 
             modal_selector.trigger('reveal:close');

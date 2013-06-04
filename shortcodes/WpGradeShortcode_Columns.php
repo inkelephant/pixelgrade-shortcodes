@@ -58,39 +58,51 @@ class WpGradeShortcode_Columns extends  WpGradeShortcode {
     }
 
     public function add_row_shortcode($atts, $content){
+
+        $class = '';
+        $bg_color = '';
+
         extract( shortcode_atts( array(
             'bg_color' => '#fff',
             'full_width' => '',
             'class' => ''
         ), $atts ) );
-        ob_start(); ?>
-        <?php
-            $is_narrow = false;
-            $classes = explode(" ", $class);
-            foreach ($classes as $my_class):
-                if ($my_class == "narrow") $is_narrow = true;
-            endforeach;
-            if ($is_narrow): ?>
-                <div class="narrow">
-                    <div class="row row-shortcode <?php echo $class; ?>">
-                        <?php if ( !empty($bg_color) ) { ?>
-                            <div class="row-background full-width" style="background-color:<?php echo $bg_color; ?>;"></div>
-                        <?php } ?>
-                        <?php echo $this->get_clean_content($content); ?>
-                    </div>
-                </div>
-            <?php else: ?>
+
+        if ( !empty($bg_color) ) {
+            if ( substr($bg_color, 0, 1 ) != '#' ) {
+                $bg_color = '#'. $bg_color;
+            }
+        }
+
+        $is_narrow = false;
+        $classes = explode(" ", $class);
+        foreach ($classes as $my_class):
+            if ($my_class == "narrow") $is_narrow = true;
+        endforeach;
+
+        ob_start();
+        if ($is_narrow): ?>
+            <div class="narrow">
                 <div class="row row-shortcode <?php echo $class; ?>">
                     <?php if ( !empty($bg_color) ) { ?>
                         <div class="row-background full-width" style="background-color:<?php echo $bg_color; ?>;"></div>
                     <?php } ?>
                     <?php echo $this->get_clean_content($content); ?>
                 </div>
-            <?php endif; ?>
-        <?php return ob_get_clean();
+            </div>
+        <?php else: ?>
+            <div class="row row-shortcode <?php echo $class; ?>">
+                <?php if ( !empty($bg_color) ) { ?>
+                    <div class="row-background full-width" style="background-color:<?php echo $bg_color; ?>;"></div>
+                <?php } ?>
+                <?php echo $this->get_clean_content($content); ?>
+            </div>
+        <?php endif; ?>
+    <?php return ob_get_clean();
     }
 
     public function add_column_shortcode($atts, $content){
+        $size = '';
 
         extract( shortcode_atts( array(
             'size' => '1',

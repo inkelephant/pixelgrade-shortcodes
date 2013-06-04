@@ -22,7 +22,7 @@
                 values[idx] = parseInt($(this).attr('class').split("span")[1]);
             });
             return values;
-        }
+        };
 
         var columnsNo = parseInt($('[name="cols_nr"]').val());
         var sliderWidth = $('.details_content.active .grid_cols_slider').width();
@@ -150,6 +150,8 @@
 
             $.each(form_params, function(i,e){
                 if ( e.value !== '' ) { // don't include the empty params and the content param
+
+                    if ( e.name == 'bg_color' ) { e.value = e.value.replace(  '#', ''); }
                     params_String += ' '+ e.name + '="'+ e.value +'"';
                 }
             });
@@ -157,7 +159,7 @@
             var output = '<p>[row '+ params_String +']</p>';
 
             $.each(getValues(), function(i,e){ // get each column and their params
-                output += '<p>[col size="'+e+'"]</p>Content goes here<p>[/col]</p>';
+                output += '<p>[col size="'+e+'"]</p><p>Content goes here</p><p>[/col]</p>';
             });
             output += '<p>[/row]</p>';
             editor.selection.setContent(output);
