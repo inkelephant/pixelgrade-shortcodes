@@ -21,6 +21,8 @@ class WpGradeShortcode {
     protected $backend_assets;
     protected $frontend_assets;
     protected $load_frontend_scripts;
+	//we use this to get the prefix for the meta data from the theme - usually it's short theme name
+	protected $meta_prefix;
 
     public function __construct() {
 
@@ -39,6 +41,7 @@ class WpGradeShortcode {
     public function autoload () {
 
         $shortcodes = get_option('wpgrade_shortcodes_list');
+		$this->meta_prefix = get_option('wpgrade_metaboxes_prefix');
 
         if ( !$shortcodes || empty($shortcodes) ){ // only older versions of Senna don't support this array so let's have a default one
             $shortcodes = array( 'Button', 'Circle', 'Columns', 'Divider', 'Icon', 'TeamMember' );
