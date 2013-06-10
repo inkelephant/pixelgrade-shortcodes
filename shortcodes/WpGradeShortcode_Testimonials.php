@@ -58,8 +58,8 @@ class WpGradeShortcode_Testimonials extends  WpGradeShortcode {
 
         // init vars
         $number = -1;
-        $orderby = 'date';
-        $order = 'DESC';
+        $orderby = 'menu_order';
+        $order = 'ASC';
 
         // extract( shortcode_atts( array(
         //     'number' => '-1',
@@ -74,8 +74,8 @@ class WpGradeShortcode_Testimonials extends  WpGradeShortcode {
         $query_args = array(
             'post_type' => 'testimonial',
             'posts_per_page' => -1,
-            'order' => 'menu_order',
-            // 'orderby' => $orderby
+            'orderby' => $orderby,
+            'order' => $order
         );
 
         // if ( !empty( $include ) ) {
