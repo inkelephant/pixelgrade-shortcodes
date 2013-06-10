@@ -29,6 +29,7 @@ class WpGradeShortcode {
         $this->plug_dir = plugins_url();
         $this->self_closed = false;
         $this->shortcodes = array();
+		
         $this->autoload();
 
         // init assets list // useless
@@ -41,7 +42,6 @@ class WpGradeShortcode {
     public function autoload () {
 
         $shortcodes = get_option('wpgrade_shortcodes_list');
-		$this->meta_prefix = get_option('wpgrade_metaboxes_prefix');
 
         if ( !$shortcodes || empty($shortcodes) ){ // only older versions of Senna don't support this array so let's have a default one
             $shortcodes = array( 'Button', 'Circle', 'Columns', 'Divider', 'Icon', 'TeamMember' );

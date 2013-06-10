@@ -8,6 +8,7 @@ class WpGradeShortcode_Testimonials extends  WpGradeShortcode {
 
         $this->self_closed = true;
         $this->direct = true;
+		$this->meta_prefix = get_option('wpgrade_metaboxes_prefix');
         $this->name = "Testimonials";
         $this->code = "testimonials";
         $this->icon = "icon-group";
@@ -99,24 +100,24 @@ class WpGradeShortcode_Testimonials extends  WpGradeShortcode {
                         $author_name = get_post_meta(get_the_ID(), $this->meta_prefix.'author_name', true);
                         $author_function = get_post_meta(get_the_ID(), $this->meta_prefix.'author_function', true);
                         $author_link = get_post_meta(get_the_ID(), $this->meta_prefix.'author_link', true);
+						$author_string = '';
+						if(!empty($author_link)) {
+							$author_string .= '<a href="'.$author_link.'">';
+						}
+						if ( !empty($author_name)) {
+							$author_string .= '<span class="author_name">'.$author_name.'</span>';
+						}
+						if ( !empty($author_function) ) {
+							$author_string .= ', <span class="author_function">'.$author_function.'</span>';
+						}
+						if(!empty($author_link)) {
+							$author_string .= '</a>';
+						}
                     ?>
                     <blockquote>
                         <div class="testimonial_content"><?php the_content(); ?></div>
                         <div class="testimonial_author">
-
-                        <?php if(!empty($author_link)) { ?>
-                            <a href="<?php echo $author_link; ?>">
-                        <?php }
-                            if ( !empty($author_name)) { ?>
-                            <span class="author_name"><?php echo $author_name; ?></span>
-                        <?php }
-                            if ( !empty($author_function) ) {?>
-                             , <span class="author_function"><?php echo $author_function; ?></span>
-                        <?php }
-                            if(!empty($author_link)) { ?>
-                           </a>
-                        <?php } ?>
-
+							<?php echo $author_string; ?>
                         </div>
                     </blockquote>
                 </li>
