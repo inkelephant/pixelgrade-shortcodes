@@ -103,13 +103,15 @@ class WpGradeShortcode_Columns extends  WpGradeShortcode {
 
     public function add_column_shortcode($atts, $content){
         $size = '';
+        $class= "";
 
         extract( shortcode_atts( array(
             'size' => '1',
+            'class' => ''
         ), $atts ) );
 
         ob_start(); ?>
-            <div class="span<?php echo $size; ?>">
+            <div class="span<?php echo $size. ' ' .$class; ?>">
                 <?php echo $this->get_clean_content( $content ); ?>
             </div>
         <?php return ob_get_clean();
