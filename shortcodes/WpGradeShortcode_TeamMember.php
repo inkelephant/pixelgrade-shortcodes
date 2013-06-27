@@ -68,10 +68,11 @@ class WpGradeShortcode_TeamMember extends  WpGradeShortcode {
             'social_facebook' => '',
             'social_linkedin' => '',
             'social_pinterest' => '',
+            'class' => '',
         ), $atts ) );
 
         ob_start(); ?>
-        <div class="team-member-container">
+        <div class="team-member-container <?php echo $class ?>">
             <?php if ( !empty($image) ) {?>
             <div class="team-member-image">
                 <img src="<?php echo $image; ?>" alt="<?php echo $name; ?> Profile Image">
