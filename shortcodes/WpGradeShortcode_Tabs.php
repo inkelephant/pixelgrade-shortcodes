@@ -13,29 +13,9 @@ class WpGradeShortcode_Tabs extends  WpGradeShortcode {
         $this->icon = "icon-folder-close";
 
         $this->params = array(
-            'number' => array(
-                'type' => 'text',
-                'name' => 'Number',
-                'admin_class' => 'span6'
-            ),
-            'class' => array(
-                'type' => 'text',
-                'name' => 'Class',
-                'admin_class' => 'span5 push1'
-            ),
-            array(
-                'type' => 'info',
-                'value' => 'If you want specific testimonials include bellow posts IDs separated by comma.'
-            ),
-            'include' => array(
-            'type' => 'text',
-            'name' => 'Include IDs',
-            'admin_class' => 'span6'
-            ),
-                'exclude' => array(
-                'type' => 'text',
-                'name' => 'Exclude IDs',
-                'admin_class' => 'span5 push1'
+            'tabs' => array(
+                'type' => 'tabs',
+                'name' => 'Tabs',
             ),
         );
 
