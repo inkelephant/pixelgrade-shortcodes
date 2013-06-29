@@ -166,7 +166,5 @@
 
             $('#pixelgrade_shortcodes_modal').trigger('reveal:close');
         });
-
     });
-
 })(jQuery);

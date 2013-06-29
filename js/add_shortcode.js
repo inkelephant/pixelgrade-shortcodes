@@ -115,41 +115,6 @@ editor = '';
                             $(this).select2({tags:options});
                         }
                     });
-
-                    $('.param-tabs').tabs({
-                        active: 0,
-                        hide: 300,
-                        show: 300,
-                        beforeActivate: function( event, ui ) {
-
-                            var index = $(ui.newTab).data('index');
-
-                            if ( index === 0 ) { // create a new tab
-                                event.preventDefault();
-                                var new_index = 1;
-                                // get the biggest id
-                                $(this).find('.tabs-heads li').each(function(i,e){
-                                    var this_index = $(this).data('index');
-                                    if ( this_index > new_index ) new_index = this_index;
-                                });
-
-                                new_index = new_index + 1;
-
-                                console.log(new_index );
-                                // add new tab head
-                                $(ui.newTab).before('<li data-index="'+new_index+'"><a href="#t'+new_index+'">Tab '+new_index+'</a></li>');
-                                // add new tab content
-                                $(ui.newPanel).before('<div id="t'+new_index+'" class="tab" data-tab="'+new_index+'">new tab</div>');
-
-                                $(this).tabs( "refresh" );
-
-                            }
-                        },
-                        create: function(event, ui){
-                            console.log(ui);
-                            //$(this).tabs( "option", { active: parseInt(new_index) });
-                        }
-                    });
                 });
 
                 //Trigger Submit Button (need few improvements :)
