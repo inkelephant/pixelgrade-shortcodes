@@ -488,6 +488,51 @@ Modal Styling
     float:right;
     margin-right: 55px;
   }
+
+}
+
+#wpgrade_shortcodes_form_modified {
+  .param-tabs {
+
+    //keep tabs vertical
+    &.ui-tabs-vertical {
+      width: 55em;
+      .ui-tabs-nav { padding: .2em .1em .2em .2em; float: left; width: 6em; }
+      .ui-tabs-nav li { clear: left; width: 100%; border-bottom-width: 1px !important; border-right-width: 0 !important; margin: 0 -1px .2em 0; }
+      .ui-tabs-nav li a { display:block; }
+      .ui-tabs-nav li.ui-tabs-active {
+        padding-bottom: 0;
+        padding-right: .1em;
+        border-right-width: 1px;
+        border-right-width: 1px;
+      }
+      .ui-tabs-panel {
+        padding: 1em 1em 1em 0;
+        width: 36em;
+        margin-left: 82px;
+      }
+
+      .tabs-heads {
+        li {
+          width: 80px;
+          padding: 5px;
+          border: 1px solid #aaa;
+
+          &.ui-state-active {
+            background-color: #ebebeb;
+            a {
+              outline: none;
+            }
+          }
+        }
+      }
+
+      .tab {
+        border: 1px solid #aaa;
+      }
+
+    }
+  }
 }
 
 @import "select2";

@@ -103,7 +103,7 @@ class WpGradeShortcode_Columns extends  WpGradeShortcode {
 
     public function add_column_shortcode($atts, $content){
         $size = '';
-        $class= "";
+        $class= '';
 
         extract( shortcode_atts( array(
             'size' => '1',

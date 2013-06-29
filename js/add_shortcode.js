@@ -50,7 +50,7 @@ editor = '';
                         content_field.attr('value', current_editor.selection.getContent());
                     } else if ( content_field.attr('type') === 'textarea' ) {
                         content_field.text( current_editor.selection.getContent() );
-                    };
+                    }
 
                     var html_container = $(this).next().html(),
                         item_title = $(this).find('.title').html();

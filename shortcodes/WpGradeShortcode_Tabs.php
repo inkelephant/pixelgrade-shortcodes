@@ -6,6 +6,17 @@ class WpGradeShortcode_Tabs extends  WpGradeShortcode {
 
     public function __construct($settings = array()) {
 
+        $this->backend_assets["js"] = array(
+            'tabs' => array(
+                'name' => 'tabs',
+                'path' => 'js/shortcodes/backend_tabs.js',
+                'deps'=> array( 'jquery' )
+            )
+        );
+
+        // load backend assets only when an editor is present
+        add_action( 'mce_buttons_2', array( $this, 'load_backend_assets' ) );
+
         $this->self_closed = false;
         $this->direct = false;
         $this->name = "Tabs";
@@ -13,117 +24,59 @@ class WpGradeShortcode_Tabs extends  WpGradeShortcode {
         $this->icon = "icon-folder-close";
 
         $this->params = array(
-            'number' => array(
-                'type' => 'text',
-                'name' => 'Number',
-                'admin_class' => 'span6'
-            ),
-            'class' => array(
-                'type' => 'text',
-                'name' => 'Class',
-                'admin_class' => 'span5 push1'
-            ),
-            array(
-                'type' => 'info',
-                'value' => 'If you want specific testimonials include bellow posts IDs separated by comma.'
-            ),
-            'include' => array(
-            'type' => 'text',
-            'name' => 'Include IDs',
-            'admin_class' => 'span6'
-            ),
-                'exclude' => array(
-                'type' => 'text',
-                'name' => 'Exclude IDs',
-                'admin_class' => 'span5 push1'
+            'tabs' => array(
+                'type' => 'tabs',
+                'name' => 'Tabs',
             ),
         );
 
-        add_shortcode('testimonials', array( $this, 'add_shortcode') );
-
+        add_shortcode('tabs', array( $this, 'add_tabs_shortcode') );
+        add_shortcode('tab', array( $this, 'add_tab_shortcode') );
+//        add_shortcode('tabs_content', array( $this, 'add_tabs_content_shortcode') );
         // frontend assets needs to be loaded after the add_shortcode function
-        $this->frontend_assets["js"] = array(
-            'columns' => array(
-                'name' => 'frontend_testimonials',
-                'path' => 'js/shortcodes/frontend_testimonials.js',
-                'deps'=> array( 'jquery' )
-            )
-        );
-        add_action('wp_footer', array($this, 'load_frontend_assets'));
+//        $this->frontend_assets["js"] = array(
+//            'columns' => array(
+//                'name' => 'frontend_testimonials',
+//                'path' => 'js/shortcodes/frontend_testimonials.js',
+//                'deps'=> array( 'jquery' )
+//            )
+//        );
+//        add_action('wp_footer', array($this, 'load_frontend_assets'));
+
     }
 
-    public function add_shortcode($atts){
+    public function add_tabs_shortcode( $atts, $content ) {
 
-        $this->load_frontend_scripts = true;
+//         extract( shortcode_atts( array(
+//             'number' => '-1',
+//         ), $atts ) );
 
-        // init vars
-        $number = -1;
-        $orderby = 'menu_order';
-        $order = 'ASC';
-
-        // extract( shortcode_atts( array(
-        //     'number' => '-1',
-        //     'order' => 'DESC',
-        //     'orderby' => 'date',
-        //     'include' => '',
-        //     'exclude' => '',
-        // ), $atts ) );
-
-        ob_start();
-
-        $query_args = array(
-            'post_type' => 'testimonial',
-            'posts_per_page' => -1,
-            'orderby' => $orderby,
-            'order' => $order
-        );
-
-        // if ( !empty( $include ) ) {
-        //     $include_array = explode( ',', $include );
-        //     $query_args['posts__in'] = $include_array;
-        // }
-
-        // if ( !empty( $exclude ) ) {
-        //     $exclude_array = explode( ',', $exclude );
-        //     $query_args['post__not_in'] = $exclude_array;
-        // }
-
-        $query = new WP_Query($query_args);
-
-        if ( $query-> have_posts() ) : ?>
-            <div class="testimonials_slide wp_slider">
-            <ul class="slides">
-            <?php while ( $query->have_posts() ) : $query->the_post(); ?>
-                <li class="slide">
-                    <?php
-                        $author_name = get_post_meta(get_the_ID(), '_wpgrade_author_name', true);
-                        $author_function = get_post_meta(get_the_ID(), '_wpgrade_author_function', true);
-                        $author_link = get_post_meta(get_the_ID(), '_wpgrade_author_link', true);
-                    ?>
-                    <blockquote>
-                        <div class="testimonial_content"><?php the_content(); ?></div>
-                        <div class="testimonial_author">
-
-                        <?php if(!empty($author_link)) { ?>
-                            <a href="<?php echo $author_link; ?>">
-                        <?php }
-                            if ( !empty($author_name)) { ?>
-                            <span class="author_name"><?php echo $author_name; ?></span>
-                        <?php }
-                            if ( !empty($author_function) ) {?>
-                             , <span class="author_function"><?php echo $author_function; ?></span>
-                        <?php }
-                            if(!empty($author_link)) { ?>
-                           </a>
-                        <?php } ?>
-
-                        </div>
-                    </blockquote>
-                </li>
-            <?php endwhile;?>
-            </ul>
+        ob_start(); ?>
+            <div class="row">
+                <div class="span6">
+                    <?php echo do_shortcode($content); ?>
+                </div>
             </div>
-        <?php endif; wp_reset_query();
-        return ob_get_clean();
+        <?php return ob_get_clean();
     }
+
+    public function add_tab_shortcode( $atts, $content ) {
+        $title = '';
+         extract( shortcode_atts( array(
+             'title' => '',
+         ), $atts ) );
+
+        ob_start(); ?>
+
+        <div class="block-inner block-text">
+            <?php echo do_shortcode($content); ?>
+        </div>
+
+        <li class="tab-titles-list-item">
+            <a href="#">
+                <?php echo do_shortcode( $title ); ?>
+            </a>
+        </li>
+
+    <?php }
 }
