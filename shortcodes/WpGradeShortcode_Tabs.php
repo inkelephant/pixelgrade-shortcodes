@@ -32,12 +32,12 @@ class WpGradeShortcode_Tabs extends  WpGradeShortcode {
 
         add_shortcode('tabs', array( $this, 'add_tabs_shortcode') );
         add_shortcode('tab', array( $this, 'add_tab_shortcode') );
-//        add_shortcode('tabs_content', array( $this, 'add_tabs_content_shortcode') );
+
         // frontend assets needs to be loaded after the add_shortcode function
 //        $this->frontend_assets["js"] = array(
-//            'columns' => array(
-//                'name' => 'frontend_testimonials',
-//                'path' => 'js/shortcodes/frontend_testimonials.js',
+//            'tabs' => array(
+//                'name' => 'frontend_tabs',
+//                'path' => 'js/shortcodes/frontend_tabs.js',
 //                'deps'=> array( 'jquery' )
 //            )
 //        );
@@ -51,32 +51,63 @@ class WpGradeShortcode_Tabs extends  WpGradeShortcode {
 //             'number' => '-1',
 //         ), $atts ) );
 
+        // prepare the icons first
+        preg_match_all ( '#<icon>(.*?)</icon>#', do_shortcode( $content ), $icons );
+        if ( isset( $icons[1] ) ) {
+            $icons = $icons[1];
+        }
+
         ob_start(); ?>
-            <div class="row">
-                <div class="span6">
-                    <?php echo do_shortcode($content); ?>
+        <div class="row">
+            <div class="span6">
+                <div class="tabs-content">
+                    <?php
+                    preg_match_all ( '#<body>([\s\S]*?)</body>#', do_shortcode( $content ), $contents );
+                    if ( !empty( $contents ) && isset($contents[1]) ) {
+                        foreach ( $contents[1] as $key => $value ) { ?>
+                            <div class="tabs-content-pane <?php if ( $key == 0 ) { ?>active<?php } ?>" id="ui-tab-<?php echo $key; ?>">
+                                <div class="block-inner block-text">
+                                    <?php wpgrade_display_content($value) ?>
+                                </div>
+                            </div>
+                        <?php }
+                    } ?>
                 </div>
             </div>
+            <div class="span6">
+                <div class="block-inner block-inner_last block-text">
+                    <ul class="nav nav-tabs tab-titles-list">
+                        <?php preg_match_all( '#<title>(.*?)</title>#', do_shortcode( $content ), $titles );
+                        if ( !empty( $titles ) && isset($titles[1]) ) {
+                            foreach ( $titles[1] as $key => $title ) { ?>
+                                <li class="tab-titles-list-item <?php if ( $key == 0 ) { ?>active<?php } ?>">
+                                    <a href="#ui-tab-<?php echo $key; ?>">
+                                        <?php if ( isset( $icons[$key] ) && !empty($icons[$key] ) ) { ?>
+                                            <i class="icon-<?php echo $icons[$key]; ?>"></i>
+                                        <?php }
+                                        echo $title ?>
+                                    </a>
+                                </li>
+                            <?php }
+                        } ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
         <?php return ob_get_clean();
     }
 
     public function add_tab_shortcode( $atts, $content ) {
-        $title = '';
+        $title = $icon = '';
          extract( shortcode_atts( array(
              'title' => '',
+             'icon' => ''
          ), $atts ) );
 
         ob_start(); ?>
-
-        <div class="block-inner block-text">
-            <?php echo do_shortcode($content); ?>
-        </div>
-
-        <li class="tab-titles-list-item">
-            <a href="#">
-                <?php echo do_shortcode( $title ); ?>
-            </a>
-        </li>
-
-    <?php }
+        <title><?php echo do_shortcode( $title ); ?></title>
+        <icon><?php echo $icon ?></icon>
+        <body><?php echo do_shortcode( $content ); ?></body>
+    <?php return ob_get_clean();
+    }
 }

@@ -49,11 +49,12 @@
 
             output = '[tabs]';
             $(this).find('.ui-tabs-panel').each(function(i,el){
-                output += '<p>[tab';
+
                 var params_string = false,
                     title = $(el).find('input.tab_title').val(),
                     icon = $(el).find('input.tab_icon').val(),
                     content = $(el).find('textarea.tab_content').val();
+
 
                 if ( typeof title !== 'undefined' ) {
                     params_string = ' title="'+ title +'"';
@@ -63,23 +64,25 @@
                     params_string += ' icon="'+ icon +'"';
                 }
 
-                if ( params_string ) {
-                    output += params_string + ']</p>';
-                } else {
-                    output += ']</p>';
-                }
+                if ( params_string && typeof content !== 'undefined' ) {
 
-                if ( typeof content !== 'undefined' ) {
-                    output += content + '<p>[/tab]</p>';
-                } else {
-                    output += '<p>[/tab]</p>';
-                }
+                    output += '<p>[tab';
+                    if ( params_string ) {
+                        output += params_string + ']</p>';
+                    } else {
+                        output += ']</p>';
+                    }
 
-                if ( typeof title !== 'undefined' && typeof content !== 'undefined' ) {
-                    editor.selection.setContent(output);
+                    if ( typeof content !== 'undefined' ) {
+                        output += content + '<p>[/tab]</p>';
+                    } else {
+                        output += '<p>[/tab]</p>';
+                    }
                 }
-
             });
+
+            output += '[/tabs]';
+            editor.selection.setContent(output);
 
             $('#pixelgrade_shortcodes_modal').trigger('reveal:close');
         });
