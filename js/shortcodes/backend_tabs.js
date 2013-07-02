@@ -47,7 +47,7 @@
                 form_params =  $(this).serializeArray(),
                 params_String = '';
 
-            output = '[tabs]';
+            output = '<p>[tabs]</p>';
             $(this).find('.ui-tabs-panel').each(function(i,el){
 
                 var params_string = false,
@@ -74,14 +74,14 @@
                     }
 
                     if ( typeof content !== 'undefined' ) {
-                        output += content + '<p>[/tab]</p>';
+                        output += '<p>'+content+'</p>' + '<p>[/tab]</p>';
                     } else {
                         output += '<p>[/tab]</p>';
                     }
                 }
             });
 
-            output += '[/tabs]';
+            output += '<p>[/tabs]</p>';
             editor.selection.setContent(output);
 
             $('#pixelgrade_shortcodes_modal').trigger('reveal:close');

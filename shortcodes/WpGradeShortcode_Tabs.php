@@ -52,7 +52,7 @@ class WpGradeShortcode_Tabs extends  WpGradeShortcode {
 //         ), $atts ) );
 
         // prepare the icons first
-        preg_match_all ( '#<icon>(.*?)</icon>#', do_shortcode( $content ), $icons );
+        preg_match_all ( '#<icon>(.*?)</icon>#', $this->get_clean_content( $content ), $icons );
         if ( isset( $icons[1] ) ) {
             $icons = $icons[1];
         }
@@ -62,12 +62,12 @@ class WpGradeShortcode_Tabs extends  WpGradeShortcode {
             <div class="span6">
                 <div class="tabs-content">
                     <?php
-                    preg_match_all ( '#<body>([\s\S]*?)</body>#', do_shortcode( $content ), $contents );
+                    preg_match_all ( '#<body>([\s\S]*?)</body>#', $this->get_clean_content( $content ), $contents );
                     if ( !empty( $contents ) && isset($contents[1]) ) {
                         foreach ( $contents[1] as $key => $value ) { ?>
                             <div class="tabs-content-pane <?php if ( $key == 0 ) { ?>active<?php } ?>" id="ui-tab-<?php echo $key; ?>">
                                 <div class="block-inner block-text">
-                                    <?php wpgrade_display_content($value) ?>
+                                    <?php $this->get_clean_content($value) ?>
                                 </div>
                             </div>
                         <?php }
@@ -77,7 +77,7 @@ class WpGradeShortcode_Tabs extends  WpGradeShortcode {
             <div class="span6">
                 <div class="block-inner block-inner_last block-text">
                     <ul class="nav nav-tabs tab-titles-list">
-                        <?php preg_match_all( '#<title>(.*?)</title>#', do_shortcode( $content ), $titles );
+                        <?php preg_match_all( '#<title>(.*?)</title>#', $this->get_clean_content( $content ), $titles );
                         if ( !empty( $titles ) && isset($titles[1]) ) {
                             foreach ( $titles[1] as $key => $title ) { ?>
                                 <li class="tab-titles-list-item <?php if ( $key == 0 ) { ?>active<?php } ?>">
@@ -98,7 +98,6 @@ class WpGradeShortcode_Tabs extends  WpGradeShortcode {
     }
 
     public function add_tab_shortcode( $atts, $content ) {
-
         $title = $icon = '';
          extract( shortcode_atts( array(
              'title' => '',
