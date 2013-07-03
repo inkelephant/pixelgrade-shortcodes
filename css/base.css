@@ -4857,7 +4857,7 @@ Modal Styling
   width: 580px;
   background: #ffffff;
   position: absolute;
-  z-index: 101;
+  z-index: 999999;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Winginx\/home\/dev\.lup\/fuse\/wp-content\/plugins\/pixelgrade-shortcodes\/scss\/base\.scss}line{font-family:\00003387}}
 #pixelgrade_shortcodes_modal.reveal-modal #wpgrade_shortcodes {
@@ -4906,7 +4906,7 @@ Modal Styling
   width: 100%;
   background: #fff;
   background: rgba(0, 0, 0, 0.8);
-  z-index: 100;
+  z-index: 999998;
   display: none;
   top: 0;
   left: 0;
@@ -4969,17 +4969,17 @@ Modal Styling
   margin-right: 55px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Winginx\/home\/dev\.lup\/fuse\/wp-content\/plugins\/pixelgrade-shortcodes\/scss\/base\.scss}line{font-family:\00003499}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Winginx\/home\/dev\.lup\/fuse\/wp-content\/plugins\/pixelgrade-shortcodes\/scss\/base\.scss}line{font-family:\00003498}}
 #wpgrade_shortcodes_form_modified .param-tabs.ui-tabs-vertical {
   width: 55em;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Winginx\/home\/dev\.lup\/fuse\/wp-content\/plugins\/pixelgrade-shortcodes\/scss\/base\.scss}line{font-family:\00003501}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Winginx\/home\/dev\.lup\/fuse\/wp-content\/plugins\/pixelgrade-shortcodes\/scss\/base\.scss}line{font-family:\00003500}}
 #wpgrade_shortcodes_form_modified .param-tabs.ui-tabs-vertical .ui-tabs-nav {
-  padding: .2em .1em .2em .2em;
+  padding: 0 .1em .2em .2em;
   float: left;
   width: 6em;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Winginx\/home\/dev\.lup\/fuse\/wp-content\/plugins\/pixelgrade-shortcodes\/scss\/base\.scss}line{font-family:\00003502}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Winginx\/home\/dev\.lup\/fuse\/wp-content\/plugins\/pixelgrade-shortcodes\/scss\/base\.scss}line{font-family:\00003501}}
 #wpgrade_shortcodes_form_modified .param-tabs.ui-tabs-vertical .ui-tabs-nav li {
   clear: left;
   width: 100%;
@@ -4987,40 +4987,74 @@ Modal Styling
   border-right-width: 0 !important;
   margin: 0 -1px .2em 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Winginx\/home\/dev\.lup\/fuse\/wp-content\/plugins\/pixelgrade-shortcodes\/scss\/base\.scss}line{font-family:\00003503}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Winginx\/home\/dev\.lup\/fuse\/wp-content\/plugins\/pixelgrade-shortcodes\/scss\/base\.scss}line{font-family:\00003502}}
 #wpgrade_shortcodes_form_modified .param-tabs.ui-tabs-vertical .ui-tabs-nav li a {
   display: block;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Winginx\/home\/dev\.lup\/fuse\/wp-content\/plugins\/pixelgrade-shortcodes\/scss\/base\.scss}line{font-family:\00003504}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Winginx\/home\/dev\.lup\/fuse\/wp-content\/plugins\/pixelgrade-shortcodes\/scss\/base\.scss}line{font-family:\00003503}}
 #wpgrade_shortcodes_form_modified .param-tabs.ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active {
-  padding-bottom: 0;
   padding-right: .1em;
   border-right-width: 1px;
   border-right-width: 1px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Winginx\/home\/dev\.lup\/fuse\/wp-content\/plugins\/pixelgrade-shortcodes\/scss\/base\.scss}line{font-family:\00003510}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Winginx\/home\/dev\.lup\/fuse\/wp-content\/plugins\/pixelgrade-shortcodes\/scss\/base\.scss}line{font-family:\00003509}}
 #wpgrade_shortcodes_form_modified .param-tabs.ui-tabs-vertical .ui-tabs-panel {
   padding: 1em 1em 1em 0;
   width: 36em;
   margin-left: 82px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Winginx\/home\/dev\.lup\/fuse\/wp-content\/plugins\/pixelgrade-shortcodes\/scss\/base\.scss}line{font-family:\00003517}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Winginx\/home\/dev\.lup\/fuse\/wp-content\/plugins\/pixelgrade-shortcodes\/scss\/base\.scss}line{font-family:\00003516}}
 #wpgrade_shortcodes_form_modified .param-tabs.ui-tabs-vertical .tabs-heads li {
   width: 80px;
   padding: 5px;
-  border: 1px solid #aaa;
+  padding: 5px;
+  border-left: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  -moz-border-radius-topleft: 4px;
+  -webkit-border-top-left-radius: 4px;
+  border-top-left-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  border-bottom-left-radius: 4px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Winginx\/home\/dev\.lup\/fuse\/wp-content\/plugins\/pixelgrade-shortcodes\/scss\/base\.scss}line{font-family:\00003522}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Winginx\/home\/dev\.lup\/fuse\/wp-content\/plugins\/pixelgrade-shortcodes\/scss\/base\.scss}line{font-family:\00003526}}
 #wpgrade_shortcodes_form_modified .param-tabs.ui-tabs-vertical .tabs-heads li.ui-state-active {
-  background-color: #ebebeb;
+  background-color: #f6f5f1;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Winginx\/home\/dev\.lup\/fuse\/wp-content\/plugins\/pixelgrade-shortcodes\/scss\/base\.scss}line{font-family:\00003524}}
-#wpgrade_shortcodes_form_modified .param-tabs.ui-tabs-vertical .tabs-heads li.ui-state-active a {
-  outline: none;
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Winginx\/home\/dev\.lup\/fuse\/wp-content\/plugins\/pixelgrade-shortcodes\/scss\/base\.scss}line{font-family:\00003530}}
+#wpgrade_shortcodes_form_modified .param-tabs.ui-tabs-vertical .tabs-heads li a:focus, #wpgrade_shortcodes_form_modified .param-tabs.ui-tabs-vertical .tabs-heads li a:active {
+  outline: none !important;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Winginx\/home\/dev\.lup\/fuse\/wp-content\/plugins\/pixelgrade-shortcodes\/scss\/base\.scss}line{font-family:\00003531}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Winginx\/home\/dev\.lup\/fuse\/wp-content\/plugins\/pixelgrade-shortcodes\/scss\/base\.scss}line{font-family:\00003536}}
 #wpgrade_shortcodes_form_modified .param-tabs.ui-tabs-vertical .tab {
-  border: 1px solid #aaa;
+  border: 1px solid #ccc;
+  min-height: 300px;
+  -moz-border-radius-topright: 4px;
+  -webkit-border-top-right-radius: 4px;
+  border-top-right-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Winginx\/home\/dev\.lup\/fuse\/wp-content\/plugins\/pixelgrade-shortcodes\/scss\/base\.scss}line{font-family:\00003543}}
+#wpgrade_shortcodes_form_modified .param-tabs.ui-tabs-vertical .tab > input, #wpgrade_shortcodes_form_modified .param-tabs.ui-tabs-vertical .tab > textarea {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  padding: 2%;
+  margin: 2% 5%;
+  width: 92%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Winginx\/home\/dev\.lup\/fuse\/wp-content\/plugins\/pixelgrade-shortcodes\/scss\/base\.scss}line{font-family:\00003549}}
+#wpgrade_shortcodes_form_modified .param-tabs.ui-tabs-vertical .tab a.tip_icon {
+  position: relative;
+  right: -7px;
+  top: -33px;
+  float: right;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Winginx\/home\/dev\.lup\/fuse\/wp-content\/plugins\/pixelgrade-shortcodes\/scss\/_select2\.scss}line{font-family:\000032}}

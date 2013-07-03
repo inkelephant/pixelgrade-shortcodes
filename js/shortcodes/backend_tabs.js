@@ -27,8 +27,8 @@
 
                     var content = '<div id="t'+new_index+'" class="tab" data-tab="'+new_index+'">'+
                         '<input type="text" class="tab_title" placeholder="Title"/>'+
-                        '<input type="text" class="tab_icon" placeholder="Icon" />'+
-                        '<textarea class="tab_content" placeholder="Content"></textarea>'+
+                        '<input type="text" class="tab_icon" placeholder="Font Awesome Icon Class" /><a class="tip_icon" title="See the list with all icons classes" href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank"><i class="icon-external-link"></i></a>'+
+                        '<textarea class="tab_content" placeholder="Content" rows="10"></textarea>'+
                         '</div>';
                     $(ui.newPanel).before(content);
 
