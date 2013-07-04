@@ -24,7 +24,8 @@ editor = '';
                 $(document).on('reveal:close', '#pixelgrade_shortcodes_modal', function(){
 //					disable_details(); //we will do this before the open click
 					clean_details();
-					$('button.back').hide().removeClass('active'); //we will show it on the open click
+//					$('.button.back').hide().removeClass('active'); //we will show it on the open click
+                    toggle_back_btn();
                     toggle_submit_btn();
                     change_title(default_title);
                     window.send_to_editor = window.send_to_editor_clone;
@@ -177,7 +178,7 @@ editor = '';
                     onclick: function(){
 						//let's clean up some more first
 						$('.l_pxg_modal').removeClass('s_active');
-						$('button.back').show();
+                        $('.button.back').hide().removeClass('active');
 
                         modal_selector.reveal({
                             animation: 'fadeAndPop',                   //fade, fadeAndPop, none

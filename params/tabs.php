@@ -19,6 +19,5 @@ if ( isset($param['admin_class'] ) ) $class = $param['admin_class']; ?>
         <p>Plast</p>
     </div>
 
-
 </div>
 <input type="hidden" name="<?php echo $param['param_key'] ?>" />
