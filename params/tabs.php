@@ -11,14 +11,13 @@ if ( isset($param['admin_class'] ) ) $class = $param['admin_class']; ?>
 
     <div id="t1" class="tab" data-tab="1">
         <input type="text" class="tab_title" placeholder="Title"/>
-        <input type="text" class="tab_icon" placeholder="Icon" />
-        <textarea class="tab_content" placeholder="Content"></textarea>
+        <input type="text" class="tab_icon"placeholder="Font Awesome Icon Class" /><a class="tip_icon"  title="See the list with all icons classes" href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank"><i class="icon-external-link"></i></a>
+        <textarea class="tab_content" placeholder="Content" rows="10"></textarea>
     </div>
 
     <div id="t-last" class="tab" data-tab="0">
         <p>Plast</p>
     </div>
-
 
 </div>
 <input type="hidden" name="<?php echo $param['param_key'] ?>" />
