@@ -74,7 +74,7 @@
                     }
 
                     if ( typeof content !== 'undefined' ) {
-                        output += '<p>'+content+'</p>' + '<p>[/tab]</p>';
+                        output += '<p>'+ content.replace(/\n/ig,"<br>") +'</p>' + '<p>[/tab]</p>';
                     } else {
                         output += '<p>[/tab]</p>';
                     }
