@@ -11,7 +11,7 @@
      * Create teh slider
      */
 
-    $(document).on('shortcode_Columns_open', '.details_content.active', function(){
+    $(document).on('shortcode_Grid_open', '.details_content.active', function(){
         // var modalLocation = $(this).attr('data-reveal-id');
 
         $('.details_content.active .grid_cols_slider').disableSelection();
@@ -55,7 +55,7 @@
             });
 
 //            getValues();
-        }
+        };
 
         initializeSlider();
         $(document).on('change', '[name="cols_nr"]', initializeSlider);
@@ -156,12 +156,12 @@
                 }
             });
 
-            var output = '<p>[row '+ params_String +']</p>';
+            var output = '<p>[grid '+ params_String +']</p>';
 
             $.each(getValues(), function(i,e){ // get each column and their params
-                output += '<p>[col size="'+e+'"]</p><p>Content goes here</p><p>[/col]</p>';
+                output += '<p>[cell size="'+e+'"]</p><p>Content goes here</p><p>[/cell]</p>';
             });
-            output += '<p>[/row]</p>';
+            output += '<p>[/grid]</p>';
             editor.selection.setContent(output);
 
             $('#pixelgrade_shortcodes_modal').trigger('reveal:close');

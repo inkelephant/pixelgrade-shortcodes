@@ -24,10 +24,13 @@ editor = '';
                 $(document).on('reveal:close', '#pixelgrade_shortcodes_modal', function(){
 //					disable_details(); //we will do this before the open click
 					clean_details();
-					$('button.back').hide().removeClass('active'); //we will show it on the open click
+//					$('.l_modal_header button .back').hide(); //we will show it on the open click
                     toggle_submit_btn();
                     change_title(default_title);
                     window.send_to_editor = window.send_to_editor_clone;
+                    $('.l_pxg_modal .btn_primary').removeClass('disabled');
+                    var this_btn = $('.btn.back');
+                    this_btn.removeClass('active')
                 });
 
                 //Back Button Click
@@ -42,6 +45,9 @@ editor = '';
                 //Choose an item
                 $(document).on('click', '.l_three_col li.shortcode a.details', function() {
 
+                    if ( $(this).hasClass('insert-direct-shortcode') ) {
+                        return false;
+                    }
                     // get the current selection and set it as content
                     var current_editor = get_current_editor_selected_content(),
                         content_field = $(this).next().find('.is_shortcode_content');
@@ -50,7 +56,7 @@ editor = '';
                         content_field.attr('value', current_editor.selection.getContent());
                     } else if ( content_field.attr('type') === 'textarea' ) {
                         content_field.text( current_editor.selection.getContent() );
-                    };
+                    }
 
                     var html_container = $(this).next().html(),
                         item_title = $(this).find('.title').html();
@@ -175,10 +181,9 @@ editor = '';
                     title : 'Add a shortcode',
                     class: 'pixelgrade_shortcodes',
                     onclick: function(){
+                        $('.l_pxg_modal .btn_primary').addClass('disabled');
 						//let's clean up some more first
 						$('.l_pxg_modal').removeClass('s_active');
-						$('button.back').show();
-
                         modal_selector.reveal({
                             animation: 'fadeAndPop',                   //fade, fadeAndPop, none
                             animationspeed: 400,                       //how fast animtions are

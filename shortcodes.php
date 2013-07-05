@@ -123,6 +123,19 @@ class WpGradeShortcode {
 
         return $content;
     }
+
+    public function render_param($param){
+
+        $file_name = $param['type'] .'.php';
+        $file_path =  WPGRADE_SHORTCODES_PATH . 'params/'. $file_name;
+
+        if ( !file_exists($file_path) ) echo '<span class="error">Inexistent param</span>';
+        ob_start();
+
+        include($file_path);
+
+        echo ob_get_clean();
+    }
 }
 global $wpgrade_shortcodes;
 $wpgrade_shortcodes = new WpGradeShortcode();
