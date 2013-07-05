@@ -97,9 +97,9 @@ class WpGradeShortcode_TestimonialsFuse extends  WpGradeShortcode {
                 <?php while ( $query->have_posts() ) : $query->the_post(); ?>
                     <li class="testimonials-list-item row slide">
                         <?php
-                            $author_name = get_post_meta(get_the_ID(), '_wpgrade_author_name', true);
-                            $author_function = get_post_meta(get_the_ID(), '_wpgrade_author_function', true);
-                            $author_link = get_post_meta(get_the_ID(), '_wpgrade_author_link', true);
+                            $author_name = get_post_meta(get_the_ID(), WPGRADE_PREFIX. 'author_name', true);
+                            $author_function = get_post_meta(get_the_ID(), WPGRADE_PREFIX. 'author_function', true);
+                            $author_link = get_post_meta(get_the_ID(), WPGRADE_PREFIX. 'author_link', true);
                         ?>
                         <div class="main main-testimonial">
                             <div class="block-inner block-inner_first">
