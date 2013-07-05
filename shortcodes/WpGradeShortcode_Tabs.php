@@ -67,7 +67,7 @@ class WpGradeShortcode_Tabs extends  WpGradeShortcode {
                         foreach ( $contents[1] as $key => $value ) { ?>
                             <div class="tabs-content-pane <?php if ( $key == 0 ) { ?>active<?php } ?>" id="ui-tab-<?php echo $key; ?>">
                                 <div class="block-inner block-text">
-                                    <?php $this->get_clean_content($value) ?>
+                                    <?php echo $this->get_clean_content($value) ?>
                                 </div>
                             </div>
                         <?php }
