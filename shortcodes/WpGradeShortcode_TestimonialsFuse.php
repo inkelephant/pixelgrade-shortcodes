@@ -7,7 +7,7 @@ class WpGradeShortcode_TestimonialsFuse extends  WpGradeShortcode {
     public function __construct($settings = array()) {
 
         $this->self_closed = true;
-        $this->direct = true;
+        $this->direct = false;
         $this->name = "Testimonials";
         $this->code = "testimonials";
         $this->icon = "icon-group";
@@ -23,14 +23,26 @@ class WpGradeShortcode_TestimonialsFuse extends  WpGradeShortcode {
                 'name' => 'Class',
                 'admin_class' => 'span5 push1'
             ),
+	        'orderby' => array(
+		        'type' => 'select',
+		        'name' => 'Order By',
+		        'options' => array('' => '-- Default --', 'date' => 'Date', 'title' => 'Title', 'rand' => 'Random'),
+		        'admin_class' => 'span6'
+	        ),
+	        'order' => array(
+		        'type' => 'select',
+		        'name' => 'Order',
+		        'options' => array('' => '-- Select order --', 'ASC' => 'Ascending', 'DESC' => 'Descending'),
+		        'admin_class' => 'span5 push1'
+	        ),
             array(
                 'type' => 'info',
                 'value' => 'If you want specific testimonials include bellow posts IDs separated by comma.'
             ),
             'include' => array(
-            'type' => 'text',
-            'name' => 'Include IDs',
-            'admin_class' => 'span6'
+	            'type' => 'text',
+	            'name' => 'Include IDs',
+	            'admin_class' => 'span6'
             ),
                 'exclude' => array(
                 'type' => 'text',
@@ -60,38 +72,39 @@ class WpGradeShortcode_TestimonialsFuse extends  WpGradeShortcode {
         $number = -1;
         $orderby = 'menu_order';
         $order = 'ASC';
-
-        // extract( shortcode_atts( array(
-        //     'number' => '-1',
-        //     'order' => 'DESC',
-        //     'orderby' => 'date',
-        //     'include' => '',
-        //     'exclude' => '',
-        // ), $atts ) );
+	    $class = '';
+         extract( shortcode_atts( array(
+             'number' => '-1',
+             'order' => 'ASC',
+             'orderby' => 'menu_order',
+             'include' => '',
+             'exclude' => '',
+	         'class' => ''
+         ), $atts ) );
 
         ob_start();
 
         $query_args = array(
             'post_type' => 'testimonial',
-            'posts_per_page' => -1,
+            'posts_per_page' => $number,
             'orderby' => $orderby,
             'order' => $order
         );
 
-        // if ( !empty( $include ) ) {
-        //     $include_array = explode( ',', $include );
-        //     $query_args['posts__in'] = $include_array;
-        // }
+         if ( !empty( $include ) ) {
+             $include_array = explode( ',', $include );
+             $query_args['post__in'] = $include_array;
+         }
 
-        // if ( !empty( $exclude ) ) {
-        //     $exclude_array = explode( ',', $exclude );
-        //     $query_args['post__not_in'] = $exclude_array;
-        // }
+         if ( !empty( $exclude ) ) {
+             $exclude_array = explode( ',', $exclude );
+             $query_args['post__not_in'] = $exclude_array;
+         }
 
         $query = new WP_Query($query_args);
 
         if ( $query-> have_posts() ) : ?>
-            <div class="unwrap">
+            <div class="unwrap <?php echo $class; ?>">
                 <div class="testimonials-slider">
                 <ul class="testimonials-list slides">
                 <?php while ( $query->have_posts() ) : $query->the_post(); ?>
@@ -110,24 +123,24 @@ class WpGradeShortcode_TestimonialsFuse extends  WpGradeShortcode {
                             </div>
                         </div>
                         <?php if(!empty($author_link)) { ?>
-                        <a class="side side-testimonial" href="<?php echo $author_link; ?>">
+                            <a class="side side-testimonial" href="<?php echo $author_link; ?>">
                         <?php } else { ?>
                         <div class="side side-testimonial">
-                        <?php } 
-                            if ( has_post_thumbnail() ) {
-                                $thumb_url = wp_get_attachment_url( get_post_thumbnail_id(get_the_ID()) ); ?>
-                                <span class="testimonial-avatar"><img src="<?php echo $thumb_url; ?>" alt="<?php echo !empty($author_name) ? $author_name : ""; ?>" /></span>
-                            <?php } ?>
-                            <div class="testimonial-author">
-                                <?php if ( !empty($author_name)) { ?>
-                                    <div class="testimonial-author_name"><?php echo $author_name; ?></div>
-                                <?php } if ( !empty($author_function) ) {?>
-                                    <div class="testimonial-author_position"><?php echo $author_function; ?></div>
-                                <?php } ?>
-                            </div>
-                        <?php if(!empty($author_link)) { ?>
-                        </a>
-                        <?php } else { ?>
+	                        <?php }
+	                            if ( has_post_thumbnail() ) {
+	                                $thumb_url = wp_get_attachment_url( get_post_thumbnail_id(get_the_ID()) ); ?>
+	                                <span class="testimonial-avatar"><img src="<?php echo $thumb_url; ?>" alt="<?php echo !empty($author_name) ? $author_name : ""; ?>" /></span>
+	                            <?php } ?>
+	                            <div class="testimonial-author">
+	                                <?php if ( !empty($author_name)) { ?>
+	                                    <div class="testimonial-author_name"><?php echo $author_name; ?></div>
+	                                <?php } if ( !empty($author_function) ) {?>
+	                                    <div class="testimonial-author_position"><?php echo $author_function; ?></div>
+	                                <?php } ?>
+	                            </div>
+	                        <?php if(!empty($author_link)) { ?>
+	                        </a>
+	                        <?php } else { ?>
                         </div>
                         <?php } ?>
                     </li>
