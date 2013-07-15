@@ -49,6 +49,13 @@ class WpGradeShortcode_PortfolioFuse extends  WpGradeShortcode {
                 'name' => 'Exclude IDs',
                 'admin_class' => 'span5 push1'
             ),
+	        'category' => array(
+		        'type' => 'tags',
+		        'name' => 'Category',
+		        'admin_class' => 'span12',
+		        'options' => get_terms('portfolio_cat', array( 'fields' => 'names' ) ),
+		        'value' => array( '' )
+	        ),
         );
 
         add_shortcode('portfolio', array( $this, 'add_shortcode') );
@@ -79,7 +86,8 @@ class WpGradeShortcode_PortfolioFuse extends  WpGradeShortcode {
              'orderby' => 'menu_order',
              'include' => '',
              'exclude' => '',
-	         'class' => ''
+	         'class' => '',
+	         'category' => ''
          ), $atts ) );
 
         ob_start();
@@ -100,6 +108,17 @@ class WpGradeShortcode_PortfolioFuse extends  WpGradeShortcode {
              $exclude_array = explode( ',', $exclude );
              $query_args['post__not_in'] = $exclude_array;
          }
+
+	    if ( !empty($category) ) {
+		    $query_args['tax_query'] = array(
+			    'relation' => 'OR',
+			    array(
+				    'taxonomy' => 'portfolio_cat',
+				    'field' => 'slug',
+				    'terms' => $category
+			    ),
+		    );
+	    }
 
         $query = new WP_Query($query_args);
 
