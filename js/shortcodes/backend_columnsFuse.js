@@ -126,7 +126,6 @@
                             xStart = xStart + colWidth;
                             shrinkColumn(index);
                             growColumn(index - 1);
-                            getValues();
                         }
                     } else {
                         if (parseInt(handle.prev().text()) + 1 < parseInt(handle.text())){
@@ -135,7 +134,6 @@
                             xStart = xStart - colWidth;
                             shrinkColumn(index - 1);
                             growColumn(index);
-                            getValues();
                         }
                     }
                 }
@@ -173,7 +171,13 @@
             var output = '<p>[grid '+ params_String +']</p>';
 
             $.each(getValues(), function(i,e){ // get each column and their params
-                output += '<p>[cell size="'+ e.size+'" col_color="'+ e.col_color+'"]</p><p>Content goes here</p><p>[/cell]</p>';
+                output += '<p>[cell size="'+ e.size+'"';
+
+	            if ( typeof e.col_color !== 'undefined' ) {
+		            output +=  ' col_color="'+ e.col_color+'"';
+	            }
+
+	            output += ']</p><p>Content goes here</p><p>[/cell]</p>';
             });
             output += '<p>[/grid]</p>';
             editor.selection.setContent(output);

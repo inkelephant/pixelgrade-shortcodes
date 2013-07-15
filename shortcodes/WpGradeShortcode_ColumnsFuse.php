@@ -30,16 +30,16 @@ class WpGradeShortcode_ColumnsFuse extends  WpGradeShortcode {
                 'options' => array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '6' => '6'),
                 'admin_class' => 'span3 strong'
             ),
-             'bg_color' => array(
-                'type' => 'color',
-                'name' => 'Background Color',
-                'admin_class' => 'span7 push1'
-            ),
-            'full_width' => array(
-                'type' => 'switch',
-                'name' => 'Full Width Background ?',
-                'admin_class' => 'span5 inline full_width_bg'
-            ),
+//             'bg_color' => array(
+//                'type' => 'color',
+//                'name' => 'Background Color',
+//                'admin_class' => 'span7 push1'
+//            ),
+//            'full_width' => array(
+//                'type' => 'switch',
+//                'name' => 'Full Width Background ?',
+//                'admin_class' => 'span5 inline full_width_bg'
+//            ),
             'cols_slider' =>array(
                 'type' => 'slider',
                 'name' => 'Drag handlers to change the columns width.'
