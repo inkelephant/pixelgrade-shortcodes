@@ -19,7 +19,9 @@
         var getValues = function() {
             values = [];
             $('.details_content.active .grid_cols_content').children().each(function(idx, el){
-                values[idx] = parseInt($(this).attr('class').split("span")[1]);
+	            values[idx] = [];
+                values[idx]['size'] = parseInt($(this).attr('class').split("span")[1]);
+	            values[idx]['col_color'] = $(this).data('col_color');
             });
             return values;
         };
@@ -42,9 +44,23 @@
             for (var i = 0; i < columnsNo; i++) {
                 $('<li class="handle" data-offset="'+columnSpan+'">'+columnSpan+'</li>').appendTo('.details_content.active .grid_cols_slider');
                 $('<li class="span'+spanWidth+'"><span>'+spanWidth+'x</span></li>').appendTo('.grid_cols_dimensions');
-                $('<li class="span'+spanWidth+'"><span>Content goes here..</span></li>').appendTo('.grid_cols_content');
+                $('<li class="span'+spanWidth+'"><span>Content goes here..</span><input type="hidden" class="wpgrade-column-colorpicker"/></li>').appendTo('.grid_cols_content');
                 columnSpan += spanWidth;
             }
+
+			$('.grid_cols_content li').each(function(){
+				var $self = $(this);
+
+				$self.find('.wpgrade-column-colorpicker').wpColorPicker({
+					hide: true,
+					palettes: ['#28a0ff', '#fafafa', '#363839', '#ffffff', '#2e3031', '#111111'],
+					target: $self,
+					change: function(event, ui) {
+						$self.css('backgroundColor', ui.color.toString());
+						$self.data('col_color', ui.color.toString().replace('#', ''));
+					}
+				});
+			});
 
             $('.details_content.active .grid_cols_slider .handle').last().addClass('read-only');
 
@@ -53,7 +69,6 @@
                     offset = self.data('offset');
                 self.css({'left': offset * colWidth})
             });
-
 //            getValues();
         };
 
@@ -150,7 +165,6 @@
 
             $.each(form_params, function(i,e){
                 if ( e.value !== '' ) { // don't include the empty params and the content param
-
                     if ( e.name == 'bg_color' ) { e.value = e.value.replace(  '#', ''); }
                     params_String += ' '+ e.name + '="'+ e.value +'"';
                 }
@@ -159,7 +173,7 @@
             var output = '<p>[grid '+ params_String +']</p>';
 
             $.each(getValues(), function(i,e){ // get each column and their params
-                output += '<p>[cell size="'+e+'"]</p><p>Content goes here</p><p>[/cell]</p>';
+                output += '<p>[cell size="'+ e.size+'" col_color="'+ e.col_color+'"]</p><p>Content goes here</p><p>[/cell]</p>';
             });
             output += '<p>[/grid]</p>';
             editor.selection.setContent(output);

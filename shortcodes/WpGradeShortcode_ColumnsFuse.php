@@ -85,14 +85,16 @@ class WpGradeShortcode_ColumnsFuse extends  WpGradeShortcode {
     public function add_cell_shortcode($atts, $content){
         $size = '';
         $class = '';
+		$col_color = '';
 
         extract( shortcode_atts( array(
             'size' => '12',
-            'class' => ''
+            'class' => '',
+	        'col_color' => ''
         ), $atts ) );
 
         ob_start(); ?>
-            <div class="span<?php echo $size ?> block <?php echo $class ?>">
+            <div class="span<?php echo $size ?> block <?php echo $class ?>"<?php if ( !empty($col_color) ) {?> style="background-color: <?php echo '#'.$col_color. '"'; } ?>>
                 <div class="block-inner"><?php echo $this->get_clean_content( $content ); ?></div>
             </div>
         <?php return ob_get_clean();
