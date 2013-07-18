@@ -91,7 +91,7 @@ class WpGradeShortcode_Testimonials extends  WpGradeShortcode {
         $query = new WP_Query($query_args);
 
         if ( $query-> have_posts() ) : ?>
-            <div class="testimonials_slide wp_slider">
+            <div class="testimonials_slide">
                 <ul class="slides">
                     <?php while ( $query->have_posts() ) : $query->the_post(); ?>
                         <li class="slide">

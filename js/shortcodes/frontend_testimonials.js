@@ -4,7 +4,9 @@
         $(".testimonials_slide").flexslider({
         	controlNav: false,
         	keyboard: false,
-        	animation: 'fadecss',
+        	animation: 'slide',
+            prevText: "",   
+            nextText: "",
         	slideshow: false,
         	before: function(slider){ 
 	            // slider.slides.removeClass('s-hidden');
