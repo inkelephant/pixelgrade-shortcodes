@@ -16,7 +16,7 @@ class WpGradeShortcode_Testimonials extends  WpGradeShortcode {
         $this->params = array(
             'number' => array(
                 'type' => 'text',
-                'name' => 'Number',
+                'name' => 'Number of Items',
                 'admin_class' => 'span6'
             ),
             'class' => array(
@@ -26,7 +26,7 @@ class WpGradeShortcode_Testimonials extends  WpGradeShortcode {
             ),
             array(
                 'type' => 'info',
-                'value' => 'If you want specific testimonials include bellow posts IDs separated by comma.'
+                'value' => 'If you want specific testimonials, include bellow posts IDs separated by comma.'
             ),
             'include' => array(
             'type' => 'text',
