@@ -52,7 +52,7 @@ class WpGradeShortcodes {
         // Run our plugin along with wordpress init
 	    add_action( 'init', array( $this, 'add_wpgrade_shortcodes_button' ) );
         add_action( 'init', array( $this, 'create_wpgrade_shortcodes' ) );
-        //add_action( 'init', array( $this, 'github_plugin_updater_init' ) );
+        add_action( 'init', array( $this, 'github_plugin_updater_init' ) );
 
         //add_filter('the_content', array($this, 'wpgrade_remove_spaces_around_shortcodes') );
 
