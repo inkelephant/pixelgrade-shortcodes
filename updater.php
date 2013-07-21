@@ -125,11 +125,10 @@ class WP_GitHub_Updater {
 	/**
 	 * Check wether or not the transients need to be overruled and API needs to be called for every single page load
 	 *
-	 * @access private
 	 * @return bool overrule or not
 	 */
-	private function overrule_transients() {
-		return ( defined( 'WP_DEBUG' ) && WP_DEBUG ) || ( defined( 'WP_GITHUB_FORCE_UPDATE' ) || WP_GITHUB_FORCE_UPDATE );
+	public function overrule_transients() {
+		return ( defined( 'WP_GITHUB_FORCE_UPDATE' ) && WP_GITHUB_FORCE_UPDATE );
 	}
 
 
@@ -222,17 +221,15 @@ class WP_GitHub_Updater {
 
 			$raw_response = wp_remote_get( $query, array( 'sslverify' => $this->config['sslverify'] ) );
 
-			if ( is_wp_error( $raw_response ) ) {
+			if ( is_wp_error( $raw_response ) )
+				$version = false;
 
-                $version = false;
-            } else {
+			if (is_array($raw_response)) {
+				if (!empty($raw_response['body']))
+					preg_match( '#^\s*Version\:\s*(.*)$#im', $raw_response['body'], $matches );
+			}
 
-                preg_match( '#^\s*Version\:\s*(.*)$#im', $raw_response['body'], $matches );
-            }
-
-
-
-            if ( empty( $matches[1] ) )
+			if ( empty( $matches[1] ) )
 				$version = false;
 			else
 				$version = $matches[1];
@@ -380,7 +377,7 @@ class WP_GitHub_Updater {
 	public function get_plugin_info( $false, $action, $response ) {
 
 		// Check if this call API is for the right plugin
-		if ( !isset($response->slug) || $response->slug != $this->config['slug'] )
+		if ( $response->slug != $this->config['slug'] )
 			return false;
 
 		$response->slug = $this->config['slug'];
