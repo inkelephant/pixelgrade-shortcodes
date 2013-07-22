@@ -239,23 +239,23 @@ class WP_GitHub_Updater {
 				$version = $matches[1];
 
 			// back compat for older readme version handling
-			$query = trailingslashit( $this->config['raw_url'] ) . $this->config['readme'];
-			if ( !empty( $this->config['access_token'] ) ) {
-				$query = add_query_arg( array( 'access_token' => $this->config['access_token'] ), $query );
-			}
-
-			$raw_response = wp_remote_get( $query, array( 'sslverify' => $this->config['sslverify'] ) );
-
-			if ( is_wp_error( $raw_response ) )
-				return $version;
-
-			preg_match( '#^\s*`*~Current Version\:\s*([^~]*)~#im', $raw_response['body'], $__version );
-
-			if ( isset( $__version[1] ) ) {
-				$version_readme = $__version[1];
-				if ( -1 == version_compare( $version, $version_readme ) )
-					$version = $version_readme;
-			}
+//			$query = trailingslashit( $this->config['raw_url'] ) . $this->config['readme'];
+//			if ( !empty( $this->config['access_token'] ) ) {
+//				$query = add_query_arg( array( 'access_token' => $this->config['access_token'] ), $query );
+//			}
+//
+//			$raw_response = wp_remote_get( $query, array( 'sslverify' => $this->config['sslverify'] ) );
+//
+//			if ( is_wp_error( $raw_response ) )
+//				return $version;
+//
+//			preg_match( '#^\s*`*~Current Version\:\s*([^~]*)~#im', $raw_response['body'], $__version );
+//
+//			if ( isset( $__version[1] ) ) {
+//				$version_readme = $__version[1];
+//				if ( -1 == version_compare( $version, $version_readme ) )
+//					$version = $version_readme;
+//			}
 
 			// refresh every 6 hours
 			if ( false !== $version )
