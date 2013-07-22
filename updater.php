@@ -346,6 +346,8 @@ class WP_GitHub_Updater {
 		if ( empty( $transient->checked ) )
 			return $transient;
 
+
+
 		// check the version and decide if it's new
 		$update = version_compare( $this->config['new_version'], $this->config['version'] );
 
@@ -377,7 +379,7 @@ class WP_GitHub_Updater {
 	public function get_plugin_info( $false, $action, $response ) {
 
 		// Check if this call API is for the right plugin
-		if ( $response->slug != $this->config['slug'] )
+		if ( isset( $response->slug ) && $response->slug != $this->config['slug'] )
 			return false;
 
 		$response->slug = $this->config['slug'];
