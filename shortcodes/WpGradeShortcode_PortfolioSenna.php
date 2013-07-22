@@ -15,8 +15,8 @@ class WpGradeShortcode_PortfolioSenna extends  WpGradeShortcode {
         $this->params = array(
             'number' => array(
                 'type' => 'text',
-                'name' => 'Number',
-                'admin_class' => 'span6',
+                'name' => 'Number of Items',
+                'admin_class' => 'span6'
             ),
             'class' => array(
                 'type' => 'text',
@@ -37,7 +37,7 @@ class WpGradeShortcode_PortfolioSenna extends  WpGradeShortcode {
 	        ),
             array(
                 'type' => 'info',
-                'value' => 'If you want specific project include bellow posts IDs separated by comma.'
+                'value' => 'If you want specific projects, include bellow posts IDs separated by comma.'
             ),
             'include' => array(
 	            'type' => 'text',

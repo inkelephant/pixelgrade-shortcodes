@@ -3,7 +3,7 @@
 Plugin Name: Pixelgrade Shortcodes
 Plugin URI: http://pixelgrade.com
 Description: Adds shortcodes to your wordpress editor
-Version: 1.6.1
+Version: 1.6.2
 Author: Pixelgrade Media
 Author URI: http://pixelgrade.com
 Author Email: contact@pixelgrade.com
@@ -45,15 +45,16 @@ class WpGradeShortcodes {
 		add_action( 'mce_buttons_2', array( $this, 'register_admin_assets' ) );
 
 		// Register site styles and scripts
-		add_action( 'wp_enqueue_scripts', array( $this, 'register_plugin_styles' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'register_plugin_scripts' ) );
+		// not used right now
+		//add_action( 'wp_enqueue_scripts', array( $this, 'register_plugin_styles' ) );
+		//add_action( 'wp_enqueue_scripts', array( $this, 'register_plugin_scripts' ) );
 
         // Run our plugin along with wordpress init
 	    add_action( 'init', array( $this, 'add_wpgrade_shortcodes_button' ) );
         add_action( 'init', array( $this, 'create_wpgrade_shortcodes' ) );
         add_action( 'init', array( $this, 'github_plugin_updater_init' ) );
 
-        add_filter('the_content', array($this, 'wpgrade_remove_spaces_around_shortcodes') );
+        //add_filter('the_content', array($this, 'wpgrade_remove_spaces_around_shortcodes') );
 
         // ajax load for modal
         if ( is_admin() ) {
@@ -94,7 +95,6 @@ class WpGradeShortcodes {
 	 * Registers and enqueues admin-specific styles.
 	 */
 	public function register_admin_assets($buttons) {
-
         wp_enqueue_style( 'wpgrade-shortcodes-reveal-styles', $this->plugin_url.'css/base.css', array( 'wp-color-picker' ) );
         wp_enqueue_script('select2-js', $this->plugin_url.'js/select2/select2.js', array('jquery', 'jquery-ui-tabs') );
         wp_enqueue_script('wp-color-picker');
@@ -118,7 +118,13 @@ class WpGradeShortcodes {
 	 *---------------------------------------------*/
 
 	function add_wpgrade_shortcodes_button() {
-        if ( current_user_can('edit_posts') ) {
+		//make sure the user has correct permissions
+		if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') ) {
+			return;
+		}
+		
+        // add to the visual mode only
+		if ( get_user_option('rich_editing') == 'true' ) {
             add_filter('mce_external_plugins', array( $this, 'addto_mce_wpgrade_shortcodes') );
             add_filter('mce_buttons', array( $this, 'register_wpgrade_shortcodes_button') );
         }
