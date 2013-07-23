@@ -3,7 +3,7 @@
 Plugin Name: Pixelgrade Shortcodes
 Plugin URI: http://pixelgrade.com
 Description: Adds shortcodes to your wordpress editor
-Version: 1.6.3
+Version: 1.6.2
 Author: Pixelgrade Media
 Author URI: http://pixelgrade.com
 Author Email: contact@pixelgrade.com
@@ -37,8 +37,7 @@ class WpGradeShortcodes {
     function __construct() {
         $this->plugin_dir = dirname( plugin_basename( __FILE__ ) );
 		$this->plugin_url = plugin_dir_url(dirname(__FILE__) . '/plugin.php');
-		// Load plugin text domain
-//		add_action( 'init', array( $this, 'plugin_textdomain' ) );
+
 	    add_action( 'admin_init', array( $this, 'wpgrade_init_plugin' ) );
 		// Register admin styles and scripts
 		add_action( 'mce_buttons_2', array( $this, 'register_admin_assets' ) );
@@ -49,9 +48,7 @@ class WpGradeShortcodes {
 		//add_action( 'wp_enqueue_scripts', array( $this, 'register_plugin_scripts' ) );
 
         // Run our plugin along with wordpress init
-//	    add_action( 'init', array( $this, 'add_wpgrade_shortcodes_button' ) );
         add_action( 'init', array( $this, 'create_wpgrade_shortcodes' ) );
-//        add_action( 'init', array( $this, 'github_plugin_updater_init' ) );
 
         //add_filter('the_content', array($this, 'wpgrade_remove_spaces_around_shortcodes') );
 
@@ -63,7 +60,6 @@ class WpGradeShortcodes {
 	} // end constructor
 
 	public function wpgrade_init_plugin(){
-
 		$this->plugin_textdomain();
 		$this->add_wpgrade_shortcodes_button();
 		$this->github_plugin_updater_init();
@@ -71,14 +67,14 @@ class WpGradeShortcodes {
 
     public function github_plugin_updater_init() {
         include_once 'updater.php';
-//        define( 'WP_GITHUB_FORCE_UPDATE', true );
+//        define( 'WP_GITHUB_FORCE_UPDATE', true ); // this is only for testing
         if ( is_admin() ) { // note the use of is_admin() to double check that this is happening in the admin
             $config = array(
                 'slug' => plugin_basename( __FILE__ ),
                 'api_url' => 'https://api.github.com/repos/andreilupu/pixelgrade-shortcodes',
-                'raw_url' => 'https://raw.github.com/andreilupu/pixelgrade-shortcodes/update',
-                'github_url' => 'https://github.com/andreilupu/pixelgrade-shortcodes/tree/update',
-                'zip_url' => 'https://github.com/andreilupu/pixelgrade-shortcodes/archive/update.zip',
+                'raw_url' => 'https://raw.github.com/andreilupu/pixelgrade-shortcodes/test-update',
+                'github_url' => 'https://github.com/andreilupu/pixelgrade-shortcodes/tree/test-update',
+                'zip_url' => 'https://github.com/andreilupu/pixelgrade-shortcodes/archive/test-update.zip',
                 'sslverify' => false,
                 'requires' => '3.0',
                 'tested' => '3.3',
