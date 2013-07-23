@@ -162,7 +162,7 @@ class WpGradeShortcode_PortfolioSenna extends  WpGradeShortcode {
 	    echo '<div class="row portfolio_archive portfolio_items '. $portfolio_class.'" data-maxpages="'.$query->max_num_pages.'">';
 
 	    if ( !empty( $query ) ) :
-		    echo '<div class="">';
+		   // echo '<div class="wrapper">';
 			    while ( $query->have_posts() ) : $query->the_post();
 				    //Get Project Categories
 				    $project_categories = '';
@@ -367,9 +367,9 @@ class WpGradeShortcode_PortfolioSenna extends  WpGradeShortcode {
 				    </ul>
 				    </article><?php $counter++;
 			    endwhile;
-		    echo '</div>';
+		    //echo '</div>';
 	    endif;wp_reset_query();
-	    echo '</div>';
+		echo '</div>';
         return ob_get_clean();
     }
 }

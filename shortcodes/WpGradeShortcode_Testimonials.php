@@ -7,7 +7,7 @@ class WpGradeShortcode_Testimonials extends  WpGradeShortcode {
     public function __construct($settings = array()) {
 
         $this->self_closed = true;
-        $this->direct = true;
+        $this->direct = false;
 		$this->meta_prefix = get_option('wpgrade_metaboxes_prefix');
         $this->name = "Testimonials";
         $this->code = "testimonials";
@@ -24,6 +24,18 @@ class WpGradeShortcode_Testimonials extends  WpGradeShortcode {
                 'name' => 'Class',
                 'admin_class' => 'span5 push1'
             ),
+	        'orderby' => array(
+		        'type' => 'select',
+		        'name' => 'Order By',
+		        'options' => array('' => '-- Default --', 'date' => 'Date', 'title' => 'Title', 'rand' => 'Random'),
+		        'admin_class' => 'span6'
+	        ),
+	        'order' => array(
+		        'type' => 'select',
+		        'name' => 'Order',
+		        'options' => array('' => '-- Select order --', 'ASC' => 'Ascending', 'DESC' => 'Descending'),
+		        'admin_class' => 'span5 push1'
+	        ),
             array(
                 'type' => 'info',
                 'value' => 'If you want specific testimonials, include bellow posts IDs separated by comma.'
