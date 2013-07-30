@@ -50,7 +50,7 @@ class WpGradeShortcodes {
         // Run our plugin along with wordpress init
         add_action( 'init', array( $this, 'create_wpgrade_shortcodes' ) );
 
-        //add_filter('the_content', array($this, 'wpgrade_remove_spaces_around_shortcodes') );
+        add_filter('the_content', array($this, 'wpgrade_remove_spaces_around_shortcodes') );
 
         // ajax load for modal
         if ( is_admin() ) {
