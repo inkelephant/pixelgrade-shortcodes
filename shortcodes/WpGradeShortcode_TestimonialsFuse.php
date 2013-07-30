@@ -123,7 +123,7 @@ class WpGradeShortcode_TestimonialsFuse extends  WpGradeShortcode {
                             </div>
                         </div>
                         <?php if(!empty($author_link)) { ?>
-                            <a class="side side-testimonial" href="<?php echo $author_link; ?>">
+                            <a class="side side-testimonial" href="<?php echo $author_link; ?>" target="_blank">
                         <?php } else { ?>
                         <div class="side side-testimonial">
 	                        <?php }
