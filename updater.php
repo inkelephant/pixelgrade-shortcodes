@@ -125,11 +125,10 @@ class WP_GitHub_Updater {
 	/**
 	 * Check wether or not the transients need to be overruled and API needs to be called for every single page load
 	 *
-	 * @access private
 	 * @return bool overrule or not
 	 */
-	private function overrule_transients() {
-		return ( defined( 'WP_DEBUG' ) && WP_DEBUG ) || ( defined( 'WP_GITHUB_FORCE_UPDATE' ) || WP_GITHUB_FORCE_UPDATE );
+	public function overrule_transients() {
+		return ( defined( 'WP_GITHUB_FORCE_UPDATE' ) && WP_GITHUB_FORCE_UPDATE );
 	}
 
 
@@ -140,6 +139,7 @@ class WP_GitHub_Updater {
 	 * @return void
 	 */
 	public function set_defaults() {
+
 		if ( !empty( $this->config['access_token'] ) ) {
 
 			// See Downloading a zipball (private repo) https://help.github.com/articles/downloading-files-from-the-command-line
@@ -218,41 +218,44 @@ class WP_GitHub_Updater {
 		if ( $this->overrule_transients() || ( !isset( $version ) || !$version || '' == $version ) ) {
 
 			$query = trailingslashit( $this->config['raw_url'] ) . basename( $this->config['slug'] );
-			$query = add_query_arg( array( 'access_token' => $this->config['access_token'] ), $query );
+
+			if ( !empty( $this->config['access_token'] ) ) {
+				$query = add_query_arg( array( 'access_token' => $this->config['access_token'] ), $query );
+			}
 
 			$raw_response = wp_remote_get( $query, array( 'sslverify' => $this->config['sslverify'] ) );
 
-			if ( is_wp_error( $raw_response ) ) {
+			if ( is_wp_error( $raw_response ) )
+				$version = false;
 
-                $version = false;
-            } else {
+			if (is_array($raw_response)) {
+				if (!empty($raw_response['body']))
+					preg_match( '#^\s*Version\:\s*(.*)$#im', $raw_response['body'], $matches );
+			}
 
-                preg_match( '#^\s*Version\:\s*(.*)$#im', $raw_response['body'], $matches );
-            }
-
-
-
-            if ( empty( $matches[1] ) )
+			if ( empty( $matches[1] ) )
 				$version = false;
 			else
 				$version = $matches[1];
 
 			// back compat for older readme version handling
-			$query = trailingslashit( $this->config['raw_url'] ) . $this->config['readme'];
-			$query = add_query_arg( array( 'access_token' => $this->config['access_token'] ), $query );
-
-			$raw_response = wp_remote_get( $query, array( 'sslverify' => $this->config['sslverify'] ) );
-
-			if ( is_wp_error( $raw_response ) )
-				return $version;
-
-			preg_match( '#^\s*`*~Current Version\:\s*([^~]*)~#im', $raw_response['body'], $__version );
-
-			if ( isset( $__version[1] ) ) {
-				$version_readme = $__version[1];
-				if ( -1 == version_compare( $version, $version_readme ) )
-					$version = $version_readme;
-			}
+//			$query = trailingslashit( $this->config['raw_url'] ) . $this->config['readme'];
+//			if ( !empty( $this->config['access_token'] ) ) {
+//				$query = add_query_arg( array( 'access_token' => $this->config['access_token'] ), $query );
+//			}
+//
+//			$raw_response = wp_remote_get( $query, array( 'sslverify' => $this->config['sslverify'] ) );
+//
+//			if ( is_wp_error( $raw_response ) )
+//				return $version;
+//
+//			preg_match( '#^\s*`*~Current Version\:\s*([^~]*)~#im', $raw_response['body'], $__version );
+//
+//			if ( isset( $__version[1] ) ) {
+//				$version_readme = $__version[1];
+//				if ( -1 == version_compare( $version, $version_readme ) )
+//					$version = $version_readme;
+//			}
 
 			// refresh every 6 hours
 			if ( false !== $version )
@@ -277,8 +280,9 @@ class WP_GitHub_Updater {
 
 			if ( $this->overrule_transients() || ( ! isset( $github_data ) || ! $github_data || '' == $github_data ) ) {
 				$query = $this->config['api_url'];
-				$query = add_query_arg( array( 'access_token' => $this->config['access_token'] ), $query );
-
+				if ( !empty( $this->config['access_token'] ) ) {
+					$query = add_query_arg( array( 'access_token' => $this->config['access_token'] ), $query );
+				}
 				$github_data = wp_remote_get( $query, array( 'sslverify' => $this->config['sslverify'] ) );
 
 				if ( is_wp_error( $github_data ) )
@@ -343,7 +347,6 @@ class WP_GitHub_Updater {
 	 * @return object $transient updated plugin data transient
 	 */
 	public function api_check( $transient ) {
-
 		// Check if the transient contains the 'checked' information
 		// If not, just return its value without hacking it
 		if ( empty( $transient->checked ) )
@@ -356,7 +359,12 @@ class WP_GitHub_Updater {
 			$response = new stdClass;
 			$response->new_version = $this->config['new_version'];
 			$response->slug = $this->config['proper_folder_name'];
-			$response->url = add_query_arg( array( 'access_token' => $this->config['access_token'] ), $this->config['github_url'] );
+			if ( !empty( $this->config['access_token'] ) ) {
+				$response->url = add_query_arg( array( 'access_token' => $this->config['access_token'] ), $this->config['github_url'] );
+			} else {
+				$response->url = $this->config['github_url'];
+			}
+
 			$response->package = $this->config['zip_url'];
 
 			// If response is false, don't alter the transient
@@ -380,7 +388,7 @@ class WP_GitHub_Updater {
 	public function get_plugin_info( $false, $action, $response ) {
 
 		// Check if this call API is for the right plugin
-		if ( !isset($response->slug) || $response->slug != $this->config['slug'] )
+		if ( isset( $response->slug ) && $response->slug != $this->config['slug'] )
 			return false;
 
 		$response->slug = $this->config['slug'];
