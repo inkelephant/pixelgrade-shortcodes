@@ -38,7 +38,13 @@ class WpGradeShortcode_Button extends  WpGradeShortcode {
                 'name' => 'Size',
                 'options' => array('' => '-- Select Size --', 'small' => 'Small', 'medium' => 'Medium', 'large' => 'Large'),
                 'admin_class' => 'span6'
-            )
+            ),
+	        'target' => array(
+			    'type' => 'select',
+			    'name' => 'Open Link',
+		        'options' => array( '' => '-- Default --', '_blank' => 'In a new window', '_self' => 'In the same window' ),
+			    'admin_class' => 'span5 push1'
+		    )
         );
 
         add_shortcode('button', array( $this, 'add_shortcode') );
@@ -50,9 +56,10 @@ class WpGradeShortcode_Button extends  WpGradeShortcode {
 			'class' => '',
 			'id' => '',
 			'size' => '',
+	        'target' => ''
         ), $atts ) );
         ob_start(); ?>
-			<a href="<?php if ( !empty($link) ) echo $link ?>" class="btn <?php if ( !empty($size) && ($size == 'small' || $size == 'large') ) echo 'btn-'.$size ?> <?php if ( !empty($class) ) echo $class ?>" <?php if ( !empty($id) ) echo 'id="'.$id.'"' ?>><?php echo $this->get_clean_content($content); ?></a>
+			<a href="<?php if ( !empty($link) ) echo $link ?>" class="btn <?php if ( !empty($size) && ($size == 'small' || $size == 'large') ) echo 'btn-'.$size ?> <?php if ( !empty($class) ) echo $class ?>" <?php if ( !empty($id) ) echo 'id="'.$id.'"'; if ( !empty($target) ) { echo 'target="'. $target .'"'; } ?>><?php echo $this->get_clean_content($content); ?></a>
         <?php return ob_get_clean();
     }
 }
