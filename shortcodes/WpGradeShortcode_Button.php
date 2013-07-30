@@ -59,7 +59,7 @@ class WpGradeShortcode_Button extends  WpGradeShortcode {
 	        'target' => ''
         ), $atts ) );
         ob_start(); ?>
-			<a href="<?php if ( !empty($link) ) echo $link ?>" class="btn <?php if ( !empty($size) && ($size == 'small' || $size == 'large') ) echo 'btn-'.$size ?> <?php if ( !empty($class) ) echo $class ?>" <?php if ( !empty($id) ) echo 'id="'.$id.'"'; if ( !empty($target) ) { echo 'target="'. $target .'"'; } ?>><?php echo $this->get_clean_content($content); ?></a>
+			<a href="<?php if ( !empty($link) ) echo $link ?>" class="btn <?php if ( !empty($size) && ($size == 'small' || $size == 'large') ) echo 'btn-'.$size ?> <?php if ( !empty($class) ) echo $class ?>" <?php if ( !empty($id) ) echo 'id="'.$id.'"'; if ( !empty($target) ) { echo ' target="'. $target .'"'; } ?>><?php echo $this->get_clean_content($content); ?></a>
         <?php return ob_get_clean();
     }
 }
