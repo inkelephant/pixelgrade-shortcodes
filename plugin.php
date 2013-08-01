@@ -3,7 +3,7 @@
 Plugin Name: Pixelgrade Shortcodes
 Plugin URI: http://pixelgrade.com
 Description: Adds shortcodes to your wordpress editor
-Version: 1.6.4
+Version: 1.6.5
 Author: Pixelgrade Media
 Author URI: http://pixelgrade.com
 Author Email: contact@pixelgrade.com
