@@ -79,7 +79,13 @@ class WpGradeShortcode_Tabs extends  WpGradeShortcode {
                     <ul class="nav nav-tabs tab-titles-list">
                         <?php preg_match_all( '#<title>(.*?)</title>#', $this->get_clean_content( $content ), $titles );
                         if ( !empty( $titles ) && isset($titles[1]) ) {
-                            foreach ( $titles[1] as $key => $title ) { ?>
+                            foreach ( $titles[1] as $key => $title ) {
+								//remove the prefix the fast way - faster than preg_match
+								$prefix = 'icon-';
+								if (substr($icons[$key], 0, strlen($prefix)) == $prefix) {
+									$icons[$key] = substr($icons[$key], strlen($prefix));
+								}
+								?>
                                 <li class="tab-titles-list-item <?php if ( $key == 0 ) { ?>active<?php } ?>">
                                     <a href="#ui-tab-<?php echo $key; ?>">
                                         <?php if ( isset( $icons[$key] ) && !empty($icons[$key] ) ) { ?>
