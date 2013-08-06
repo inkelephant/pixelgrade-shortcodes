@@ -3,7 +3,7 @@
 Plugin Name: Pixelgrade Shortcodes
 Plugin URI: http://pixelgrade.com
 Description: Adds shortcodes to your wordpress editor
-Version: 1.6.3
+Version: 1.6.7
 Author: Pixelgrade Media
 Author URI: http://pixelgrade.com
 Author Email: contact@pixelgrade.com
@@ -35,7 +35,7 @@ class WpGradeShortcodes {
 	public $plugin_url;
 
     function __construct() {
-        $this->plugin_dir = dirname( plugin_basename( __FILE__ ) );
+        self::$plugin_dir = dirname( plugin_basename( __FILE__ ) );
 		$this->plugin_url = plugin_dir_url(dirname(__FILE__) . '/plugin.php');
 
 	    add_action( 'admin_init', array( $this, 'wpgrade_init_plugin' ) );
@@ -50,7 +50,7 @@ class WpGradeShortcodes {
         // Run our plugin along with wordpress init
         add_action( 'init', array( $this, 'create_wpgrade_shortcodes' ) );
 
-        //add_filter('the_content', array($this, 'wpgrade_remove_spaces_around_shortcodes') );
+        add_filter('the_content', array($this, 'wpgrade_remove_spaces_around_shortcodes') );
 
         // ajax load for modal
         if ( is_admin() ) {

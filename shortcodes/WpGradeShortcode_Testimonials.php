@@ -117,7 +117,7 @@ class WpGradeShortcode_Testimonials extends  WpGradeShortcode {
                                 <div class="testimonial_author">
 
                                 <?php if(!empty($author_link)) { ?>
-                                    <a href="<?php echo $author_link; ?>">
+                                    <a href="<?php echo $author_link; ?>" target="_blank">
                                 <?php }
                                     if ( !empty($author_name)) { ?>
                                     <span class="author_name"><?php echo $author_name; ?></span>

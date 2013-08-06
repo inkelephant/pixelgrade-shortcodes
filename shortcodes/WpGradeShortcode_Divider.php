@@ -24,11 +24,17 @@ class WpGradeShortcode_Divider extends  WpGradeShortcode {
                 'options' => array('' => 'Regular', 'double' => 'Double'),
                 'admin_class' => 'span6'
             ),
+			'weight' => array(
+                'type' => 'select',
+                'name' => 'Weight',
+                'options' => array('' => 'Thin', 'thick' => 'Thick'),
+                'admin_class' => 'span5 push1'
+            ),
             'color' => array(
                 'type' => 'select',
                 'name' => 'Color',
                 'options' => array('' => 'Dark', 'white' => 'Light', 'color' => 'Color'),
-                'admin_class' => 'span5 push1'
+                'admin_class' => 'span6'
             )
         );
 
@@ -39,10 +45,11 @@ class WpGradeShortcode_Divider extends  WpGradeShortcode {
         extract( shortcode_atts( array(
 			'align' => '',
             'size' => '',
+            'weight' => '',
             'color' => '',
         ), $atts ) );
         ob_start(); ?>
-            <hr class="<?php echo $align.' '.$size.' '.$color;?>">
+            <hr class="<?php echo $align.' '.$size.' '.$weight.' '.$color;?>">
         <?php return ob_get_clean();
     }
 }
