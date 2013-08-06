@@ -6,7 +6,7 @@ class WpGradeShortcode_TwitterFeed extends  WpGradeShortcode {
 
     public function __construct($settings = array()) {
 
-        $this->self_closed = false;
+        $this->self_closed = true;
         $this->direct = false;
         $this->name = "TwitterFeed";
         $this->code = "twitterfeed";
