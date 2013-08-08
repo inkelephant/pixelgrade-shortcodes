@@ -27,6 +27,11 @@ class WpGradeShortcode_TeamMember extends  WpGradeShortcode {
                 'name' => 'Title',
                 'admin_class' => 'span6'
             ),
+			'imagelink' => array(
+                'type' => 'text',
+                'name' => 'Image Link',
+                'admin_class' => 'span6'
+            ),
             'content' => array(
                 'type' => 'textarea',
                 'name' => 'Description',
@@ -64,6 +69,7 @@ class WpGradeShortcode_TeamMember extends  WpGradeShortcode {
             'name' => '',
             'title' => '',
             'image' => '',
+            'imagelink' => '',
             'social_twitter' => '',
             'social_facebook' => '',
             'social_linkedin' => '',
@@ -73,11 +79,19 @@ class WpGradeShortcode_TeamMember extends  WpGradeShortcode {
 
         ob_start(); ?>
         <div class="team-member-container <?php echo $class ?>">
-            <?php if ( !empty($image) ) {?>
+            <?php if ( !empty($image) ) {
+				if ( !empty($imagelink) ) { ?>
+			<a href="<?php echo $imagelink ?>" class="team-member-image" title="More about <?php echo !empty($name) ? $name : ''; ?>">
+				<?php } else { ?>
             <div class="team-member-image">
+				<?php } ?>
                 <img src="<?php echo $image; ?>" alt="<?php echo $name; ?> Profile Image">
-            </div>
-            <?php } ?>
+            <?php if ( !empty($imagelink) ) { ?>
+			</a>
+            <?php } else { ?>
+			</div>
+			<?php }
+			} ?>
 
             <div class="team-member-header">
                  <?php if ( !empty($name) ) { ?>
