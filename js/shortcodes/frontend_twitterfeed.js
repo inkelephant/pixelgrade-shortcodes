@@ -1,13 +1,15 @@
 ;(function($){
 
     $(document).ready(function(){
-        $(".testimonials_slide").flexslider({
+        $(".twitter-shortcode-tweets_container").flexslider({
         	controlNav: false,
         	keyboard: false,
         	animation: 'slide',
             prevText: "",   
             nextText: "",
-        	slideshow: false,
+            slideshow: true,
+            pauseOnHover: true,
+            pauseOnAction: true,            
         	before: function(slider){ 
 	            // slider.slides.removeClass('s-hidden');
 	        },

@@ -117,11 +117,13 @@ class WpGradeShortcode {
         }
     }
 
-    public function get_clean_content($content){ // depricated - remove in further themes
+    public function get_clean_content($content){
         $content = do_shortcode( $content );
         $content = preg_replace('#<br class="pxg_removable" />#', '', $content); // remove our temp brs
-
-        return $content;
+	    $output = apply_filters( 'wptexturize', $content);
+	    $output = wpautop( $output, true );
+	    $output = shortcode_unautop( $output);
+        return $output;
     }
 
     public function render_param($param){

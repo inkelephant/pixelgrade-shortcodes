@@ -62,10 +62,14 @@ class WpGradeShortcode_Tabs extends  WpGradeShortcode {
             <div class="span6">
                 <div class="tabs-content">
                     <?php
+                    // make all tabs unique
+	                $ui_tabs_keys = array();
+
                     preg_match_all ( '#<body>([\s\S]*?)</body>#', $this->get_clean_content( $content ), $contents );
                     if ( !empty( $contents ) && isset($contents[1]) ) {
-                        foreach ( $contents[1] as $key => $value ) { ?>
-                            <div class="tabs-content-pane <?php if ( $key == 0 ) { ?>active<?php } ?>" id="ui-tab-<?php echo $key; ?>">
+                        foreach ( $contents[1] as $key => $value ) {
+	                        $ui_tabs_keys[$key] = uniqid( 'ui-tab-'.$key ); ?>
+                            <div class="tabs-content-pane <?php if ( $key == 0 ) { ?>active<?php } ?>" id="<?php echo $ui_tabs_keys[$key]; ?>">
                                 <div class="block-inner block-text">
                                     <?php echo $this->get_clean_content($value) ?>
                                 </div>
@@ -87,7 +91,7 @@ class WpGradeShortcode_Tabs extends  WpGradeShortcode {
 								}
 								?>
                                 <li class="tab-titles-list-item <?php if ( $key == 0 ) { ?>active<?php } ?>">
-                                    <a href="#ui-tab-<?php echo $key; ?>">
+                                    <a href="#<?php echo $ui_tabs_keys[$key]; ?>">
                                         <?php if ( isset( $icons[$key] ) && !empty($icons[$key] ) ) { ?>
                                             <i class="icon-<?php echo $icons[$key]; ?>"></i>
                                         <?php }

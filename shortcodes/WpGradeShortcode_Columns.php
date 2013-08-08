@@ -63,7 +63,7 @@ class WpGradeShortcode_Columns extends  WpGradeShortcode {
         $bg_color = '';
 
         extract( shortcode_atts( array(
-            'bg_color' => '#fff',
+            'bg_color' => '',
             'full_width' => '',
             'class' => ''
         ), $atts ) );
