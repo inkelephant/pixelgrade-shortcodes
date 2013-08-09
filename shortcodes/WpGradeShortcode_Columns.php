@@ -58,7 +58,6 @@ class WpGradeShortcode_Columns extends  WpGradeShortcode {
     }
 
     public function add_row_shortcode($atts, $content){
-
         $class = '';
         $bg_color = '';
 
@@ -86,16 +85,16 @@ class WpGradeShortcode_Columns extends  WpGradeShortcode {
                 <div class="row row-shortcode <?php echo $class; ?>">
                     <?php if ( !empty($bg_color) ) { ?>
                         <div class="row-background <?php if ( !empty( $full_width ) ) echo 'full-width'; ?>" style="background-color:<?php echo $bg_color; ?>;"></div>
-                    <?php } ?>
-                    <?php echo $this->get_clean_content($content); ?>
+                    <?php } 
+                    echo $this->get_clean_content($content); ?>
                 </div>
             </div>
         <?php else: ?>
             <div class="row row-shortcode <?php echo $class; ?>">
                 <?php if ( !empty($bg_color) ) { ?>
                     <div class="row-background <?php if ( !empty( $full_width ) ) echo 'full-width'; ?>" style="background-color:<?php echo $bg_color; ?>;"></div>
-                <?php } ?>
-                <?php echo $this->get_clean_content($content); ?>
+                <?php } 
+                echo $this->get_clean_content($content); ?>
             </div>
         <?php endif; ?>
     <?php return ob_get_clean();
