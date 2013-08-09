@@ -108,7 +108,8 @@ class WpGradeShortcode_Tabs extends  WpGradeShortcode {
     }
 
     public function add_tab_shortcode( $atts, $content ) {
-        $title = $icon = '';
+        $title = '';
+		$icon = '';
          extract( shortcode_atts( array(
              'title' => '',
              'icon' => ''

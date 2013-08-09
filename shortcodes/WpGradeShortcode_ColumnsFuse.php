@@ -94,8 +94,8 @@ class WpGradeShortcode_ColumnsFuse extends  WpGradeShortcode {
         ), $atts ) );
 
         ob_start(); ?>
-            <div class="span<?php echo $size ?> block <?php echo $class ?>"<?php if ( !empty($col_color) ) {?> style="background-color: <?php echo '#'.$col_color. '"'; } ?>>
-                <div class="block-inner"><?php echo $this->get_clean_content( $content ); ?></div>
+            <div class="span<?php echo $size ?> block <?php echo $class ?>" <?php if ( !empty($col_color) ) { echo 'style="background-color:'.'#'.$col_color.'"'; } ?> >
+				 <div class="block-inner"><?php echo $this->get_clean_content( $content ); ?></div>
             </div>
         <?php return ob_get_clean();
     }
