@@ -104,21 +104,6 @@ class WpGradeShortcode_TestimonialsCityHub extends  WpGradeShortcode {
                             $author_function = get_post_meta(get_the_ID(), WPGRADE_PREFIX. 'author_function', true);
                             $author_link = get_post_meta(get_the_ID(), WPGRADE_PREFIX. 'author_link', true);
                         ?>
-                        <div class="main main-testimonial">
-                            <div class="block-inner block-inner_first">
-                                <div class="testimonial-content">
-                                    <b class="testimonial-quotemark">&#8220;</b>
-                                    <?php the_content(); ?>
-                                </div>
-                                <div class="testimonial-author">
-                                    <?php if ( !empty($author_name)) { ?>
-                                        <div class="testimonial-author_name"><?php echo $author_name; ?></div>
-                                    <?php } if ( !empty($author_function) ) {?>
-                                        <div class="testimonial-author_position"><?php echo $author_function; ?></div>
-                                    <?php } ?>
-                                </div>
-                            </div>
-                        </div>
                         <?php if(!empty($author_link)) { ?>
                             <a class="side side-testimonial" href="<?php echo $author_link; ?>" target="_blank">
                         <?php } else { ?>
@@ -134,6 +119,20 @@ class WpGradeShortcode_TestimonialsCityHub extends  WpGradeShortcode {
                             <?php } else { ?>
                         </div>
                         <?php } ?>
+                        <div class="main-testimonial">
+                            <div class="block-inner block-inner_first">
+                                <div class="testimonial-content">
+                                    <?php the_content(); ?>
+                                </div>
+                                <div class="testimonial-author">
+                                    <?php if ( !empty($author_name)) { ?>
+                                        <div class="testimonial-author_name"><?php echo $author_name; ?></div>
+                                    <?php } if ( !empty($author_function) ) {?>
+                                        <div class="testimonial-author_position"><?php echo $author_function; ?></div>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        </div>
                     </li>
                 <?php endwhile;?>
                 </ul>
