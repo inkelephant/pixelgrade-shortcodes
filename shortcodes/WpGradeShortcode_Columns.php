@@ -81,20 +81,20 @@ class WpGradeShortcode_Columns extends  WpGradeShortcode {
 
         $output = '';
         if ($is_narrow) {
-			$output .= '<div class="narrow">';
+			$output .= '<div class="narrow">'.PHP_EOL;
 		}
 		
-		$output .= '<div class="row row-shortcode '.$class.'">';
+		$output .= '<div class="row row-shortcode '.$class.'">'.PHP_EOL;
 		if ( !empty($bg_color) ) {
-			$output .= '<div class="row-background ';
-			if ( !empty( $full_width ) )  $output .= 'full-width'; 
-			 $output .= '" style="background-color:'.$bg_color.';"></div>';
+			$output .= '<div class="row-background';
+			if ( !empty( $full_width ) )  $output .= ' full-width'; 
+			 $output .= '" style="background-color:'.$bg_color.';"></div>'.PHP_EOL;
 		   } 
-			$output .= $this->get_clean_content($content);
-		$output .= '</div>';
+			$output .= $this->get_clean_content($content).PHP_EOL;
+		$output .= '</div>'.PHP_EOL;
 		
 		if ($is_narrow) {
-			$output .= '</div>';
+			$output .= '</div>'.PHP_EOL;
 		}
 		
 		return  $output;
@@ -110,9 +110,9 @@ class WpGradeShortcode_Columns extends  WpGradeShortcode {
         ), $atts ) );
 
         $output = '';
-        $output .= '<div class="span'.$size. ' ' .$class.'">';
-        $output .= $this->get_clean_content( $content );
-		$output .= '</div>';
+        $output .= '<div class="span'.$size. ' ' .$class.'">'.PHP_EOL;
+        $output .= $this->get_clean_content( $content ).PHP_EOL;
+		$output .= '</div>'.PHP_EOL;
         return $output;
     }
 }

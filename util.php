@@ -38,7 +38,7 @@ if (!function_exists('wpgrade_parse_shortcode_content')) {
 
 	   /* Parse nested shortcodes and add formatting. */
 		$content = trim( do_shortcode( shortcode_unautop( $content ) ) );
-
+		
 		/* Remove '' from the start of the string. */
 		if ( substr( $content, 0, 4 ) == '' )
 			$content = substr( $content, 4 );

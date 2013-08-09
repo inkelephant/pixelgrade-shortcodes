@@ -134,6 +134,8 @@ class WpGradeShortcode {
 		$content = preg_replace('#<br class="pxg_removable" />#', '', $content); // remove our temp brs
 //		
 //        $content = do_shortcode( $content );
+		$content = wpautop( $content);
+		
 		$content = wpgrade_parse_shortcode_content($content);
 		
         return $content;
