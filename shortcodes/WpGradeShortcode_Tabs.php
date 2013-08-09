@@ -114,10 +114,10 @@ class WpGradeShortcode_Tabs extends  WpGradeShortcode {
              'icon' => ''
          ), $atts ) );
 
-        ob_start(); ?>
-        <title><?php echo do_shortcode( $title ); ?></title>
+        ob_start(); 
+		?><title><?php echo do_shortcode( $title ); ?></title>
         <icon><?php echo $icon ?></icon>
-        <body><?php echo do_shortcode( $content ); ?></body>
-    <?php return ob_get_clean();
+        <body><?php echo do_shortcode( $content ); ?></body><?php 
+		return ob_get_clean();
     }
 }

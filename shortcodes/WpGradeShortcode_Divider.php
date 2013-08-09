@@ -48,8 +48,7 @@ class WpGradeShortcode_Divider extends  WpGradeShortcode {
             'weight' => '',
             'color' => '',
         ), $atts ) );
-        ob_start(); ?>
-            <hr class="<?php echo $align.' '.$size.' '.$weight.' '.$color;?>">
-        <?php return ob_get_clean();
+        ob_start(); ?><hr class="<?php echo $align.' '.$size.' '.$weight.' '.$color;?>"><?php 
+		return ob_get_clean();
     }
 }
