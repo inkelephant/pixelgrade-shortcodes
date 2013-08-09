@@ -45,9 +45,7 @@ class WpGradeShortcode_Circle extends  WpGradeShortcode {
             'value' => '',
             'offset' => '',
         ), $atts ) );
-
-        ob_start(); ?>
-            <input class="dial" type="text" value="<?php echo $value; ?>" data-text="<?php echo $title; ?>" data-fgcolor="<?php echo $color; ?>" data-angleoffset="<?php echo $offset; ?>" />
-        <?php return ob_get_clean();
+		
+		return '<input class="dial" type="text" value="'.$value.'" data-text="'.$title.'" data-fgcolor="'.$color.'" data-angleoffset="'.$offset.'" />';
     }
 }
