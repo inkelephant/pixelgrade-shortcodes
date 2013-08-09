@@ -120,17 +120,16 @@ class WpGradeShortcode {
     }
 
     public function get_clean_content($content){
-		$content = apply_filters( 'wptexturize', $content);
-		$content = apply_filters( 'convert_smilies', $content);
-		$content = apply_filters( 'convert_chars', $content);
-		$content = wpautop( $content);
-		$content = shortcode_unautop ($content);
-		$content = apply_filters( 'prepend_attachment', $content);
-		$content = wpgrade_remove_spaces_around_shortcodes($content);
-		
+//	    $content = wpgrade_remove_spaces_around_shortcodes($content);
+//		$content = apply_filters( 'wptexturize', $content);
+//		$content = apply_filters( 'convert_smilies', $content);
+//		$content = apply_filters( 'convert_chars', $content);
+//		$content = wpautop( $content);
+//		$content = shortcode_unautop ($content);
+//		$content = apply_filters( 'prepend_attachment', $content);
 		$content = preg_replace('#<br class="pxg_removable" />#', '', $content); // remove our temp brs
 		
-        $content = do_shortcode( $content );
+        return do_shortcode( $content );
 		
 	    //$output = apply_filters( 'wptexturize', $content);
 	    //$output = wpautop( $output, true );
