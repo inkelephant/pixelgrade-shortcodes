@@ -120,9 +120,9 @@ class WpGradeShortcode {
     public function get_clean_content($content){
         $content = do_shortcode( $content );
         $content = preg_replace('#<br class="pxg_removable" />#', '', $content); // remove our temp brs
-	    $output = apply_filters( 'wptexturize', $content);
-	    $output = wpautop( $output, true );
-	    $output = shortcode_unautop( $output);
+	    //$output = apply_filters( 'wptexturize', $content);
+	    //$output = wpautop( $output, true );
+	    $output = shortcode_unautop( $content);
         return $output;
     }
 
