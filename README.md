@@ -1,7 +1,7 @@
 pixelgrade-shortcodes
 ==================
 
-~Current Version:1.6.8~
+~Current Version:1.6.9~
 
 ==================
 
