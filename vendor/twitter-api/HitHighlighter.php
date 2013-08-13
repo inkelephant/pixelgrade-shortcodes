@@ -23,6 +23,7 @@ require_once 'Regex.php';
  * @license    http://www.apache.org/licenses/LICENSE-2.0  Apache License v2.0
  * @package    Twitter
  */
+if (!class_exists('Twitter_HitHighlighter')) {
 class Twitter_HitHighlighter extends Twitter_Regex {
 
   /**
@@ -199,4 +200,5 @@ class Twitter_HitHighlighter extends Twitter_Regex {
     return (is_null($length) === true) ? substr_replace($string, $replacement, $start) : substr_replace($string, $replacement, $start, $length);
   }
 
+}
 }
