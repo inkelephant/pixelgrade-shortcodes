@@ -35,6 +35,13 @@ class WpGradeShortcode_Icon extends  WpGradeShortcode {
                 'options' => array('' => '-- Select Size --', 'small' => 'Small', 'medium' => 'Medium', 'big' => 'Big'),
                 'admin_class' => 'span5 push1'
             ),
+	        'class' => array(
+		        'type' => 'tags',
+		        'name' => 'Custom CSS Class',
+		        'admin_class' => 'span12',
+		        'options' => array( 'narrow', 'inverse'),
+		        'value' => array( '' )
+	        ),
             'name'=> array(
               'type'=> 'icon_list',
               'name' => 'Select icon:',
@@ -591,9 +598,12 @@ class WpGradeShortcode_Icon extends  WpGradeShortcode {
             'name' => '',
             'type' => '',
             'size' => '',
+	        'class' => ''
         ), $atts ) );
-
-        ob_start(); ?><i class="shc <?php echo $type." ".$size; ?> icon-<?php echo $name; ?>"></i><?php 
+		// replace the , with a space
+	    $classes = explode(',',$class);
+	    $class = implode(' ', $classes);
+        ob_start(); ?><i class="shc <?php echo $type." ".$size. " " .$class ; ?> icon-<?php echo $name; ?>"></i><?php
 		return ob_get_clean();
     }
 }

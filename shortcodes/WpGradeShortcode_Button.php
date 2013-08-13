@@ -10,6 +10,7 @@ class WpGradeShortcode_Button extends  WpGradeShortcode {
         $this->code = "button";
         $this->icon = "icon-bookmark";
         $this->direct = false;
+	    $this->one_line = true;
 
         $this->params = array(
             'link' => array(
