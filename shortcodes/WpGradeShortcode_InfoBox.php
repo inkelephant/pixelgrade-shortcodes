@@ -77,11 +77,8 @@ class WpGradeShortcode_InfoBox extends  WpGradeShortcode {
                 default: break;
             };
         ?>">
-            <h2 class="infobox-title"><?php echo $title; ?></h2>
+            <h1 class="infobox-title"><?php echo $title; ?></h1>
             <span class="infobox-subtitle"><?php echo $subtitle; ?></span>
-            <div class="content">
-                <?php echo $content; ?>
-            </div>
         </div>
 
         <?php
