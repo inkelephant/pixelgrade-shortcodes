@@ -15,6 +15,7 @@ class WpGradeShortcode {
     protected $settings;
     protected $params;
     protected $self_closed;
+	protected $one_line;
     protected $code;
     protected $direct;
     protected $icon;
@@ -30,6 +31,7 @@ class WpGradeShortcode {
 
         $this->plug_dir = plugins_url();
         $this->self_closed = false;
+	    $this->one_line = false;
         $this->shortcodes = array();
 		
         $this->autoload();
@@ -65,6 +67,7 @@ class WpGradeShortcode {
             $this->shortcodes[$shortcode_class]["code"] = $shortcode->code;
             $this->shortcodes[$shortcode_class]["self_closed"] = $shortcode->self_closed;
             $this->shortcodes[$shortcode_class]["direct"] = $shortcode->direct;
+	        $this->shortcodes[$shortcode_class]["one_line"] = $shortcode->one_line;
             $this->shortcodes[$shortcode_class]["icon"] = $shortcode->icon;
             if ( $shortcode->direct == false ) {
                 $this->shortcodes[$shortcode_class]["params"] = $shortcode->params;

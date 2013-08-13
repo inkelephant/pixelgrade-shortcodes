@@ -237,13 +237,16 @@ editor = '';
                     user_params_string += ' '+ e.name + '="'+ e.value+'"';
                     user_params[e.name] = e.value;
                 }
+
             });
 
             if ( params.self_closed ) {
                 editor.selection.setContent('['+params.code+user_params_string+']');
+            } else if ( params.one_line ) {
+                editor.selection.setContent('['+params.code+user_params_string+']'+ shortcode_content +'[/'+params.code+']');
             } else {
-                editor.selection.setContent('<p>['+params.code+user_params_string+']</p><p>'+ shortcode_content +'</p><p>[/'+params.code+']</p>');
-            }
+		        editor.selection.setContent('<p>['+params.code+user_params_string+']</p><p>'+ shortcode_content +'</p><p>[/'+params.code+']</p>');
+	        }
 
             modal_selector.trigger('reveal:close');
         }); // end of submit form
@@ -259,7 +262,7 @@ editor = '';
                 $self.find('.media_image_input').val(imgurl);
                 $self.find('.upload_preview').attr('src',imgurl).show().next().toggleClass('active');
                 tb_remove();
-            }
+            };
 
             return false;
         });
@@ -273,11 +276,26 @@ editor = '';
         $.each(elements, function(i,el){
             return_els[i] = {};
             return_els[i].name = this.name;
-            return_els[i].value = $(this).val();
+
+	        if ( $(this).attr('type') === 'checkbox' ) {
+
+		        if ($(this).is(':checked') ) {
+			        return_els[i].value = 'on';
+		        } else {
+			        return_els[i].value = ''; // keep it empty to not show in params string
+		        }
+
+	        } else {
+		        return_els[i].value = $(this).val();
+	        }
 
             // init the class as false
             return_els[i].class = false;
             if ( $(this).attr('class') ) return_els[i].class = $(this).attr('class');
+
+	        // init type as text
+	        return_els[i].type = 'text';
+	        if ( $(this).attr('type') ) return_els[i].type = $(this).attr('type');
         });
 
         return return_els;

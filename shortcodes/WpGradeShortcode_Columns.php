@@ -84,13 +84,13 @@ class WpGradeShortcode_Columns extends  WpGradeShortcode {
             <div class="narrow">
                 <div class="row row-shortcode <?php echo $class; ?>">
                     <?php if ( !empty($bg_color) ) { ?>
-                        <div class="row-background <?php if ( !empty( $full_width ) ) echo 'full-width'; ?>" style="background-color:<?php echo $bg_color; ?>;"></div>
+                        <div class="row-background full-width-bg <?php if ( !empty( $full_width ) ) echo 'full-width'; ?>" style="background-color:<?php echo $bg_color; ?>;"></div>
                     <?php } 
                     echo $this->get_clean_content($content); ?>
                 </div>
             </div>
         <?php else: ?>
-            <div class="row row-shortcode <?php echo $class; ?>">
+            <div class="row row-shortcode full-width-bg <?php echo $class; ?>">
                 <?php if ( !empty($bg_color) ) { ?>
                     <div class="row-background <?php if ( !empty( $full_width ) ) echo 'full-width'; ?>" style="background-color:<?php echo $bg_color; ?>;"></div>
                 <?php } 
