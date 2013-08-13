@@ -39,7 +39,7 @@ class WpGradeShortcode_Icon extends  WpGradeShortcode {
 		        'type' => 'tags',
 		        'name' => 'Custom CSS Class',
 		        'admin_class' => 'span12',
-		        'options' => array( 'narrow', 'inverse'),
+		        'options' => array('icon-border', 'pull-right', 'pull-left', 'icon-spin', 'icon-rotate-90', 'icon-rotate-180', 'icon-rotate-270', 'icon-flip-horizontal', 'icon-flip-vertical', 'icon-2x', 'icon-3x', 'icon-4x' ),
 		        'value' => array( '' )
 	        ),
             'name'=> array(
