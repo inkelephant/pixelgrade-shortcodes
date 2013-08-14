@@ -22,6 +22,7 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0  Apache License v2.0
  * @package    Twitter
  */
+if (!class_exists('Twitter_Regex')) {
 abstract class Twitter_Regex {
 
   /**
@@ -175,4 +176,5 @@ abstract class Twitter_Regex {
     $this->tweet = $tweet;
   }
 
+}
 }
