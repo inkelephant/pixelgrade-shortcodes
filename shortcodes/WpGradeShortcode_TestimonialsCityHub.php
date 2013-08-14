@@ -98,16 +98,16 @@ class WpGradeShortcode_TestimonialsCityHub extends  WpGradeShortcode {
                 <div class="testimonials-slider">
                 <ul class="testimonials-list slides">
                 <?php while ( $query->have_posts() ) : $query->the_post(); ?>
-                    <li class="testimonials-list-item row slide">
+                    <li class="testimonial-item row slide">
                         <?php
                             $author_name = get_post_meta(get_the_ID(), WPGRADE_PREFIX. 'author_name', true);
                             $author_function = get_post_meta(get_the_ID(), WPGRADE_PREFIX. 'author_function', true);
                             $author_link = get_post_meta(get_the_ID(), WPGRADE_PREFIX. 'author_link', true);
                         ?>
                         <?php if(!empty($author_link)) { ?>
-                            <a class="side side-testimonial" href="<?php echo $author_link; ?>" target="_blank">
+                            <a class="testimonial-left" href="<?php echo $author_link; ?>" target="_blank">
                         <?php } else { ?>
-                        <div class="side side-testimonial">
+                        <div class="testimonial-left">
                             <?php }
                                 if ( has_post_thumbnail() ) {
                                     $thumb_url = wp_get_attachment_url( get_post_thumbnail_id(get_the_ID()) ); ?>
@@ -119,7 +119,7 @@ class WpGradeShortcode_TestimonialsCityHub extends  WpGradeShortcode {
                             <?php } else { ?>
                         </div>
                         <?php } ?>
-                        <div class="main-testimonial">
+                        <div class="testimonial-right">
                             <div class="block-inner block-inner_first">
                                 <div class="testimonial-content">
                                     <?php the_content(); ?>
