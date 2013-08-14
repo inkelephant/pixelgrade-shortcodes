@@ -39,24 +39,45 @@
 	@include background-size($ratio * 1rem $ratio * 1rem);
 }
 
-@mixin fontSize($fs, $lh, $ratio) {
-	$ems: ceil($fs/($fontSizeBase*$lh));
-	$height: ($ems*$fontSizeBase*$lh)/$fs;
-	$height: $height*$ratio;
+@mixin fontSize($fs, $lh, $ratio: 1) {
+  $ems: ceil($fs/($fontSizeBase*$lh*$ratio));
+  $lineHeight: ($ems*$fontSizeBase*$lh*$ratio)/$fs;
+  line-height: $lineHeight;
+  
+  // a
+  // position: relative;
+  // top: (($lineHeight - 1)/2 + 0.215) + em;
+  // left: 0;
 
-	// Change global variables
-	$lineHeight: ($height*$fs + 0.05px)/$fs; //**George
-	// $lineHeight: 1.5;
-
-	$fontSize: $fs;
-
-	line-height: $lineHeight;
-	@include rem('font-size', $fontSize);
+  // c
+  padding-top: (($lineHeight - 1)/2 + 0.215) + em;
+  padding-bottom: $lineHeight/$ems - (($lineHeight - 1)/2 + 0.215) + em;
+  
+  @include rem(font-size, $fs);
 }
 
 @mixin fs($fs: $fontSizeBase, $lh: $lineHeightBase, $ratio: 1) {
-	@include fontSize($fs, $lh, $ratio);
+  @include fontSize($fs, $lh, $ratio);
 }
+
+// @mixin fontSize($fs, $lh, $ratio) {
+// 	$ems: ceil($fs/($fontSizeBase*$lh));
+// 	$height: ($ems*$fontSizeBase*$lh)/$fs;
+// 	$height: $height*$ratio;
+
+// 	// Change global variables
+// 	$lineHeight: ($height*$fs + 0.05px)/$fs; //**George
+// 	// $lineHeight: 1.5;
+
+// 	$fontSize: $fs;
+
+// 	line-height: $lineHeight;
+// 	@include rem('font-size', $fontSize);
+// }
+
+// @mixin fs($fs: $fontSizeBase, $lh: $lineHeightBase, $ratio: 1) {
+// 	@include fontSize($fs, $lh, $ratio);
+// }
 
 @mixin white-space($wrap-space) {
 	@if $wrap-space == 'pre-wrap' {

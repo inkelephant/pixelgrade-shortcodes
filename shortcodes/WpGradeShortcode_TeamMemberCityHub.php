@@ -2,7 +2,7 @@
 
 if (!defined('ABSPATH')) die('-1');
 
-class WpGradeShortcode_TeamMember extends  WpGradeShortcode {
+class WpGradeShortcode_TeamMemberCityHub extends  WpGradeShortcode {
 
     public function __construct($settings = array()) {
         $this->self_closed = false;
@@ -27,7 +27,7 @@ class WpGradeShortcode_TeamMember extends  WpGradeShortcode {
                 'name' => 'Title',
                 'admin_class' => 'span6'
             ),
-            'imagelink' => array(
+			'imagelink' => array(
                 'type' => 'text',
                 'name' => 'Image Link',
                 'admin_class' => 'span6'
@@ -79,19 +79,32 @@ class WpGradeShortcode_TeamMember extends  WpGradeShortcode {
 
         ob_start(); ?>
         <div class="team-member-container <?php echo $class ?>">
-            <?php if ( !empty($image) ) {
-                if ( !empty($imagelink) ) { ?>
-            <a href="<?php echo $imagelink ?>" class="team-member-image" title="More about <?php echo !empty($name) ? $name : ''; ?>">
-                <?php } else { ?>
-            <div class="team-member-image">
-                <?php } ?>
-                <img src="<?php echo $image; ?>" alt="<?php echo $name; ?> Profile Image">
-            <?php if ( !empty($imagelink) ) { ?>
-            </a>
-            <?php } else { ?>
-            </div>
-            <?php }
-            } ?>
+
+
+            <?php if( !empty($image) ):
+                    if( !empty($imagelink) ): ?>
+                        <div class="team-member-image">
+                            <a href="<?php echo $imagelink ?>" class="team-member-image-link" title="More about <?php echo !empty($name) ? $name : ''; ?>">
+                                <div class="rounded-image-container">                        
+                                    <img src="<?php echo $image; ?>" alt="<?php echo $name; ?> Profile Image">
+                                </div>
+                                <div class="team-member-profile-container">
+                                    <div class="team-member-profile-table">
+                                        <span class="team-member-profile-cell">
+                                            <?php _e('View profile', wpGrade_txtd); ?>
+                                        </span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>                        
+                    <?php else: ?>
+                        <div class="team-member-image">
+                            <div class="rounded-image-container">                        
+                                <img src="<?php echo $image; ?>" alt="<?php echo $name; ?> Profile Image">
+                            </div>
+                        </div>
+                <?php endif; 
+                endif; ?>                        
 
             <div class="team-member-header">
                  <?php if ( !empty($name) ) { ?>
