@@ -4,7 +4,7 @@
         $(".twitter-shortcode-tweets_container").flexslider({
         	controlNav: false,
         	keyboard: false,
-        	animation: 'slide',
+        	animation: 'fadecss',
             prevText: "",   
             nextText: "",
             slideshow: true,
