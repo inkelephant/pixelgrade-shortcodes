@@ -131,13 +131,13 @@ class WpGradeShortcode {
 //		$content = shortcode_unautop ($content);
 //		$content = apply_filters( 'prepend_attachment', $content);
 		$content = preg_replace('#<br class="pxg_removable" />#', '', $content); // remove our temp brs
-		
+
         return do_shortcode( $content );
-		
+
 	    //$output = apply_filters( 'wptexturize', $content);
 	    //$output = wpautop( $output, true );
 	    //$output = shortcode_unautop( $content);
-        return $content;
+        //return $content;
     }
 
     public function render_param($param){

@@ -79,25 +79,25 @@ class WpGradeShortcode_Columns extends  WpGradeShortcode {
             if ($my_class == "narrow") $is_narrow = true;
         endforeach;
 
-        ob_start();
-        if ($is_narrow): ?>
-            <div class="narrow">
-                <div class="row row-shortcode <?php echo $class; ?>">
-                    <?php if ( !empty($bg_color) ) { ?>
-                        <div class="row-background full-width-bg <?php if ( !empty( $full_width ) ) echo 'full-width'; ?>" style="background-color:<?php echo $bg_color; ?>;"></div>
-                    <?php } 
-                    echo $this->get_clean_content($content); ?>
-                </div>
-            </div>
-        <?php else: ?>
-            <div class="row row-shortcode full-width-bg <?php echo $class; ?>">
-                <?php if ( !empty($bg_color) ) { ?>
-                    <div class="row-background <?php if ( !empty( $full_width ) ) echo 'full-width'; ?>" style="background-color:<?php echo $bg_color; ?>;"></div>
-                <?php } 
-                echo $this->get_clean_content($content); ?>
-            </div>
-        <?php endif; ?>
-    <?php return ob_get_clean();
+        $output = '';
+        if ($is_narrow) {
+			$output .= '<div class="narrow">'.PHP_EOL;
+		}
+		
+		$output .= '<div class="row row-shortcode '.$class.'">'.PHP_EOL;
+		if ( !empty($bg_color) ) {
+			$output .= '<div class="row-background';
+			if ( !empty( $full_width ) )  $output .= ' full-width'; 
+			 $output .= '" style="background-color:'.$bg_color.';"></div>'.PHP_EOL;
+		   } 
+			$output .= $this->get_clean_content($content).PHP_EOL;
+		$output .= '</div>'.PHP_EOL;
+		
+		if ($is_narrow) {
+			$output .= '</div>'.PHP_EOL;
+		}
+		
+		return  $output;
     }
 
     public function add_column_shortcode($atts, $content){
@@ -109,10 +109,10 @@ class WpGradeShortcode_Columns extends  WpGradeShortcode {
             'class' => ''
         ), $atts ) );
 
-        ob_start(); ?>
-            <div class="span<?php echo $size. ' ' .$class; ?>">
-                <?php echo $this->get_clean_content( $content ); ?>
-            </div>
-        <?php return ob_get_clean();
+        $output = '';
+        $output .= '<div class="span'.$size. ' ' .$class.'">'.PHP_EOL;
+        $output .= $this->get_clean_content( $content ).PHP_EOL;
+		$output .= '</div>'.PHP_EOL;
+        return $output;
     }
 }

@@ -600,10 +600,10 @@ class WpGradeShortcode_Icon extends  WpGradeShortcode {
             'size' => '',
 	        'class' => ''
         ), $atts ) );
+
 		// replace the , with a space
 	    $classes = explode(',',$class);
 	    $class = implode(' ', $classes);
-        ob_start(); ?><i class="shc <?php echo $type." ".$size. " " .$class ; ?> icon-<?php echo $name; ?>"></i><?php
-		return ob_get_clean();
+        return '<i class="shc '.$type.' '.$size.' ' .$class. ' icon-'.$name.'"></i>';
     }
 }
