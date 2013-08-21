@@ -15,7 +15,7 @@ Modal Styling
 	@import 'mixins';
 	@import 'grid';
 
-	* {
+	* { 
 		@include box-sizing(border-box);
 	}
 
