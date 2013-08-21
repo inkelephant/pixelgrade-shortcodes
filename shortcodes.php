@@ -15,6 +15,7 @@ class WpGradeShortcode {
     protected $settings;
     protected $params;
     protected $self_closed;
+	protected $one_line;
     protected $code;
     protected $direct;
     protected $icon;
@@ -30,6 +31,7 @@ class WpGradeShortcode {
 
         $this->plug_dir = plugins_url();
         $this->self_closed = false;
+	    $this->one_line = false;
         $this->shortcodes = array();
 		
         $this->autoload();
@@ -65,6 +67,7 @@ class WpGradeShortcode {
             $this->shortcodes[$shortcode_class]["code"] = $shortcode->code;
             $this->shortcodes[$shortcode_class]["self_closed"] = $shortcode->self_closed;
             $this->shortcodes[$shortcode_class]["direct"] = $shortcode->direct;
+	        $this->shortcodes[$shortcode_class]["one_line"] = $shortcode->one_line;
             $this->shortcodes[$shortcode_class]["icon"] = $shortcode->icon;
             if ( $shortcode->direct == false ) {
                 $this->shortcodes[$shortcode_class]["params"] = $shortcode->params;
@@ -120,25 +123,21 @@ class WpGradeShortcode {
     }
 
     public function get_clean_content($content){
-		
-//		$content = shortcode_unautop ($content);
-//		
+//	    $content = wpgrade_remove_spaces_around_shortcodes($content);
 //		$content = apply_filters( 'wptexturize', $content);
 //		$content = apply_filters( 'convert_smilies', $content);
 //		$content = apply_filters( 'convert_chars', $content);
 //		$content = wpautop( $content);
 //		$content = shortcode_unautop ($content);
 //		$content = apply_filters( 'prepend_attachment', $content);
-//		$content = wpgrade_remove_spaces_around_shortcodes($content);
-//		
 		$content = preg_replace('#<br class="pxg_removable" />#', '', $content); // remove our temp brs
-//		
-//        $content = do_shortcode( $content );
-		$content = wpautop( $content);
-		
-		$content = wpgrade_parse_shortcode_content($content);
-		
-        return $content;
+
+        return do_shortcode( $content );
+
+	    //$output = apply_filters( 'wptexturize', $content);
+	    //$output = wpautop( $output, true );
+	    //$output = shortcode_unautop( $content);
+        //return $content;
     }
 
     public function render_param($param){

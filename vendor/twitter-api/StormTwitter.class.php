@@ -8,6 +8,8 @@
 
 require_once('oauth/twitteroauth.php');
 
+if (!class_exists('StormTwitter')) {
+
 class StormTwitter {
 
   private $defaults = array(
@@ -167,4 +169,5 @@ class StormTwitter {
     return $result;
   
   }
+}
 }
